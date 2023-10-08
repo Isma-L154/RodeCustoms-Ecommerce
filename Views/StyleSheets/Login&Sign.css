@@ -1,0 +1,37 @@
+header{
+    /* height: 100px;*/
+ display: flex;
+ border-bottom: 2px solid black;
+ }
+
+ .container_logo{
+     width: 120px;
+     height: 75px;
+     border: 1px solid black;
+ }
+
+ /* Seccion de Footer*/
+ footer{
+    height: 325px;
+    display: flex;
+    padding-top: 25px;
+    background-color: goldenrod;      
+}
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+.footer_Text_main{
+    font-family: sans-serif;
+    font-size: 30px !important;
+    font-weight: 300;
+    padding-bottom: 2rem!important;
+    border-bottom: solid 1px black;
+    color: black;
+}
+

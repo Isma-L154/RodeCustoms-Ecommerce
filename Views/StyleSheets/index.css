@@ -1,0 +1,42 @@
+
+/*Header y Logo*/
+header{
+    /* height: 100px;*/
+ display: flex;
+ border-bottom: 2px solid black;
+ }
+ .container_logo{
+     width: 120px;
+     height: 75px;
+     border: 1px solid black;
+ }
+ 
+ #navbar{
+    /*Agarrar el 100% de lo que le quede a la pagina a lo ancho*/
+    width: 100%;
+}
+
+#navbar ul{
+    /*Dentro de la navbar, a la etiqueta ul cambiar el diseño de la lista no ordenada*/
+    list-style: none;
+}
+
+/*Crea un arbol de llamados mas especificos*/
+#navbar ul li{
+    float: right;
+    margin: 10px;
+    padding: 10px;
+    background-color: beige;
+}
+
+/*Cuando se le ponga el mouse encima para que se le cambie el color*/
+#navbar ul li :hover{
+ background-color: beige;
+}
+
+
+/*Trabajar unicamente sobre las etiquetas "a" de la navbar y quitarles es subrayado (en este caso)*/
+#navbar ul li a{
+    text-decoration: none;
+    color: black;
+}
