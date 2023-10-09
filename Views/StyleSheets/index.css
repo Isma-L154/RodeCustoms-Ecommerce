@@ -1,15 +1,16 @@
 
 /*Header y Logo*/
 header{
-    /* height: 100px;*/
+    height: 100px;
  display: flex;
  border-bottom: 2px solid black;
  }
  .container_logo{
      width: 120px;
      height: 75px;
-     border: 1px solid black;
+     margin-left: 30px;
  }
+ 
 
  /*Seccion para la Nav (Esta seccion es para la navegacion de la pagina)*/
 
@@ -23,17 +24,19 @@ header{
     list-style: none;
 }
 
-/*Crea un arbol de llamados mas especificos*/
+/*Se necesitan cambiar estos botones por iconos*/
 #navbar ul li{
     float: right;
     margin: 10px;
     padding: 10px;
-    background-color: beige;
+    border-radius: 10px;
+    background-color: goldenrod;
 }
 
 /*Cuando se le ponga el mouse encima para que se le cambie el color*/
 #navbar ul li :hover{
- background-color: beige;
+background-color: goldenrod;
+border-radius: 10px;
 }
 
 
@@ -73,6 +76,7 @@ footer{
     background-color: #2A2A2A;      
 }
 
+
 .row {
     display: -ms-flexbox;
     display: flex;
@@ -85,9 +89,12 @@ footer{
     position: relative;
     width: 100%;
     min-height: 1px;
-    padding-right: 2rem!important;
+    padding-right: 4rem!important;
     padding-left: 4rem!important;
     padding-top: 1rem!important;
+}
+.container_h2{
+display: flex;
 }
 
 .footer_Text_main{
