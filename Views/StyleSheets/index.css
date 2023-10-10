@@ -46,19 +46,44 @@ header{
     border-radius: 10px;
 }
 
-/*Cuando se le ponga el mouse encima para que se le cambie el color*/
-/*
-#navbar ul li :hover{
-background-color: goldenrod;
-border-radius: 10px;
-}
-*/
 
 /*Trabajar unicamente sobre las etiquetas "a" de la navbar y quitarles es subrayado (en este caso)*/
 #navbar ul li a{
     text-decoration: none;
     color: black;
 }
+
+
+/*Seccion para el Nav2*/
+.Nav2{
+    background-color: #fff; 
+    box-shadow: 0px 3px 6px #ccc; 
+    height: 40px;
+    width: 100%;
+    text-align: center;
+
+}
+.Nav2 ul {
+    list-style-type: none; 
+    padding: 0; 
+}
+.Nav2 a{
+    color: cornflowerblue;
+}
+
+.Nav2 li {
+    display: inline; 
+    margin-right: 20px; 
+    position: relative;
+}
+
+.Nav2 li:not(:last-child)::after {
+    content: "|"; 
+    margin-left: 10px; 
+    color: #000; 
+}
+
+
 
 /*Seccion para el Main Body de la pagina(Esta debera ser la informacion de la pagina)*/
 
@@ -181,7 +206,7 @@ display: flex;
     margin-top: -10px;
 }
 
-/* Estilos para los campos y etiquetas */
+/* Estilos para los campos y etiquetas del formulario*/
 label {
     display: block; 
     margin-bottom: 2px; 
@@ -194,18 +219,18 @@ input[type="tel"],
 textarea {
     width: 80%; 
     padding: 3px; 
-    margin-bottom: 7px; /* Espaciado entre campos */
-    border: 1px solid #ccc; /* Borde gris */
-    border-radius: 5px; /* Bordes redondeados */
+    margin-bottom: 7px; 
+    border: 1px solid #ccc; 
+    border-radius: 5px; 
 }
 
-/* Estilos para el botón de enviar */
+/* Estilos para el botón de enviar en el formulario*/
 button[type="submit"] {
-    background-color: goldenrod; /* Color de fondo del botón */
-    color: #fff; /* Color de texto del botón */
+    background-color: goldenrod; 
+    color: #fff; 
     padding: 7px 25px; /* Espaciado interior del botón */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
+    border: none; 
+    border-radius: 5px; 
     cursor: pointer; /* Cambiar el cursor al pasar el ratón */
     align-items: center;
     margin-top: 5px;   
