@@ -1,51 +1,64 @@
 
 /*Header y Logo*/
 header{
-    height: 100px;
- display: flex;
- border-bottom: 2px solid black;
+    height: 85px;
+    display: flex;
+    border-bottom:1px solid #ccc;
+    background-color: #2A2A2A;
  }
  .container_logo{
      width: 120px;
      height: 75px;
      margin-left: 30px;
+     margin-top: 7px;
  }
- 
 
  /*Seccion para la Nav (Esta seccion es para la navegacion de la pagina)*/
 
  #navbar{
     /*Agarrar el 100% de lo que le quede a la pagina a lo ancho*/
+    display: flex; /* Utiliza flexbox para distribuir elementos horizontalmente */
+    justify-content: space-between; /* Coloca elementos en los extremos */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 2%; /* Espaciado interior del nav */
     width: 100%;
+}
+.SearchBar {
+    flex-grow: 0; /* Permite que la barra de búsqueda crezca y ocupe el espacio disponible */
+    text-align: center; /* Centra el contenido horizontalmente */
+    width: 72%; /* Ocupa todo el ancho disponible */
+    border-radius: 5px; /* Bordes redondeados para el campo de búsqueda */
 }
 
 #navbar ul{
     /*Dentro de la navbar, a la etiqueta ul cambiar el diseño de la lista no ordenada*/
-    list-style: none;
+    list-style: none; /* Quita los marcadores de lista */
+    display: flex; /* Utiliza flexbox para los elementos de la lista */
+    gap: 10px; /* Espacio entre elementos de la lista */
 }
 
 /*Se necesitan cambiar estos botones por iconos*/
 #navbar ul li{
+    margin-bottom: 15px;
     float: right;
     margin: 10px;
     padding: 10px;
     border-radius: 10px;
-    background-color: goldenrod;
 }
 
 /*Cuando se le ponga el mouse encima para que se le cambie el color*/
+/*
 #navbar ul li :hover{
 background-color: goldenrod;
 border-radius: 10px;
 }
-
+*/
 
 /*Trabajar unicamente sobre las etiquetas "a" de la navbar y quitarles es subrayado (en este caso)*/
 #navbar ul li a{
     text-decoration: none;
     color: black;
 }
-
 
 /*Seccion para el Main Body de la pagina(Esta debera ser la informacion de la pagina)*/
 
@@ -118,22 +131,16 @@ display: flex;
     border: 2px solid white;
 }
 
-/*Logos del footer*/
+/*Logos del footer añadidos con libreria de FontAwesome*/
 #PhoneLogo{
-    width: 1.9em;
     text-align: center;
-    background-color: transparent;
-    border: none;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 }
 
 
 #MailLogo{
-    width: 1.9em;
     text-align: center;
-    background-color: transparent;
-    border: none;
-    margin-right: 0.5rem;
+    margin-right: 1rem;
 }
 .Social_Media ul{
     list-style: none; /* Elimina los puntos de la lista */
@@ -142,33 +149,20 @@ display: flex;
 }
 
 .Insta {
-    background-color: transparent; /* Color de fondo del círculo */
-    width: 40px; /* Ancho del círculo */
-    height: 40px; /* Altura del círculo */
-    border-radius: 50%; /* Hace que el círculo sea redondo */
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-right: 20px;
     margin-left: 45px;
+    
 }
 
 .Facebook{
-    background-color: transparent; /* Color de fondo del círculo */
-    width: 40px; /* Ancho del círculo */
-    height: 40px; /* Altura del círculo */
-    border-radius: 50%; /* Hace que el círculo sea redondo */
     display: flex;
-    justify-content: center;
     align-items: center;
     margin-right: 20px;
 }
 
 .TW{
-    background-color: transparent; /* Color de fondo del círculo */
-    width: 40px; /* Ancho del círculo */
-    height: 40px; /* Altura del círculo */
-    border-radius: 50%; /* Hace que el círculo sea redondo */
     display: flex;
     justify-content: center;
     align-items: center; 
