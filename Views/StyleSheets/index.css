@@ -5,6 +5,7 @@ header{
     display: flex;
     border-bottom:1px solid #ccc;
     background-color: #2A2A2A;
+    width: 100%;
  }
  .container_logo{
      width: 120px;
@@ -28,6 +29,14 @@ header{
     text-align: center; /* Centra el contenido horizontalmente */
     width: 72%; /* Ocupa todo el ancho disponible */
     border-radius: 5px; /* Bordes redondeados para el campo de búsqueda */
+}
+#Button_Search[type="submit"] {
+    background-color: goldenrod; 
+    color: #fff; 
+    padding: 7px 25px; /* Espaciado interior del botón */
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
 }
 
 #navbar ul{
@@ -57,11 +66,9 @@ header{
 /*Seccion para el Nav2*/
 .Nav2{
     background-color: #fff; 
-    box-shadow: 0px 3px 6px #ccc; 
     height: 40px;
     width: 100%;
     text-align: center;
-
 }
 .Nav2 ul {
     list-style-type: none; 
@@ -69,6 +76,7 @@ header{
 }
 .Nav2 a{
     color: cornflowerblue;
+    
 }
 
 .Nav2 li {
@@ -111,7 +119,8 @@ footer{
     height: 325px;
     display: flex;
     padding-top: 25px;
-    background-color: #2A2A2A;      
+    background-color: #2A2A2A;   
+    width: max-content 100%;   
 }
 
 
@@ -121,6 +130,7 @@ footer{
     flex-wrap: wrap;
     margin-right: -15px;
     margin-left: -15px;
+    
 }
 
 .footer_main_info{
@@ -150,10 +160,6 @@ display: flex;
 #footer_contacts li a{
     text-decoration: none;
     color: white;
-}
-
-.Linea_divisora{
-    border: 2px solid white;
 }
 
 /*Logos del footer añadidos con libreria de FontAwesome*/
@@ -191,49 +197,6 @@ display: flex;
     display: flex;
     justify-content: center;
     align-items: center; 
-}
-
-/*Seccion de footer para el formulario de aclaracion de dudas*/
-.formulario {
-    background-color: #fff; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-    padding: 5px; 
-    width: 450px;
-    height: auto; 
-    margin: 0 auto; 
-    margin-bottom: 10px;
-    margin-top: -10px;
-}
-
-/* Estilos para los campos y etiquetas del formulario*/
-label {
-    display: block; 
-    margin-bottom: 2px; 
-}
-
-input[type="text"],
-input[type="email"],
-input[type="tel"],
-
-textarea {
-    width: 80%; 
-    padding: 3px; 
-    margin-bottom: 7px; 
-    border: 1px solid #ccc; 
-    border-radius: 5px; 
-}
-
-/* Estilos para el botón de enviar en el formulario*/
-button[type="submit"] {
-    background-color: goldenrod; 
-    color: #fff; 
-    padding: 7px 25px; /* Espaciado interior del botón */
-    border: none; 
-    border-radius: 5px; 
-    cursor: pointer; /* Cambiar el cursor al pasar el ratón */
-    align-items: center;
-    margin-top: 5px;   
 }
 
 /*Seccion de CopyRight*/

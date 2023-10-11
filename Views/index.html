@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rode Customs</title>
+    <title>RODECUSTOMS</title>
     <link  rel="stylesheet" href="./StyleSheets/index.css">
     
     <!--Link de Bootstrap para poder utilizar la libreria de diseños de estos-->
@@ -28,7 +28,7 @@
             <div class="SearchBar">
                 <form class="d-flex" role="search">
                     <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
-                    <button class="btn btn-outline-success" type="submit"                      
+                    <button class="btn btn-outline-success" id="Button_Search" type="submit"                     
                     onmouseover="this.style.backgroundColor='#007bff';" 
                       
                       onmouseout="this.style.backgroundColor='#D4AF37';">Buscar
@@ -56,45 +56,105 @@
     </header>
 
     <nav class="Nav2">
-    
+    <!--Se busca que estos redireccionen a las secciones de la misma pagina que se encuentran en el main-->
         <ul>
-            <li><a href="#">Quienes somos?</a></li>
-            <li><a href="#">Donde nos ubicamos?</a></li>
-            <li><a href="#">Servicios</a></li>
+            <li><a href="#Section_Servicios">Servicios</a></li>
+            <li><a href="#Section_Direccion">Donde nos ubicamos?</a></li>
+            <li><a href="#Section_QS">Quienes Somos?</a></li>
         </ul>
 
     </nav>    
     
 
-    <main>
-<br>
-        <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dolorem natus quasi modi consequatur nemo quis placeat iusto qui tenetur saepe quibusdam unde architecto eius voluptate, quod velit blanditiis dolor nisi?</p>
+    <main class="Seccion_Principal">
+        <section class="bg-light" id="Section_Servicios" >
+            <div class="container py-5">
+                <div class="row text-center py-3">
+                    <div class="col-lg-6 m-auto">
+                        <h1>Servicios</h1>
+                    </div>
+                </div>
+                <div class="row">
+                    <!--Seccion de Productos de la marca-->
+                    <div class="col-12 col-md-4 mb-4" >
+                        <div class="card h-100">
+                            <a class="h2 text-decoration-none text-dark fs-3 text-center" >Productos de Marca</a>
+                            <a>
+                                <img class="card-img-top" src="./img/Logo.svg" style="height: 300px; width: 400px; padding-top: 10px;">
+                            </a>
+                            <div class="card-body">
+                                        <p class="card-text">
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sunt in culpa qui officia
+                                    deserunt.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Carta de Personalizacion de ropa-->
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <a class="h2 text-decoration-none text-dark fs-3 text-center">Personalizacion de Productos</a>
+                            <a>
+                                <img alt="..." class="card-img-top" src="./img/Logo.svg" style="height: 300px; width: 400px; padding-top: 10px;">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Aenean gravida dignissim finibus. Nullam ipsum diam, posuere vitae pharetra sed, commodo
+                                    ullamcorper.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Personalizacion de productos varios(Que no es ropa)-->
+                    <div class="col-12 col-md-4 mb-4">
+                        <div class="card h-100">
+                            <a class="h2 text-decoration-none text-dark fs-3 text-center">Stickers Personalizadas</a> 
+                            <a >
+                                <img  class="card-img-top" src="./img/Logo.svg" style="height: 300px; width: 400px; padding-top: 10px;">
+                            </a>
+                            <div class="card-body">
+                                <p class="card-text">
+                                    Curabitur ac mi sit amet diam luctus porta. Phasellus pulvinar sagittis diam, et scelerisque
+                                    ipsum lobortis nec.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!--Linea divisora para separar las secciones en la pagina -->
+        <hr class="m-0" />
 
+        <section id="Section_Direccion">
+            <h2>Donde nos Ubicamos</h2>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste facilis, incidunt molestiae adipisci itaque autem qui iusto non, culpa delectus corporis expedita maxime obcaecati. Corrupti dolorem saepe eveniet facere eaque..</p>
+        </section>
+        
+        
+        
+        <hr class="m-0" />
+        <section id="Section_QS">
+            <div class="resume-section-content">
+                <h2 class="mb-5">Quienes somos?</h2>
+                <div class="d-flex flex-column flex-md-row justify-content-between mb-5">
+                    <div class="flex-grow-1">
 
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo sed saepe libero quasi atque nulla corrupti nisi quam. Harum dicta praesentium aperiam atque ea, vitae natus qui sapiente aut officiis.</p>
-
-
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora labore repudiandae maxime officia quidem eligendi nam at animi quae, assumenda quos voluptatem illum iusto aliquam, est quam corrupti error esse!</p>
-
-
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo sed saepe libero quasi atque nulla corrupti nisi quam. Harum dicta praesentium aperiam atque ea, vitae natus qui sapiente aut officiis.</p>
-
-
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora labore repudiandae maxime officia quidem eligendi nam at animi quae, assumenda quos voluptatem illum iusto aliquam, est quam corrupti error esse!</p>
-
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo sed saepe libero quasi atque nulla corrupti nisi quam. Harum dicta praesentium aperiam atque ea, vitae natus qui sapiente aut officiis.</p>
-
-
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora labore repudiandae maxime officia quidem eligendi nam at animi quae, assumenda quos voluptatem illum iusto aliquam, est quam corrupti error esse!</p>
-
-<p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo sed saepe libero quasi atque nulla corrupti nisi quam. Harum dicta praesentium aperiam atque ea, vitae natus qui sapiente aut officiis.</p>
-
-
-<p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempora labore repudiandae maxime officia quidem eligendi nam at animi quae, assumenda quos voluptatem illum iusto aliquam, est quam corrupti error esse!</p>
-
+                        <p class="lead mb-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Delectus consectetur similique minima quis, omnis illum facere ipsa, incidunt dolores ad vero impedit iste. Ipsa mollitia quos tenetur quaerat deserunt error.</p>
+                    </div>
+                </div>
+                <div class="d-flex flex-column flex-md-row justify-content-between">
+                </div>
+            </div>
+        </section>
     </main>
 
+
+    <!--Hay que poner la info del footer en medio para que quede mejor-->
 <footer>
+
+
     <div class="row">
         <!--Seccion de footer para Contactos-->>
         <div class="footer_main_info">
@@ -138,36 +198,6 @@
             </li>
         </ul>
     </div>
-    </div>
-    
-    <!--Seccion del footer para el formulario-->
-    <div class="formulario">
-        <h2>Aclara tus dudas</h2>
-        
-        <form action="#" method="post">
-            <div class="form-group">
-                <label for="nombre">Nombre:</label>
-                <input type="text" id="nombre" name="nombre" required>
-            </div>
-    
-            <div class="form-group">
-                <label for="telefono">Teléfono:</label>
-                <input type="tel" id="telefono" name="telefono">
-            </div>
-    
-            <div class="form-group">
-                <label for="correo">Correo:</label>
-                <input type="email" id="correo" name="correo" required>
-            </div>
-    
-            <div class="form-group">
-                <label for="mensaje">Mensaje:</label>
-                <textarea id="mensaje" name="mensaje" rows="3" required></textarea>
-            </div>
-    
-            <button type="submit">Enviar</button>
-        </form>
-    
     </div>
 
 </footer>  
