@@ -1,13 +1,160 @@
 header{
-    /* height: 100px;*/
- display: flex;
- border-bottom: 2px solid black;
+    height: 95px;
+    display: flex;
+    background-color: #2A2A2A;
+    width: 100%;
  }
-
  .container_logo{
      width: 120px;
      height: 75px;
-     border: 1px solid black;
+     margin-left: 30px;
+     margin-top: 7px;
  }
+ /*Seccion para la Nav (Esta seccion es para la navegacion de la pagina)*/
+
+ #navbar{
+    /*Agarrar el 100% de lo que le quede a la pagina a lo ancho*/
+    display: flex; /* Utiliza flexbox para distribuir elementos horizontalmente */
+    justify-content: space-between; /* Coloca elementos en los extremos */
+    align-items: center; /* Centra verticalmente los elementos */
+    padding: 2%; /* Espaciado interior del nav */
+    width: 100%;
+}
+.SearchBar {
+    flex-grow: 0; /* Permite que la barra de búsqueda crezca y ocupe el espacio disponible */
+    text-align: center; /* Centra el contenido horizontalmente */
+    width: 80%; /* Ocupa todo el ancho disponible */
+    border-radius: 5px; /* Bordes redondeados para el campo de búsqueda */
+
+}
+#Button_Search[type="submit"] {
+    background-color: goldenrod; 
+    color: #fff; 
+    padding: 7px 25px; /* Espaciado interior del botón */
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer; /* Cambiar el cursor al pasar el mouse */
+}
+
+main h1{
+    font-size: xx-large;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+main h2{
+    font-size: large;
+    text-align: center  ;
+}
 
 
+
+/* Seccion de Footer*/
+footer{
+    height: 325px;
+    display: flex;
+    padding-top: 25px;
+    background-color: #2A2A2A;   
+    width: max-content 100%;   
+}
+
+
+.row {
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    margin-right: -15px;
+    margin-left: -15px;
+    
+}
+
+.footer_main_info{
+    position: relative;
+    width: 100%;
+    min-height: 1px;
+    padding-right: 4rem!important;
+    padding-left: 4rem!important;
+    padding-top: 1rem!important;
+}
+.container_h2{
+display: flex;
+}
+
+.footer_Text_main{
+    font-family: 'Roboto', sans-serif;
+    font-size: 30px !important;
+    font-weight: 300;
+    padding-bottom: 2rem!important;
+    border-bottom: solid 1px white;
+    color: white;
+}
+#footer_contacts{
+    list-style-type: none;
+}
+
+#footer_contacts li a{
+    text-decoration: none;
+    color: white;
+}
+
+/*Logos del footer añadidos con libreria de FontAwesome*/
+#PhoneLogo{
+    text-align: center;
+    margin-right: 1rem;
+}
+
+
+#MailLogo{
+    text-align: center;
+    margin-right: 1rem;
+}
+.Social_Media ul{
+    list-style: none; /* Elimina los puntos de la lista */
+    display: flex; /* Cambia la disposición de la lista a horizontal */
+    
+}
+
+.Insta {
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+    margin-left: 45px;
+    
+}
+
+.Facebook{
+    display: flex;
+    align-items: center;
+    margin-right: 20px;
+}
+
+.TW{
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+}
+
+/*Seccion de CopyRight*/
+.CopyRigth_Footer{
+    background-color: goldenrod !important;
+    padding-bottom: 1rem!important;
+    width: 100%!important;
+    padding-top: 1rem!important;
+    color: white;
+    text-align: center;
+}
+.footer-barra {
+    max-width: 1200px; /* Ancho máximo de la barra */
+    margin: 0 auto; /* Centrar la barra horizontalmente */
+}
+
+.footer-barra a{
+    text-decoration: none;
+    color: white;
+}
+
+/* Estilos para el texto de términos y copyright */
+.footer-barra p {
+    font-size: 14px;
+    margin: 0;
+}

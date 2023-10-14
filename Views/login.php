@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rode Customs</title>
+    <title>RODECUSTOMS</title>
     <link  rel="stylesheet" href="./StyleSheets/Login&Sign.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+    <?php
+    include "./Fragments/Librerias.php";
+    ?>
 
 </head>
 <body>
-    <!--Zona del header para el logo-->>
     <header>
-        <div class="container_logo">
-            <img src="" alt="" class="Mi_logo">
-        </div>
+        <?php
+        include "./Fragments/Header_BK.php";
+        ?>
     </header>
    
-   <!--Zona del main que lleva los campos de inicio de sesion-->>
+   <!--Zona del main que lleva los campos de inicio de sesion-->
     <main>
     <div class="container mt-5">
         <div class="row justify-content-center">
@@ -39,12 +41,11 @@
 </main>
 
 <!--Zona del footer generico de todas las paginas para el Contacto, Copyrigth, Redes sociales y Politicas de uso/Privacidad-->>
-<footer>
-    
-
-</footer>
 
 
+<?php
+include "./Fragments/Footer_BK.php";
+?>
 
 
 

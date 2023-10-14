@@ -1,9 +1,8 @@
 
 /*Header y Logo*/
 header{
-    height: 85px;
+    height: 95px;
     display: flex;
-    border-bottom:1px solid #ccc;
     background-color: #2A2A2A;
     width: 100%;
  }
@@ -14,8 +13,7 @@ header{
      margin-top: 7px;
  }
 
- /*Seccion para la Nav (Esta seccion es para la navegacion de la pagina)*/
-
+/*Seccion de Nav*/
  #navbar{
     /*Agarrar el 100% de lo que le quede a la pagina a lo ancho*/
     display: flex; /* Utiliza flexbox para distribuir elementos horizontalmente */
@@ -27,8 +25,9 @@ header{
 .SearchBar {
     flex-grow: 0; /* Permite que la barra de búsqueda crezca y ocupe el espacio disponible */
     text-align: center; /* Centra el contenido horizontalmente */
-    width: 72%; /* Ocupa todo el ancho disponible */
+    width: 80%; /* Ocupa todo el ancho disponible */
     border-radius: 5px; /* Bordes redondeados para el campo de búsqueda */
+
 }
 #Button_Search[type="submit"] {
     background-color: goldenrod; 
@@ -38,80 +37,6 @@ header{
     border-radius: 5px; 
     cursor: pointer; /* Cambiar el cursor al pasar el mouse */
 }
-
-#navbar ul{
-    /*Dentro de la navbar, a la etiqueta ul cambiar el diseño de la lista no ordenada*/
-    list-style: none; /* Quita los marcadores de lista */
-    display: flex; /* Utiliza flexbox para los elementos de la lista */
-    gap: 10px; /* Espacio entre elementos de la lista */
-}
-
-/*Se necesitan cambiar estos botones por iconos*/
-#navbar ul li{
-    margin-bottom: 15px;
-    float: right;
-    margin: 10px;
-    padding: 10px;
-    border-radius: 10px;
-}
-
-
-/*Trabajar unicamente sobre las etiquetas "a" de la navbar y quitarles es subrayado (en este caso)*/
-#navbar ul li a{
-    text-decoration: none;
-    color: black;
-}
-
-
-/*Seccion para el Nav2*/
-.Nav2{
-    background-color: #fff; 
-    height: 40px;
-    width: 100%;
-    text-align: center;
-}
-.Nav2 ul {
-    list-style-type: none; 
-    padding: 0; 
-}
-.Nav2 a{
-    color: cornflowerblue;
-    
-}
-
-.Nav2 li {
-    display: inline; 
-    margin-right: 20px; 
-    position: relative;
-}
-
-.Nav2 li:not(:last-child)::after {
-    content: "|"; 
-    margin-left: 10px; 
-    color: #000; 
-}
-
-
-
-/*Seccion para el Main Body de la pagina(Esta debera ser la informacion de la pagina)*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /* Seccion de Footer*/
