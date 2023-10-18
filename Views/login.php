@@ -28,7 +28,7 @@
         <div class="card shadow-2-strong" style="border: 2px solid; border-radius: 2rem; border-color: #2A2A2A; background-color: #2A2A2A;"  >
           <div class="card-body p-5 text-center">
 
-            <h3 class="mb-5" style="color: white;">Sign in</h3>
+            <h3 class="mb-5" style="color: white;">Iniciar Sesion</h3>
 
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
               <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email" />
