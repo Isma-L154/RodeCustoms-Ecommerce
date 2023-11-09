@@ -54,7 +54,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-address-card"style="margin-right: 15px;"></i> Perfil</a>
+                <a class="nav-link" href="./Perfil.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-address-card"style="margin-right: 15px;"></i> Perfil</a>
               </li>
 
               <li class="nav-item">

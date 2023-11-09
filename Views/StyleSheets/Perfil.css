@@ -1,0 +1,86 @@
+
+/*En este css vamos a modificar algunos estilos que usamos con Bootstrap*/
+body{
+    background:#eee;
+}
+
+.card{
+    border:none;
+
+    position:relative;
+    overflow:hidden;
+    border-radius:8px;
+    cursor:pointer;
+    margin-bottom: 3rem ;
+}
+
+.card:before{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:wheat;
+    transform:scaleY(1);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:after{
+    
+    content:"";
+    position:absolute;
+    left:0;
+    top:0;
+    width:4px;
+    height:100%;
+    background-color:goldenrod;
+    transform:scaleY(0);
+    transition:all 0.5s;
+    transform-origin: bottom
+}
+
+.card:hover::after{
+    transform:scaleY(1);
+}
+
+
+.fonts{
+    font-size:11px;
+}
+
+.social-list{
+    display:flex;
+    list-style:none;
+    justify-content:center;
+    padding:0;
+}
+
+.social-list li{
+    padding:10px;
+    color:goldenrod;
+    font-size:19px;
+}
+
+
+.buttons button:nth-child(1){
+       border:1px solid goldenrod !important;
+       color:goldenrod;
+       height:40px;
+}
+
+.buttons button:nth-child(1):hover{
+       border:1px solid goldenrod !important;
+       color:#fff;
+       height:40px;
+       background-color:goldenrod;
+}
+
+.buttons button:nth-child(2){
+       border:1px solid goldenrod !important;
+       background-color:goldenrod;
+       color:#fff;
+        height:40px;
+}
