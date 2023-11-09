@@ -50,7 +50,7 @@
             <ul class="navbar-nav justify-content-end flex-grow-1 pe-3 m-3">
               
             <li class="nav-item">
-            <a class="nav-link active" aria-current="page" href="#" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-cart-shopping"style="margin-right: 15px;"></i>  Carrito</a>
+            <a class="nav-link active" aria-current="page" href="./Carrito.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-cart-shopping"style="margin-right: 15px;"></i>  Carrito</a>
               </li>
 
               <li class="nav-item">

@@ -42,11 +42,11 @@
                                     Tenemos varios productos de diseños hechos por nosotros, para que no tengas que pensar
                                     en nada y solo disfrutes de nuestros productos.
                                 </p>
-                                <button type="button" class="btn btn-primary">Catalogo</button>
+                                <a href="./Catalogo.php"><button type="button" class="btn btn-primary">Catalogo</button></a>
                             </div>
                         </div>
                     </div>
-                    <!--Carta de Personalizacion de ropa-->
+                    <!--Carta de Personalizacion de productos-->
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card h-100">
                             <a class="h2 text-decoration-none text-dark fs-3 text-center">Personalizacion de Productos</a>
