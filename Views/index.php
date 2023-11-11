@@ -70,7 +70,7 @@
                         <div class="card h-100">
                             <a class="h2 text-decoration-none text-dark fs-3 text-center">Stickers Personalizadas</a> 
                             <a >
-                                <img  class="card-img-top" src="./img/Logo.svg" style="height: 300px; width: 400px; padding-top: 10px;">
+                                <img  class="card-img-top" src="./img/Logo.png" style="height: 300px; width: 400px; padding-top: 10px;">
                             </a>
                             <div class="card-body">
                                 <p class="card-text">

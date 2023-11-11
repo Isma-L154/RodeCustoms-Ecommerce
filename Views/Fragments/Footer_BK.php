@@ -5,7 +5,7 @@
         <div class="footer_main_info">
             
             <div class="container_h2">
-                <img src="./Img/Logo.svg" alt="LogoRode" class="Mi_logo" style="height: 50px; width: 60px; margin-left: 5px;">
+                <img src="./Img/Logo.png" alt="LogoRode" class="Mi_logo" style="height: 50px; width: 60px; margin-left: 5px;">
                 <h2 class="footer_Text_main">Rode Customs</h2>
             </div>            
             

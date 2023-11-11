@@ -18,6 +18,7 @@
                 </form>
             
             </div>            
+           
             <!--Menu del Navbar-->
     <div class="navbar navbar-dark bg-dark m-2" style="background-color: #2A2A2A!important;">
         <div class="container-fluid">
