@@ -5,16 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RODECUSTOMS</title>
     <?php
-    include "./Fragments/Librerias.php"
+    include "./assets/Fragments/Librerias.php"
     ?>
-    <link  rel="stylesheet" href="./StyleSheets/Perfil.css">
+    <link  rel="stylesheet" href="./assets/StyleSheets/Perfil.css">
 
 
 </head>
 <body>
     
 <?php
-include "./Fragments/Header_BK.php"
+include "./assets/Fragments/Header_BK.php"
 ?>
 
 
@@ -67,7 +67,7 @@ include "./Fragments/Header_BK.php"
 </div>    
 
 <?php
-include "./Fragments/Footer_BK.php"
+include "./assets/Fragments/Footer_BK.php"
 ?>
 
 </body>

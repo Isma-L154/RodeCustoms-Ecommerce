@@ -6,12 +6,12 @@
     <title>RODECUSTOMS</title>
 
     <?php
-    include "./Fragments/Librerias.php"
+    include "./assets/Fragments/Librerias.php"
     ?>
 </head>
 <body>
     <?php
-    include "./Fragments/Header_BK.php"
+    include "./assets/Fragments/Header_BK.php"
     ?>
     
     <section class="h-100 h-custom" style="background-color: #d2c9ff;">
@@ -114,7 +114,7 @@
 
 
     <?php
-    include "./Fragments/Footer_BK.php"
+    include "./assets/Fragments/Footer_BK.php"
     ?>
     
 </body>

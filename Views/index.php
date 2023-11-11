@@ -3,11 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>RODECUSTOMS</title>
-    <link  rel="stylesheet" href="./StyleSheets/index.css">
-    
+    <title>RODECUSTOMS</title>    
     <?php
-    include "./Fragments/Librerias.php";
+    include "./assets/Fragments/Librerias.php";
     ?>
 
 </head>
@@ -16,7 +14,7 @@
     <!--Header y Menu de Nav--->
     <?php
         
-        include "./Fragments/Header_BK.php";
+        include "./assets/Fragments/Header_BK.php";
         
         ?>  
     
@@ -35,7 +33,7 @@
                         <div class="card h-100">
                             <a class="h2 text-decoration-none text-dark fs-3 text-center" >Productos hechos por nosotros </a>
                             <a>
-                                <img class="card-img-top" src="./img/JDM.png" style="height: 300px; width: 400px; padding-top: 10px;">
+                                <img class="card-img-top" src="./assets/img/JDM.png" style="height: 300px; width: 400px; padding-top: 10px;">
                             </a>
                             <div class="card-body">
                                         <p class="card-text">
@@ -51,7 +49,7 @@
                         <div class="card h-100">
                             <a class="h2 text-decoration-none text-dark fs-3 text-center">Personalizacion de Productos</a>
                             <a>
-                                <img  class="card-img-top" src="./img/PZ1.png" style="height: 300px; width: 400px; padding-top: 10px;">
+                                <img  class="card-img-top" src="./assets/img/PZ1.png" style="height: 300px; width: 400px; padding-top: 10px;">
                             </a>
                             <div class="card-body">
                                 <p class="card-text">
@@ -70,7 +68,7 @@
                         <div class="card h-100">
                             <a class="h2 text-decoration-none text-dark fs-3 text-center">Stickers Personalizadas</a> 
                             <a >
-                                <img  class="card-img-top" src="./img/Logo.png" style="height: 300px; width: 400px; padding-top: 10px;">
+                                <img  class="card-img-top" src="./assets/img/Logo.png" style="height: 300px; width: 400px; padding-top: 10px;">
                             </a>
                             <div class="card-body">
                                 <p class="card-text">
@@ -125,7 +123,7 @@
     <!--Footer-->
     <?php
         
-        include "./Fragments/Footer_BK.php";
+        include "./assets/Fragments/Footer_BK.php";
         
         ?>
 

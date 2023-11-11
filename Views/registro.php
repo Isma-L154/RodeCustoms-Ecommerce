@@ -4,10 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RODECUSTOMS</title>
-    <link  rel="stylesheet" href="./StyleSheets/Login&Sign.css">
+    <link  rel="stylesheet" href="./assets/StyleSheets/Login&Sign.css">
 
     <?php
-    include "./Fragments/Librerias.php";
+    include "./assets/Fragments/Librerias.php";
     ?>
 
 </head>
@@ -15,7 +15,7 @@
     <!--Zona del header para el logo-->
     <header>
         <?php
-        include "./Fragments/Header_BK.php";
+        include "./assets/Fragments/Header_BK.php";
         ?>
     </header>
    
@@ -89,7 +89,7 @@
 
 
 <?php
-include "./Fragments/Footer_BK.php";
+include "./assets/Fragments/Footer_BK.php";
 ?>
 
 
