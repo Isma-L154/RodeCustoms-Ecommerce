@@ -3,8 +3,8 @@
 require_once '../Models/Articulo.php';
 
 switch ($_GET["op"]) {
+   
     case 'listar_articulos':
-
         $articulo = new Articulo();
         $articulos = $articulo ->listarTodosDb();
         $datos = array();
@@ -12,19 +12,23 @@ switch ($_GET["op"]) {
         foreach ($articulos as $reg) {
             if  ($reg-> getRuta_imagen() != '' && $reg-> getRuta_imagen() != null ) {
 
-                $Ruta = './assets/Img/Logo.png'.$reg->getRuta_imagen();
+                $Ruta = $reg->getRuta_imagen();
                 }else{
-                    $Ruta = '';
+                    $Ruta = '../Views/assets/Img/'.'Logo2.png';
                 }
                 $datos[] = array(
                     "0" => $reg->getId(),
                     "1" => $reg->getNombre(),
                     "2" => $reg->getDescripcion(),
-                    "3" => '<img src="'.$Ruta.'',
+                    "3" => '<img src="'. $Ruta.'" width="50px" heigth="50px"/>',                   
                     "4" => $reg->getPrecio(),   
+                    "5"=>  $reg->getCategoria(),
                 );
             }
             $Resultado = array(
+                "sEcho" => 1, ##informacion para datatables
+                "iTotalRecords" =>count($datos), ## total de registros al datatable
+                "iTotalDisplayRecords" => count($datos), ## enviamos el total de registros a visualizar
                 "aaData" => $datos
             );
             echo json_encode($Resultado);
@@ -33,6 +37,4 @@ switch ($_GET["op"]) {
     
     
     }
-
-
 ?>

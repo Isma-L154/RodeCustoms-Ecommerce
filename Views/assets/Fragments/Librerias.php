@@ -13,6 +13,5 @@
     
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="./Pluggins/jquery/jquery.min.js"></script>
-    <script src="./Pluggins/DataTables/datatables.min.js"></script>
     <!--Link para la pagina de estilos, esta es necesaria en todas las  paginas ya que tiene los estilos de los fragmentos-->
     <link  rel="stylesheet" href="./assets/Stylesheets/index.css">

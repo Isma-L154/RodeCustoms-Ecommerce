@@ -9,8 +9,9 @@
     <?php
     include "./assets/Fragments/Librerias.php"
     ?>
-        <script src="./assets/JavaScript/Articulo.js"></script>
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
         <link href="./assets/StyleSheets/Catalogo.css" rel="stylesheet" />
+    
     </head>
     <body>
         <?php
@@ -19,9 +20,10 @@
 
         <!-- Section-->
         <section class="py-5">
-            <table id="#cards">
+            <table id="cards">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+                
                 <div class="col mb-5 " >
                    
                    <div class="card h-100">
@@ -42,7 +44,28 @@
                             </div>
                         </div>
                     </div>
-                          
+
+                    <div class="card-body p-0">
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table id="tblcard"
+                                class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Email</th>
+                                    <th>Nombre</th>
+                                    <th>Imagen</th>
+                                    <th>Telefono</th>
+                                    <th>Estado</th>
+                                </thead>
+                                <tbody>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-md-1"></div>
+                    </div>
+                </div>  
                 </div>
             </div>
             </table>
@@ -53,5 +76,8 @@
         include "./assets/Fragments/Footer_BK.php"
         ?>
         <!--Scripts propios de JS para la pagina-->
+        <script src="./Pluggins/DataTables/datatables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+        <script src="./assets/JavaScript/Articulo.js"></script>
     </body>
 </html>

@@ -1,10 +1,10 @@
 
 function listarTodosArticulos(){
-    card = $('#cards').dataTable({    
+    tabla = $('#tblcard').dataTable({    
       aProcessing: true, //actiavmos el procesamiento de datatables
       aServerSide: true, //paginacion y filtrado del lado del serevr
       dom: 'Bfrtip', //definimos los elementos del control de tabla
-      ajax: ({
+      ajax: {
           //URL del controlador
           url: '../Controllers/CatalogoController.php?op=listar_articulos',
           type: 'get',
@@ -14,7 +14,9 @@ function listarTodosArticulos(){
             console.log(e.responseText);
           },
           bDestroy: true,
-          iDisplayLength: 5,
-        }),
+          iDisplayLength: 1,
+        },
     });  
 }
+
+listarTodosArticulos();

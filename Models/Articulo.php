@@ -77,7 +77,6 @@ class Articulo extends Conexion{
     public static function getConexion(){
         self::$cnx = Conexion::conectar();
     }
-
     public static function desconectar(){
         self::$cnx = null;
     }

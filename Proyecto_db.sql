@@ -85,7 +85,6 @@ CREATE TABLE Factura_Detalle (
     Total_Linea DECIMAL(10, 2),
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
-
 INSERT INTO Proyecto_db.Categoria(nombreCategoria, idCategoria) VALUES 
 ("Sudaderas",1), ("Camisetas",2) , ("Productos_Varios",3);
 
