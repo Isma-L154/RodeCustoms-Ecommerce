@@ -23,9 +23,9 @@
             <table id="cards">
             <div class="container px-4 px-lg-5 mt-5">
                 <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                
-                <div class="col mb-5 " >
-                   
+                               
+                <!--IMPORTANTE/ ESTRCUTURA EN LA QUE SE PODRIA PONER LA INFORMACION DE EL CATALOGO-->
+                <div class="col mb-5 " >                   
                    <div class="card h-100">
                             <!-- Product image-->
                             <img class="card-img-top" src=""  alt="..." />
@@ -44,7 +44,11 @@
                             </div>
                         </div>
                     </div>
+                    <!--FIN DE ESTRUCTURA-->
 
+
+
+                    <!--Inicio de Prueba para comprobar que los datos estan mostrandose en la web-->
                     <div class="card-body p-0">
                     <div class="row mt-2">
                         <div class="col-md-1"></div>
@@ -57,7 +61,6 @@
                                     <th>Nombre</th>
                                     <th>Imagen</th>
                                     <th>Telefono</th>
-                                    <th>Estado</th>
                                 </thead>
                                 <tbody>
                                 </tbody>

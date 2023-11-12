@@ -22,7 +22,6 @@ switch ($_GET["op"]) {
                     "2" => $reg->getDescripcion(),
                     "3" => '<img src="'. $Ruta.'" width="50px" heigth="50px"/>',                   
                     "4" => $reg->getPrecio(),   
-                    "5"=>  $reg->getCategoria(),
                 );
             }
             $Resultado = array(

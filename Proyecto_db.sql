@@ -85,11 +85,22 @@ CREATE TABLE Factura_Detalle (
     Total_Linea DECIMAL(10, 2),
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
+ALTER TABLE `Usuario`
+  ADD UNIQUE KEY `correo` (`correo`);
+
 INSERT INTO Proyecto_db.Categoria(nombreCategoria, idCategoria) VALUES 
 ("Sudaderas",1), ("Camisetas",2) , ("Productos_Varios",3);
 
 INSERT INTO Proyecto_db.Articulo(nombre, descripcion, ruta_imagen, precio,idCategoria) VALUES 
-("Camiseta Land Rover", "Camiseta LandRover color Negro","https://i.imgur.com/eYSdIX0.png" ,7500 , 2);
+("Camiseta Land Rover", "Camiseta LandRover color Negro","https://i.imgur.com/eYSdIX0.png" ,7500 , 2),
+("Hoddie HW", "Hoddie con logo de HW-Gris","https://i.imgur.com/PU8iZDy.png" ,15000 , 1),
+("Skyline Shirt", "Camiseta con logo de SkyLine-Negra","https://i.imgur.com/2OAmETf.png" ,7500 , 2),
+("Box-Box", "Camiseta Box F1-Blanca","https://i.imgur.com/9fL0Mzi.png" ,7500 , 2),
+("Costa Rican's Nature", "Camiseta de Costa Rica con Oso Perezoso-Blanca","https://i.imgur.com/wcmZx43.png" ,7500 , 2),
+("Gas Monkey Garage", "Camiseta Gas Monkey Garage-Blanca","https://i.imgur.com/UD8vYGv.png" ,7500 , 2),
+("Territorio Tico", "Camiseta del Territorio Tico","https://i.imgur.com/FGcCWzw.png" ,7500 , 2),
+("Mitsubishi", "Camiseta Mitsubishi-Negra","https://i.imgur.com/HTkYMEA.png" ,7500 , 2);
+
 
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
