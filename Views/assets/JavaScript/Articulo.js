@@ -16,5 +16,6 @@ function listarTodosArticulos(){
         },
     });  
 }
-
-listarTodosArticulos();
+$(function(){
+  listarTodosArticulos();
+});

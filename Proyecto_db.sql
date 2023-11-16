@@ -1,9 +1,10 @@
 create database Proyecto_db;
 use Proyecto_db;
 
+/*Crear el usuario y conectarse a la base de datos con este usuario*/
 create user 'Usuario123'@'%' identified by 'Proyecto';
 
-/*Se asignan los prvilegios sobr ela base de datos TechShop al usuario creado */
+/*Se asignan los prvilegios sobre la base de datos al usuario creado */
 grant all privileges on Proyecto_db.* to 'Usuario123'@'%';
 flush privileges;
 
@@ -45,11 +46,11 @@ CREATE TABLE Rol (
 --------------------------------------------------------
 
 CREATE TABLE Usuario (
-    idUsuario INT PRIMARY KEY ,
+    idUsuario INT PRIMARY KEY AUTO_INCREMENT,
     nombre VARCHAR(50) NOT NULL,
     apellidos VARCHAR(50) NOT NULL,
-    correo VARCHAR(255) NOT NULL,
-    contrasena VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL UNIQUE KEY,
+    clave VARCHAR(255) NOT NULL,
     idRol INT,
     FOREIGN KEY (idRol) REFERENCES Rol(idRol)
 );
@@ -85,8 +86,6 @@ CREATE TABLE Factura_Detalle (
     Total_Linea DECIMAL(10, 2),
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
-ALTER TABLE `Usuario`
-  ADD UNIQUE KEY `correo` (`correo`);
 
 INSERT INTO Proyecto_db.Categoria(nombreCategoria, idCategoria) VALUES 
 ("Sudaderas",1), ("Camisetas",2) , ("Productos_Varios",3);
@@ -101,7 +100,17 @@ INSERT INTO Proyecto_db.Articulo(nombre, descripcion, ruta_imagen, precio,idCate
 ("Territorio Tico", "Camiseta del Territorio Tico","https://i.imgur.com/FGcCWzw.png" ,7500 , 2),
 ("Mitsubishi", "Camiseta Mitsubishi-Negra","https://i.imgur.com/HTkYMEA.png" ,7500 , 2);
 
+/*Solo se cuentan con dos Roles, ya que al ser una pagina para un negocio pequeño, 
+todo lo hace el administrador (No cuenta con vendedores u otra clase de empleados que tengan que acceder)*/
+INSERT INTO Proyecto_db.Rol(idRol, nombreRol)VALUES
+(1,"Administrador"),(2,"Cliente");
 
+/*Se va agregar unicamente el Usuario Administrador y 1 usuario cliente 
+para que se pueda visualizar la pagina y con el afan de realizar pruebas*/
+INSERT INTO Proyecto_db.Usuario( nombre , apellidos , email , clave , idRol)VALUES
+("Roderick" ,"Campos" , "RodeCustoms@gmail.com" ,"Admin","1");
+
+select * from Usuario;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

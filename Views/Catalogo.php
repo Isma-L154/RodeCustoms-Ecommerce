@@ -9,7 +9,7 @@
     <?php
     include "./assets/Fragments/Librerias.php"
     ?>
-        <link rel="stylesheet" href="https://cdn.datatables.net/1.13.5/css/dataTables.bootstrap4.min.css">
+        <script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
         <link href="./assets/StyleSheets/Catalogo.css" rel="stylesheet" />
     
     </head>
@@ -71,7 +71,7 @@
                 </div>  
                 </div>
             </div>
-            </table>
+        </table>
             
         </section>
         <!-- Footer-->
@@ -79,8 +79,8 @@
         include "./assets/Fragments/Footer_BK.php"
         ?>
         <!--Scripts propios de JS para la pagina-->
-        <script src="./Pluggins/DataTables/datatables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.5/js/dataTables.bootstrap4.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
         <script src="./assets/JavaScript/Articulo.js"></script>
     </body>
 </html>
