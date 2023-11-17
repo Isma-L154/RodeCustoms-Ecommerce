@@ -108,10 +108,11 @@ INSERT INTO Proyecto_db.Rol(idRol, nombreRol)VALUES
 /*Se va agregar unicamente el Usuario Administrador y 1 usuario cliente 
 para que se pueda visualizar la pagina y con el afan de realizar pruebas*/
 INSERT INTO Proyecto_db.Usuario( nombre , apellidos , email , clave , idRol)VALUES
-("Roderick" ,"Campos" , "RodeCustoms@gmail.com" ,"Admin","1");
+("Roderick" ,"Campos" , "RodeCustoms@gmail.com" ,"Admin","1"),
+("Ismael" ,"Leon" , "ismaleonsaenz@gmail.com" ,"123","2");
+
 
 select * from Usuario;
-
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

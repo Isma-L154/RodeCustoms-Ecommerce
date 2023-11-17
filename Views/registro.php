@@ -74,21 +74,8 @@
               <input type="password" id="password" class="form-control" name="password" required/>
               <label class="form-label" for="password" style="color: white;">Contraseña</label>
             </div>
-            <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="idRol">Rol</label>
-                                            <select name="idRol" id="idRol" class="form-control">
-                                                <option value="1" selected>Administrador</option>
-                                                <option value="2">Cliente</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-            
-
-            <input type="submit" class="btn btn-primary btn-block mb-4" id="btnRegistrar" value="Registrar" 
-            
-            style="background-color: goldenrod; border-color: goldenrod;">
+                  <input type="submit" class="btn btn-primary btn-block mb-4" id="btnRegistar" value="Registrar" 
+                    style="background-color: goldenrod; border-color: goldenrod;">
 
           </form>
         </div>
@@ -108,7 +95,7 @@
         
         <script src="./Pluggins/bootbox/bootbox.min.js"></script>
         <script src="./Pluggins/toastr/toastr.js"></script>
-        <script src="./assets/JavaScript/Usuario.js"></script>
+        <script src="./assets/JavaScript/Registro.js"></script>
 
 
 </body>

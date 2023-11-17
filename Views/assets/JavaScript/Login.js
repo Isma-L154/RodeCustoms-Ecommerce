@@ -1,18 +1,16 @@
-
-//TODO Terminar esta funcion de JS y enlazarla con el formulario de Registro
-$('#usuario_add').on('submit', function (event) {
+$('#Form_Login').on('submit', function (event) {
     
     //Previene lo que  hace el formulario por defecto (osea redireccionarlo a otra pagina)
     event.preventDefault();
-
+  
     //Deshabilitar el boton de registrar despues de haberse presionado 1 vez
-    $('#btnRegistrar').prop('disabled', true);
+    $('#btnLogin').prop('disabled', true);
     
     //Obtener cada usuario y convertirlo en un objeto, (Formdata, es una clase predefinida de JS)
-    var formData = new FormData($('#usuario_add')[0]);
+    var formData = new FormData($('#Form_Login')[0]);
     $.ajax({
       //url del controlador en este caso
-      url: '../Controllers/UsuarioController.php?op=Insertar',
+      url: '../Controllers/LoginController.php?op=Login',
       type: 'POST',
       data: formData,
       contentType: false,
@@ -22,20 +20,20 @@ $('#usuario_add').on('submit', function (event) {
         switch (datos) {
           case '1':
             toastr.success(
-              'Usuario registrado'
+              'Sesion Iniciada'
             );
-            $('#usuario_add')[0].reset();
+            $('#Form_Login')[0].reset();
             tabla.api().ajax.reload();
             break;
   
           case '2':
             toastr.error(
-              'El correo ya existe... Corrija e inténtelo nuevamente...'
-            );
+            'No se logro '
+                );
             break;
   
           case '3':
-            toastr.error('Hubo un error al tratar de ingresar los datos.');
+            toastr.error('No se logro');
             break;
           /*
           case '4':
@@ -46,16 +44,10 @@ $('#usuario_add').on('submit', function (event) {
             break;*/
   
           default:
-            toastr.error(datos);
+            toastr.error('No estan entrando los datos');
             break;
         }
         $('#btnRegistar').removeAttr('disabled');
       },
     });
   });
-
-  function limpiarForms() {
-    $('#modulos_add').trigger('reset');
-  }
-  
-

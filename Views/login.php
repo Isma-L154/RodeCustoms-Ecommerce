@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RODECUSTOMS</title>
     <link  rel="stylesheet" href="./assets/StyleSheets/Login&Sign.css">
+    <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
 
     <?php
     include "./assets/Fragments/Librerias.php";
@@ -29,24 +30,25 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5" style="color: white;">Iniciar Sesion</h3>
-
+          <form method="POST" id="Form_Login" name="Form_Login">
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
-              <input type="email" id="typeEmailX-2" class="form-control form-control-lg" placeholder="Email" />
-              <label class="form-label" for="typeEmailX-2" ></label>
+              <input type="email" id="email_login" class="form-control form-control-lg" placeholder="Email" name="email_login" required/>
+              <label class="form-label" for="email_login" ></label>
             </div>
 
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
-              <input type="password" id="typePasswordX-2" class="form-control form-control-lg" placeholder="Contraseña" />
-              <label class="form-label" for="typePasswordX-2"></label>
+              <input type="password" id="password_login" class="form-control form-control-lg" placeholder="Contraseña" name="password_login" required/>
+              <label class="form-label" for="password_login"></label>
             </div>        
 
-            <button class="btn btn-primary btn-lg btn-block" type="submit">Iniciar Sesion</button>
+            <input class="btn btn-primary btn-lg btn-block" type="submit" id="btnLogin" value="Iniciar Sesion">
 
             <hr class="my-4" style="color: white;">
 
             <p style="color: white;">¿No tienes cuenta?</p>
             <a href="./registro.php"><button class="btn btn-lg btn-block btn-primary" style="background-color: goldenrod; border-color: goldenrod;"
               type="submit" > Registrarse</button></a>
+          </form>
 
           </div>
         </div>
@@ -64,7 +66,9 @@
 include "./assets/Fragments/Footer_BK.php";
 ?>
 
-
+<script src="./Pluggins/bootbox/bootbox.min.js"></script>
+        <script src="./Pluggins/toastr/toastr.js"></script>
+        <script src="./assets/JavaScript/Login.js"></script>
 
 
 </body>

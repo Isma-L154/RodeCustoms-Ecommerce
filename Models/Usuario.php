@@ -100,20 +100,21 @@ public function getIdUsuario()
                }
         }
 
+        
 
-
+//FIXME
 //Hacer un insert de datos en la BD
 public function guardarEnDb(){
-    $query = "INSERT INTO `Usuario`( `nombre` , `apellidos` , `email` , `clave` , `idRol`) 
-    VALUES (:nombre,:apellidos,:email,:clave,:idRol,now())";
+    $query = "INSERT INTO Usuario (nombre, apellidos, email, clave, idRol) 
+    VALUES (:nombre,:apellidos,:email,:clave,:idRol)";
  try {
      self::getConexion();
      $nombre=strtoupper($this->getNombre());
-     $apellidos=$this->getApellidos();
+     $apellidos=strtoupper($this->getApellidos());
      $email=$this->getEmail();
      $clave=$this->getClave();
-     //Rol se le asigna el valor de 2 como predeterminado para hacer el insert, porque siempre se hacen insert de clientes, no de admin
-     $idRol= $this->getRol();
+     $idRol=2;
+
 
      //PDO establece una conexion de php y la BD
     $resultado = self::$cnx->prepare($query);
@@ -158,15 +159,9 @@ public function verificarExistenciaEmail(){
     }
 }
 
-
-
-
-
-
+//LOGIN DE USUARIOS
 
 
 }
-
-
 
 ?>
