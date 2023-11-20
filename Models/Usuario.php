@@ -99,11 +99,6 @@ public function getIdUsuario()
                  return $error;
                }
         }
-
-        
-
-//FIXME
-//Hacer un insert de datos en la BD
 public function guardarEnDb(){
     $query = "INSERT INTO Usuario (nombre, apellidos, email, clave, idRol) 
     VALUES (:nombre,:apellidos,:email,:clave,:idRol)";
@@ -158,6 +153,9 @@ public function verificarExistenciaEmail(){
     return $error;
     }
 }
+
+
+//TODO Hacer la parte del LOGIN
 
 //LOGIN DE USUARIOS
 

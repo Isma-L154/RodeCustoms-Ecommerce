@@ -1,0 +1,15 @@
+
+#Dashboard{
+    justify-content: center;
+    align-items: center;
+    margin-top: 6rem;
+    margin-bottom: 6rem;
+
+}
+
+#Dashboard a{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+

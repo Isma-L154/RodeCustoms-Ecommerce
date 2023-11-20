@@ -1,7 +1,7 @@
 <?php
 
 require '../Models/Usuario.php';
-
+//FIXME Arreglar las funciones para que el login sea funcional
 
 switch ($_GET["op"]){
     

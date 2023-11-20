@@ -81,6 +81,28 @@ class Articulo extends Conexion{
         self::$cnx = null;
     }
 
+
+    public function verificarExistenciaDb(){
+        $query = "SELECT * FROM Articulo where idArticulo=:id";
+     try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);		
+            $id= $this->getId();	
+            $resultado->bindParam(":id",$id,PDO::PARAM_STR);
+            $resultado->execute();
+            self::desconectar();
+            
+            $encontrado = false;
+            foreach ($resultado->fetchAll() as $reg) {
+                $encontrado = true;
+            }
+            return $encontrado;
+           } catch (PDOException $Exception) {
+               self::desconectar();
+               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+             return $error;
+           }
+    }
     //Listar articulos 
     public function listarTodosDb(){
         $query = "SELECT * FROM Articulo";
@@ -111,6 +133,34 @@ class Articulo extends Conexion{
         }
     }
 
+    public function guardarEnDb(){
+        $query = "INSERT INTO Articulo (nombre, descripcion, ruta_imagen, precio, idCategoria) 
+        VALUES (:nombre,:descripcion,:imagen,:precio,:categoria)";
+     try {
+         self::getConexion();
+         $nombre=($this->getNombre());
+         $descripcion=($this->getDescripcion());
+         $imagen=$this->getRuta_imagen();
+         $precio=$this->getPrecio();
+         $idCategoria=$this->getCategoria();
+    
+    
+         //PDO establece una conexion de php y la BD
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindParam(":nombre",$nombre,PDO::PARAM_STR);
+        $resultado->bindParam(":descripcion",$descripcion,PDO::PARAM_STR);
+        $resultado->bindParam(":imagen",$imagen,PDO::PARAM_STR);
+        $resultado->bindParam(":precio",$precio,PDO::PARAM_STR);
+        $resultado->bindParam(":categoria",$idCategoria,PDO::PARAM_INT);
+            $resultado->execute();
+            self::desconectar();
+           } catch (PDOException $Exception) {
+               self::desconectar();
+               $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+             return json_encode($error);
+           }
+    }
+
     //Mostar un articulo en especifico con respecto al ID
 
     public static function MostrarArticulo_Especifico($id){
@@ -132,7 +182,60 @@ class Articulo extends Conexion{
         }
 
     }
+    public function llenarCampos($id){
+        $query = "SELECT * FROM Articulo where idArticulo=:id";
+        try {
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);		 	
+        $resultado->bindParam(":id",$id,PDO::PARAM_INT);
+        $resultado->execute();
+        self::desconectar();
+        foreach ($resultado->fetchAll() as $encontrado) {
+            $this->setId($encontrado['idArticulo']);
+            $this->setNombre($encontrado['nombre']);
+            $this->setDescripcion($encontrado['descripcion']);
+            $this->setRuta_imagen($encontrado['imagen']);
+            $this->setPrecio($encontrado['precio']);
+            $this->setCategoria($encontrado['idCategoria']);
 
+        }
+        } catch (PDOException $Exception) {
+        self::desconectar();
+        $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();;
+        return json_encode($error);
+        }
+    }
+
+
+    public function ActualizarArticulo(){
+        $query = "UPDATE Articulo SET nombre=:nombre, descripcion=:descripcion , precio=:precio, where idArticulo=:id";
+        try {
+            self::getConexion();
+            $id=$this->getId();
+            $nombre=$this->getNombre();
+            $descripcion=$this->getDescripcion();
+            $precio=$this->getPrecio();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":nombre",$nombre,PDO::PARAM_STR);
+            $resultado->bindParam(":descripcion",$descripcion,PDO::PARAM_STR);
+            $resultado->bindParam(":precio",$precio,PDO::PARAM_STR);
+            $resultado->bindParam(":id",$id,PDO::PARAM_INT);
+            
+            self::$cnx->beginTransaction();//desactiva el autocommit
+            
+            $resultado->execute();
+            self::$cnx->commit();//realiza el commit y vuelve al modo autocommit
+            self::desconectar();
+            
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+            return $error;
+        }
+    }
 
 
 

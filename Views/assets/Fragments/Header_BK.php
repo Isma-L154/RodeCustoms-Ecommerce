@@ -67,7 +67,7 @@
               </li>
 
               <li class="nav-item">
-                <a class="nav-link" href="#" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-screwdriver-wrench"style="margin-right: 15px;"></i>Administrador</a>
+                <a class="nav-link" href="./Admin_Dashboard.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-screwdriver-wrench"style="margin-right: 15px;"></i>Administrador</a>
               </li>
             </ul>
             

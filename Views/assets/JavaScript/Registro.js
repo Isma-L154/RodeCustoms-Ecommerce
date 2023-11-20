@@ -2,7 +2,6 @@ function limpiarForms() {
   $('#modulos_add').trigger('reset');
 }
 
-//FIXME Terminar esta funcion de JS y enlazarla con el formulario de Registro
 $('#usuario_add').on('submit', function (event) {
     
   //Previene lo que  hace el formulario por defecto (osea redireccionarlo a otra pagina)

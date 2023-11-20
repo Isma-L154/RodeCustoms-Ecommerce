@@ -3,7 +3,7 @@
 require_once '../Models/Usuario.php';
 
 switch ($_GET["op"]) {
-//FIXME
+
 case 'insertar':
     $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
     $apellidos = isset($_POST["apellidos"]) ? trim($_POST["apellidos"]) : "";

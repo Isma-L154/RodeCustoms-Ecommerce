@@ -1,3 +1,4 @@
+//FIXME Arreglar esta funcion porque el login no esta funcionando
 $('#Form_Login').on('submit', function (event) {
     
     //Previene lo que  hace el formulario por defecto (osea redireccionarlo a otra pagina)
