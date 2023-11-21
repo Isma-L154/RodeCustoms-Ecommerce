@@ -26,6 +26,7 @@ switch ($_GET["op"]) {
                     "2" => $reg->getDescripcion(),
                     "3" => '<img src="'. $Ruta.'" width="70px" heigth="70px"/>',                   
                     "4" => $reg->getPrecio(),   
+                    "5"=> $reg->getCategoria(),
                 );
             }
             $Resultado = array(
@@ -40,7 +41,7 @@ switch ($_GET["op"]) {
     case "Agregar_Articulos":
 
         //Lo parametros que se van a recibir por POST del form
-        $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
+        $nombre = isset($_POST["nombreArt"]) ? trim($_POST["nombreArt"]) : "";
         $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"]) : "";
         $imagen = isset($_POST["ruta_imagen"]) ? trim($_POST["ruta_imagen"]) : "";
         $precio = isset($_POST["precio"]) ? trim($_POST["precio"]) : "";
@@ -59,7 +60,7 @@ switch ($_GET["op"]) {
             $articulo->setCategoria($Categoria);
             $articulo->guardarEnDb();
             
-            if($usuario->verificarExistenciaDb()){
+            if($articulo->verificarExistenciaDb()){
                     echo 1; //usuario registrado y envio de correo exitos
             }else{
                 echo 3; //Fallo al realizar el registro en la DB

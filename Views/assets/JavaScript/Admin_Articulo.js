@@ -1,7 +1,9 @@
 
 function listarTodosArticulos(){
-    tabla = $('#tbl').dataTable({    
+    tabla = $('#admin_articulos').dataTable({    
       aProcessing: true, //actiavmos el procesamiento de datatables
+      aServerSide: true, //paginacion y filtrado del lado del serevr
+      dom: 'Bfrtip', //definimos los elementos del control de tabla
       ajax: {
           //URL del controlador
           url: '../Controllers/AdminController.php?op=MostrarArticulos',
@@ -12,7 +14,7 @@ function listarTodosArticulos(){
             console.log(e.responseText);
           },
           bDestroy: true,
-          iDisplayLength: 1,
+          iDisplayLength: 5,
         },
     });  
 }
@@ -22,9 +24,16 @@ $(function(){
 });
 
 function limpiarForms() {
-    $('#admin_articulos').trigger('reset');
-    $('#admin_edit_art').trigger('reset');
+    $('#add_articulos').trigger('reset');
+    $('#update_articulo').trigger('reset');
 }  
+function openForm() {
+    document.getElementById("Form_add").style.display = "block";
+  }
+
+  function closeForm() {
+    document.getElementById("Form_add").style.display = "none";
+  }
 
 
 
@@ -46,7 +55,7 @@ $('#add_articulo').on('submit', function (event) {
             toastr.success(
               'Articulo Agregado Correctamente'
             );
-            $('#usuario_add')[0].reset();
+            $('#add_articulo')[0].reset();
             break;
   
           case '2':
@@ -60,7 +69,7 @@ $('#add_articulo').on('submit', function (event) {
             break;
   
           default:
-            toastr.error(datos);
+            toastr.error('No entran los datos');
             break;
         }
         $('#btnAnadir').removeAttr('disabled');
