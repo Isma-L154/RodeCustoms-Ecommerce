@@ -77,37 +77,71 @@ $('#add_articulo').on('submit', function (event) {
     });
   });
 
+  
+/*Habilitacion de form de modificacion al presionar el boton en la tabla*/
+$('#admin_articulos').on('click', 'button[id="modificarArticulo"]', function () {
+  var modal = document.getElementById("Formulario_Update");
+  var span = document.getElementsByClassName("close")[0];
+
+  // Abrir el Modal
+  modal.style.display = "block";
+
+  // Cerrar el modal con la "x"
+  span.onclick = function() {
+      modal.style.display = "none";
+  }  
+  
+  // Cerrar el Modal con un clic fuera del Modal
+  window.onclick = function(event) {
+      if (event.target == modal) {
+          modal.style.display = "none";
+      }
+  }
+
+  var data = $('#admin_articulos').DataTable().row($(this).parents('tr')).data();
+  limpiarForms();
+  $('#EId').val(data[0]);
+  $('#Enombre').val(data[1]);
+  $('#Edescripcion').val(data[2]);
+  $('#Eruta_imagen').val(data[3]);
+  $('#Eprecio').val(data[4]);
+  $('#Ecategoria').val(data[5]);
+  return false;
+});
+
+
 
   //Modificar los datos del Articulo
   $('#update_articulo').on('submit', function (event) {
     event.preventDefault();
-    bootbox.confirm('¿Desea modificar los datos?', function (result) {
-      
-        if (result) {
+    var result = confirm("¿Desea actualizar los datos?");
+    
+    if (result) {
         var formData = new FormData($('#update_articulo')[0]);
         $.ajax({
-          url: '../Controllers/AdminController.php?op=Editar_Articulos',
-          type: 'POST',
-          data: formData,
-          contentType: false,
-          processData: false,
-          success: function (datos) {
-            //alert(datos);
-            switch (datos) {
-              case '0':
-                toastr.error('Error: No se pudieron actualizar los datos');
-                break;
-              case '1':
-                toastr.success('Datos actualizados correctamente');
-                tabla.api().ajax.reload();
-                limpiarForms();
-                break;
-              case '2':
-                toastr.error('Error: El ID es incorrecto');
-                break;
+            url: '../Controllers/AdminController.php?op=Editar_Articulos',
+            type: 'POST',
+            data: formData,
+            contentType: false,
+            processData: false,
+            success: function (datos) {
+                switch (datos) {
+                    case '0':
+                        toastr.error('Error: No se pudieron actualizar los datos');
+                        break;
+                    case '1':
+                        toastr.success('Datos actualizados correctamente');
+                        tabla.api().ajax.reload();
+                        break;
+                    case '2':
+                        toastr.error('Error: El ID es incorrecto');
+                        break;
+                }
+            },
+            error: function (xhr, status, error) {
+                console.log(xhr.responseText);
             }
-          },
         });
-      }
-    });
-  });
+    }
+});
+

@@ -208,20 +208,25 @@ class Articulo extends Conexion{
 
 
     public function ActualizarArticulo(){
-        $query = "UPDATE Articulo SET nombre=:nombre, descripcion=:descripcion , precio=:precio, where idArticulo=:id";
+        $query = "UPDATE Articulo SET nombre=:nombre, descripcion=:descripcion ,
+         precio=:precio, ruta_imagen=:imagen , idCategoria=:Categoria where idArticulo=:id";
         try {
             self::getConexion();
             $id=$this->getId();
             $nombre=$this->getNombre();
             $descripcion=$this->getDescripcion();
             $precio=$this->getPrecio();
+            $ruta_imagen =$this->getRuta_imagen();
+            $Categoria=$this->getCategoria();
             
             $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id",$id,PDO::PARAM_INT);
             $resultado->bindParam(":nombre",$nombre,PDO::PARAM_STR);
             $resultado->bindParam(":descripcion",$descripcion,PDO::PARAM_STR);
             $resultado->bindParam(":precio",$precio,PDO::PARAM_STR);
-            $resultado->bindParam(":id",$id,PDO::PARAM_INT);
-            
+            $resultado->bindParam(":imagen",$ruta_imagen,PDO::PARAM_STR);
+            $resultado->bindParam(":Categoria",$Categoria,PDO::PARAM_INT);
+
             self::$cnx->beginTransaction();//desactiva el autocommit
             
             $resultado->execute();
@@ -229,6 +234,7 @@ class Articulo extends Conexion{
             self::desconectar();
             
             return $resultado->rowCount();
+
         } catch (PDOException $Exception) {
             self::$cnx->rollBack();
             self::desconectar();

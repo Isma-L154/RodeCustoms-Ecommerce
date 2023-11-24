@@ -7,8 +7,9 @@ require_once  '../Models/Usuario.php';
 switch ($_GET["op"]) {
 //CRUD ARTICULOS
 
+
     case "MostrarArticulos":
-        
+        //BUG Arreglar el Bug que hay en el campo 3, que es la imagen, ya que al modificar se queda el texto de el src
         $articulo = new Articulo();
         $articulos = $articulo ->listarTodosDb();
         $datos = array();
@@ -17,6 +18,7 @@ switch ($_GET["op"]) {
             if  ($reg-> getRuta_imagen() != '' && $reg-> getRuta_imagen() != null ) {
 
                 $Ruta = $reg->getRuta_imagen();
+                
                 }else{
                     $Ruta = '../Views/assets/Img/'.'Logo2.png';
                 }
@@ -27,6 +29,9 @@ switch ($_GET["op"]) {
                     "3" => '<img src="'. $Ruta.'" width="70px" heigth="70px"/>',                   
                     "4" => $reg->getPrecio(),   
                     "5"=> $reg->getCategoria(),
+                    //Campo 6 para completar las opciones del CRUD en articulos
+                    "6"=> '<button class="btn btn-warning" id="modificarArticulo">Modificar</button> '.
+                    '<button class="btn btn-danger" onclick="Eliminar(\''.$reg->getId().'\')">Eliminar</button>'
                 );
             }
             $Resultado = array(
@@ -72,23 +77,23 @@ switch ($_GET["op"]) {
 
         case 'Editar_Articulos':
             //Trim se utiliza para eliminar espacios en blanco adicionales en los campos
-              $idArticulo = isset($_POST["idArticulo"]) ? trim($_POST["idArticulo"]) : "";
-              $nombre = isset($_POST["nombre"]) ? trim($_POST["nombre"]) : "";
-              $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"]) : "";
-              $imagen = isset($_POST["imagen"]) ? trim($_POST["imagen"]) : "";
-              $precio = isset($_POST["precio"]) ? trim($_POST["precio"]) : "";
-              $idCategoria = isset($_POST["Categoria"]) ? trim($_POST["Categoria"]) : "";
+              $idArticulo = isset($_POST["EId"]) ? trim($_POST["EId"]) : "";
+              $nombre = isset($_POST["Enombre"]) ? trim($_POST["Enombre"]) : "";
+              $descripcion = isset($_POST["Edescripcion"]) ? trim($_POST["Edescripcion"]) : "";
+              $imagen = isset($_POST["Eruta_imagen"]) ? trim($_POST["Eruta_imagen"]) : "";
+              $precio = isset($_POST["Eprecio"]) ? trim($_POST["Eprecio"]) : "";
+              $idCategoria = isset($_POST["Ecategoria"]) ? trim($_POST["Ecategoria"]) : "";
               
               $articulo = new Articulo();
               $articulo->setId($idArticulo);
               $encontrado = $articulo->verificarExistenciaDb();
-              if ($encontrado == 1) {
-                $articulo->llenarCampos($idArticulo);
-                //$modulo->setNombre($nombreModif);
+              
+              if ($encontrado = true) {
               $articulo->setId($idArticulo);
               $articulo->setNombre($nombre);
               $articulo->setDescripcion($descripcion);
               $articulo->setRuta_imagen($imagen);
+              $articulo->setPrecio($precio);
               $articulo->setCategoria($idCategoria);
               
               $modificados = $articulo->ActualizarArticulo();

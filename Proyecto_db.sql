@@ -110,7 +110,7 @@ para que se pueda visualizar la pagina y con el afan de realizar pruebas*/
 INSERT INTO Proyecto_db.Usuario( nombre , apellidos , email , clave , idRol)VALUES
 ("Roderick" ,"Campos" , "RodeCustoms@gmail.com" ,"Admin","1"),
 ("Ismael" ,"Leon" , "ismaleonsaenz@gmail.com" ,"123","2");
-
+select * from Articulo;
 
 select * from Usuario;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
