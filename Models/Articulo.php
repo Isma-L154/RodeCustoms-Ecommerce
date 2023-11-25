@@ -243,7 +243,29 @@ class Articulo extends Conexion{
         }
     }
 
-
+    public function EliminarArticulo(){
+        $query = "DELETE FROM Articulo WHERE idArticulo = :id";
+        try {
+            self::getConexion();
+            $id = $this->getId();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id", $id, PDO::PARAM_INT);
+    
+            self::$cnx->beginTransaction(); // Desactiva el autocommit
+            $resultado->execute();
+            self::$cnx->commit(); // Realiza el commit y vuelve al modo autocommit
+            self::desconectar();
+    
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
+    
 
 
 }

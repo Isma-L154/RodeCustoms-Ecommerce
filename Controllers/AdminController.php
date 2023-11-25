@@ -9,7 +9,7 @@ switch ($_GET["op"]) {
 
 
     case "MostrarArticulos":
-        //BUG Arreglar el Bug que hay en el campo 3, que es la imagen, ya que al modificar se queda el texto de el src
+        //BUG Arreglar el Bug que hay en el campo 3, que es la imagen, ya que al modificar se queda el texto del src
         $articulo = new Articulo();
         $articulos = $articulo ->listarTodosDb();
         $datos = array();
@@ -31,7 +31,7 @@ switch ($_GET["op"]) {
                     "5"=> $reg->getCategoria(),
                     //Campo 6 para completar las opciones del CRUD en articulos
                     "6"=> '<button class="btn btn-warning" id="modificarArticulo">Modificar</button> '.
-                    '<button class="btn btn-danger" onclick="Eliminar(\''.$reg->getId().'\')">Eliminar</button>'
+                    '<button class="btn btn-danger" id="EliminarArticulo" onclick="Eliminar(\''.$reg->getId().'\')">Eliminar</button>'
                 );
             }
             $Resultado = array(
@@ -109,7 +109,26 @@ switch ($_GET["op"]) {
         break;
         
         case"Eliminar_Articulos":
-            //TODO Completar funcion
+            
+            $idArticulo = isset($_POST["EId"]) ? trim($_POST["EId"]) : "";
+
+            $articulo = new Articulo();
+            $articulo->setId($idArticulo);
+            
+            $encontrado = $articulo->verificarExistenciaDb();
+            
+            if ($encontrado) {
+                $eliminados = $articulo->EliminarArticulo();
+            
+                if ($eliminados > 0) {
+                    echo 1; // Éxito al eliminar
+                } else {
+                    echo 0; // Error al eliminar
+                }
+            } else {
+                echo 2; // Artículo no encontrado
+            }
+            
             break;
 
         //CRUD USUARIOS

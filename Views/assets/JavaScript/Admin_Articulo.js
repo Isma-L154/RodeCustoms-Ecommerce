@@ -34,7 +34,7 @@ function openForm() {
   function closeForm() {
     document.getElementById("Form_add").style.display = "none";
   }
-
+//FIN DE FUNCIONES PRINCIPALES
 
 
 $('#add_articulo').on('submit', function (event) {
@@ -145,3 +145,34 @@ $('#admin_articulos').on('click', 'button[id="modificarArticulo"]', function () 
     }
 });
 
+$('#admin_articulos').on('click', 'button[id="EliminarArticulo"]', function () {
+  var result = confirm("¿Desea eliminar este artículo?");
+  
+  if (result) {
+      var formData = new FormData($('#admin_articulos')[0]);
+      $.ajax({
+          url: '../Controllers/AdminController.php?op=Eliminar_Articulos', 
+          type: 'POST',
+          data: formData,
+          contentType: false,
+          processData: false,
+          success: function (datos) {
+              switch (datos) {
+                  case '0':
+                      toastr.error('Error: No se pudo eliminar el artículo');
+                      break;
+                  case '1':
+                      toastr.success('Artículo eliminado correctamente');
+                      tabla.api().ajax.reload();
+                      break;
+                  case '2':
+                      toastr.error('Error: No se identifico el ID');
+                      break;
+              }
+          },
+          error: function (xhr, status, error) {
+              console.log(xhr.responseText);
+          }
+      });
+  }
+});
