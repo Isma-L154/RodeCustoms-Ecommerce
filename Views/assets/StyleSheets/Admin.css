@@ -2,8 +2,8 @@
 #Dashboard{
     justify-content: center;
     align-items: center;
-    margin-top: 6rem;
-    margin-bottom: 6rem;
+    margin-top: 8rem;
+    margin-bottom: 8rem;
 
 }
 
@@ -12,9 +12,6 @@
     text-decoration: none;
     color: black;
 }
-
-
-
 
 /* Button used to open the contact form - fixed at the bottom of the page */
 .open-button {
@@ -46,7 +43,7 @@
   }
   
   /* Full-width input fields */
-  .form-container input[type=text], .form-container input[type=double], select {
+  .form-container input[type=text], .form-container input[type=double],.form-container input[type=password] ,select {
     width: 100%;
     padding: 15px;
     margin: 4px 0 15px 0;
@@ -55,7 +52,7 @@
   }
   
   /* When the inputs get focus, do something */
-  .form-container input[type=text], .form-container input[type=double]:focus {
+  .form-container input[type=text], .form-container input[type=double],.form-container input[type=password]:focus {
     background-color: #f1f1f1;
     outline: none;
   }
@@ -81,9 +78,6 @@
     opacity: 1;
   }
 
-
-
-
   /*MODAL*/
 
   /* The Modal (background) */
@@ -103,11 +97,24 @@
 /* Modal Content/Box */
 .modal-content {
   background-color: #fefefe;
-  margin: 15% auto; /* 15% from the top and centered */
-  padding: 20px;
+  margin: 10% auto; /* Centrar el modal */
+  padding: 30px;
   border: 1px solid #888;
   width: 80%; /* Could be more or less, depending on screen size */
+
 }
+.modal-content form label{
+display: block;
+}
+
+.modal-content form input,
+.modal-content form select {
+    /* Establece el ancho del campo de entrada y añade un espacio entre ellos */
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 20px;
+}
+
 
 /* The Close Button */
 .close {

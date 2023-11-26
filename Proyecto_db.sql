@@ -105,12 +105,6 @@ todo lo hace el administrador (No cuenta con vendedores u otra clase de empleado
 INSERT INTO Proyecto_db.Rol(idRol, nombreRol)VALUES
 (1,"Administrador"),(2,"Cliente");
 
-/*Se va agregar unicamente el Usuario Administrador y 1 usuario cliente 
-para que se pueda visualizar la pagina y con el afan de realizar pruebas*/
-INSERT INTO Proyecto_db.Usuario( nombre , apellidos , email , clave , idRol)VALUES
-("Roderick" ,"Campos" , "RodeCustoms@gmail.com" ,"Admin","1"),
-("Ismael" ,"Leon" , "ismaleonsaenz@gmail.com" ,"123","2");
-
 
 select * from Articulo;
 select * from Usuario;

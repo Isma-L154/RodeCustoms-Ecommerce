@@ -72,7 +72,7 @@ $('#add_articulo').on('submit', function (event) {
             toastr.error('No entran los datos');
             break;
         }
-        $('#btnAnadir').removeAttr('disabled');
+        $('#btnAnadirUsu').removeAttr('disabled');
       },
     });
   });

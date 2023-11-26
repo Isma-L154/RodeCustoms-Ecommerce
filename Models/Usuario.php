@@ -108,7 +108,7 @@ public function guardarEnDb(){
      $apellidos=strtoupper($this->getApellidos());
      $email=$this->getEmail();
      $clave=$this->getClave();
-     $idRol=2;
+     $idRol=$this ->getRol();
 
 
      //PDO establece una conexion de php y la BD
@@ -125,6 +125,32 @@ public function guardarEnDb(){
            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
          return json_encode($error);
        }
+}
+
+public function listarTodosUsuarios(){
+    $query = "SELECT * FROM Usuario";
+    $arr = array();
+    try {
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+        $resultado->execute();
+        self::desconectar();
+        foreach ($resultado->fetchAll() as $encontrado) {
+            $user = new Usuario();
+            $user->setIdUsuario($encontrado['idUsuario']);
+            $user->setNombre($encontrado['nombre']);
+            $user->setApellidos($encontrado['apellidos']);
+            $user->setEmail($encontrado['email']);
+            $user->setClave($encontrado['clave']);
+            $user->setRol($encontrado['idRol']);
+            $arr[] = $user;
+        }
+        return $arr;
+    } catch (PDOException $Exception) {
+        self::desconectar();
+        $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+        return json_encode($error);
+    }
 }
 
 //Ver si el email que ingresa el usuario es correcto
@@ -151,6 +177,61 @@ public function verificarExistenciaEmail(){
         self::desconectar();
         $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
     return $error;
+    }
+}
+
+public function ActualizarUsuario(){
+    $query = "UPDATE Usuario SET nombre=:nombre, apellidos=:Apellidos, idRol=:Rol where idUsuario=:id AND email=:email" ;
+    try {
+        self::getConexion();
+        $idUsuario=$this->getIdUsuario();
+        $nombreUsuario=$this->getNombre();
+        $Apellidos=$this->getApellidos();
+        $email=$this->getEmail();
+        $Rol=$this->getRol();
+        
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindParam(":id",$idUsuario,PDO::PARAM_INT);
+        $resultado->bindParam(":email",$email,PDO::PARAM_STR);
+        $resultado->bindParam(":nombre",$nombreUsuario,PDO::PARAM_STR);
+        $resultado->bindParam(":Apellidos",$Apellidos,PDO::PARAM_STR);
+        $resultado->bindParam(":Rol",$Rol,PDO::PARAM_INT);
+
+        self::$cnx->beginTransaction();//desactiva el autocommit
+        $resultado->execute();
+        self::$cnx->commit();//realiza el commit y vuelve al modo autocommit
+        self::desconectar();
+        
+        return $resultado->rowCount();
+
+    } catch (PDOException $Exception) {
+        self::$cnx->rollBack();
+        self::desconectar();
+        $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+        return $error;
+    }
+}
+
+public function EliminarUsuario(){
+    $query = "DELETE FROM Usuario WHERE idUsuario=:id";
+    try {
+        self::getConexion();
+        $id = $this->getIdUsuario();
+        
+        $resultado = self::$cnx->prepare($query);
+        $resultado->bindParam(":id", $id, PDO::PARAM_INT);
+
+        self::$cnx->beginTransaction(); // Desactiva el autocommit
+        $resultado->execute();
+        self::$cnx->commit(); // Realiza el commit y vuelve al modo autocommit
+        self::desconectar();
+
+        return $resultado->rowCount();
+    } catch (PDOException $Exception) {
+        self::$cnx->rollBack();
+        self::desconectar();
+        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+        return $error;
     }
 }
 

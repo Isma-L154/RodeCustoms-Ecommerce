@@ -116,8 +116,8 @@
 
                 <button type="submit" class="btn" id="btnAnadir">Agregar</button>
                 <button type="button" class="btn cancel" onclick="closeForm()">Cerrar</button>
-        </div>
-        </form>
+                </form>
+            </div>
     </main>
 
     <?php
