@@ -31,7 +31,7 @@ switch ($_GET["op"]) {
                     "5"=> $reg->getCategoria(),
                     //Campo 6 para completar las opciones del CRUD en articulos
                     "6"=> '<button class="btn btn-warning" id="modificarArticulo">Modificar</button> '.
-                    '<button class="btn btn-danger" id="EliminarArticulo" onclick="Eliminar(\''.$reg->getId().'\')">Eliminar</button>'
+                    '<button class="btn btn-danger" onclick="Eliminar(\''.$reg->getId().'\')">Eliminar</button>'
                 );
             }
             $Resultado = array(
@@ -110,26 +110,13 @@ switch ($_GET["op"]) {
         
         case"Eliminar_Articulos":
             
-            $idArticulo = isset($_POST["EId"]) ? trim($_POST["EId"]) : "";
-
-            $articulo = new Articulo();
-            $articulo->setId($idArticulo);
-            
-            $encontrado = $articulo->verificarExistenciaDb();
-            
-            if ($encontrado) {
-                $eliminados = $articulo->EliminarArticulo();
-            
-                if ($eliminados > 0) {
-                    echo 1; // Éxito al eliminar
-                } else {
-                    echo 0; // Error al eliminar
-                }
-            } else {
-                echo 2; // Artículo no encontrado
-            }
-            
+            $ul = new Articulo();
+            $ul->setId(trim($_POST['idArticulo']));
+            $rspta = $ul->EliminarArticulo();
+            echo $rspta;
             break;
+
+
 
         //CRUD USUARIOS
 
