@@ -1,7 +1,7 @@
 //FIXME Arreglar esta funcion porque el login no esta funcionando
 $('#Form_Login').on('submit', function (event) {
     
-    //Previene lo que  hace el formulario por defecto (osea redireccionarlo a otra pagina)
+    //Previene lo que  hace el formulario por defecto (o sea redireccionarlo a otra pagina)
     event.preventDefault();
   
     //Deshabilitar el boton de registrar despues de haberse presionado 1 vez

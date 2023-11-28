@@ -30,7 +30,10 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5" style="color: white;">Iniciar Sesion</h3>
-          <form method="POST" id="Form_Login" name="Form_Login">
+            <!--Nuevo metodo(IGUALMENTE EN PRUEBA)-->
+          <form  action="/LoginContoller.php" 
+          
+          method="POST" id="Form_Login" name="Form_Login">
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
               <input type="email" id="email_login" class="form-control form-control-lg" placeholder="Email" name="email_login" required/>
               <label class="form-label" for="email_login" ></label>
@@ -45,9 +48,8 @@
 
             <hr class="my-4" style="color: white;">
 
-            <p style="color: white;">¿No tienes cuenta?</p>
-            <a href="./registro.php"><button class="btn btn-lg btn-block btn-primary" style="background-color: goldenrod; border-color: goldenrod;"
-              type="submit" > Registrarse</button></a>
+            <a href="./registro.php" style="color: white;">¿No tienes cuenta?</a>
+            
           </form>
 
           </div>

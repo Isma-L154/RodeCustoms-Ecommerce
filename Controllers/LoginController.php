@@ -1,52 +1,37 @@
+<!--POR TERMINAR-->
 <?php
 
-require '../Models/Usuario.php';
-//FIXME Arreglar las funciones para que el login sea funcional
+include 'Conexion.php';
 
-switch ($_GET["op"]){
-    
-    case 'Login':
-            session_start();
-            if (isset($_POST['email_login']) && isset($_POST['password_login'])){
-                $email_login = $_POST['email_login']; 
-                $usuario_login = new Usuario();
-                $usuario_login->setEmail($email_login);
-                $encontrado = $usuario_login->verificarExistenciaDb();
-        
-                if($encontrado != null){
-                    $Rol = $usuario_login->getRol();
-                    $_SESSION['Rol'] = $Rol;
-                    if (isset($_SESSION['Rol'])){
-                        switch ($_SESSION['Rol']){
-                        case 1:
-                            header('location: ./Views/Perfil.php');
-                            
-                            break;
+$email_login = $_POST['email'];
+$password_login = $_POST['clave'];
 
-                        case 2:
-                            header('location: ./Views/index.php');
-                            
-                            break;
-                            
-                            default:
-                    }
-                }
-                }
-            }
+/*Validar en BD si el correo y la contraseña estan registrados y correctos*/
+$validar_login = mysqli_query($Conexion, "SELECT * FROM Usuario WHERE email='$email_login'
+AND clave='$password_login'");
 
-            
+if(mysqli_num_rows($validar_login) > 0) {
 
-        break;
+    header("location: ../index.php");
 
-        case 'CerrarSesion':
-            function cerrar_sesion(){
-                if (isset($_GET['cerrar_sesion'])){
-                    session_unset();
-                    session_destroy();
-                }
-            }
-            break;
-        }
+    exit;
+
+}else{
+
+    echo '
+
+        <script>
+
+            alert("Usuario no existe, por favor verificar el correo o la contraseña");
+            window.location = "./login.php";   
+
+        </script>
+
+    ';
+
+    exit;
+
+}
 
 
 ?>

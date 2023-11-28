@@ -180,6 +180,45 @@ public function verificarExistenciaEmail(){
     }
 }
 
+//PRUEBA de ver si la contraseña que ingresa es valida (POR TERMINAR)
+
+public function verificarContraseñas(){
+    $query = "SELECT idUsuario, nombre, apellidos, email, clave FROM Usuario WHERE email=:email";
+    
+    try {
+        self::getConexion();
+        $resultado = self::$cnx->prepare($query);
+        
+        $email = $this->getEmail();
+        $resultado->bindParam(":email", $email, PDO::PARAM_STR);
+        
+        $resultado->execute();
+        
+        // Verificar si hay al menos un resultado
+        if ($resultado->rowCount() > 0) {
+            $reg = $resultado->fetch(PDO::FETCH_ASSOC);
+            $arr = [
+                'idUsuario' => $reg['idUsuario'],
+                'nombre' => $reg['nombre'],
+                'apellidos' => $reg['apellidos'],
+                'email' => $reg['email'],
+                'clave' => $reg['clave']
+            ];
+            
+            return $arr;
+        } else {
+            return false; // Indicar que no se encontraron resultados
+        }
+    } catch (PDOException $Exception) {
+        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+        // Puedes registrar el error o tomar otras acciones según el contexto
+        return $error;
+    } finally {
+        self::desconectar(); // Asegurarse de desconectar la base de datos, incluso si hay una excepción
+    }
+}
+
+
 public function ActualizarUsuario(){
     $query = "UPDATE Usuario SET nombre=:nombre, apellidos=:Apellidos, idRol=:Rol where idUsuario=:id AND email=:email" ;
     try {
