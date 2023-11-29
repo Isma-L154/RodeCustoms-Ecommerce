@@ -266,30 +266,6 @@ class Articulo extends Conexion{
         }
     }
     
-    //Funcion para poder filtrar articulos
-    public function FiltrarPorCategoria(){
-        $query = "SELECT * FROM Articulo WHERE idCategoria = :idCategoria";
-        try {
-            self::getConexion();
-            $idCategoria = $this->getCategoria();
-            // Si deseas filtrar solo por categoría
-    
-            $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":idCategoria", $idCategoria, PDO::PARAM_INT);
-            $resultado->execute();
-    
-            $resultados = $resultado->fetchAll(PDO::FETCH_ASSOC);
-    
-            self::desconectar();
-    
-            return $resultados;
-    
-        } catch (PDOException $Exception) {
-            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
-            return $error;
-        }
-    }
-    
 
 
 }

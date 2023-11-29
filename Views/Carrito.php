@@ -16,7 +16,7 @@
   include "./assets/Fragments/Header_BK.php"
   ?>
 
-  <section class="h-100 h-custom" style="background-color: #eae8e8;">
+  <section class="h-100 h-custom" style="background-color: #d2c9ff;">
     <div class="container py-5 h-100">
       <div class="row d-flex justify-content-center align-items-center h-100">
         <div class="col-12">
