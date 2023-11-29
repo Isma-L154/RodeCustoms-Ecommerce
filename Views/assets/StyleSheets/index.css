@@ -1,5 +1,9 @@
 
 /*Header y Logo*/
+body{
+    overflow-x: hidden;
+}
+
 header{
     height: 95px;
     display: flex;

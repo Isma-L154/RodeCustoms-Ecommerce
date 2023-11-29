@@ -1,7 +1,83 @@
 @import url('https://fonts.googleapis.com/css?family=Muli:400,400i,700,700i');
+
+.btnReset{
+  background-color: transparent;
+  border: 1px solid #333; 
+  padding: 8px 16px; 
+  color: #333; 
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s; 
+  border-radius: 4px; 
+  display: block; 
+  margin: 0 auto; /* Centrar horizontalmente */
+}
+
+.btnReset:hover{
+  background-color: #333;
+  color: #fff; 
+}
+
+
+#btnFiltros {
+  font-size: 20px;
+  border: none;
+  padding: 15px 20px;
+  cursor: pointer;
+  background-color: goldenrod; /* Cambiado a goldenrod */
+  color: #fff;
+  border-radius: 4px;
+  transition: background-color 0.3s, color 0.3s; /* Agregado efecto de transición */
+}
+
+#btnFiltros:hover {
+  background-color: darkgoldenrod; /* Cambiado el color al pasar el ratón sobre el botón */
+}
+
+.filtro-container {
+      position: relative;
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      background-color: #ddd;
+      border: 1px solid #ddd;
+      padding: 20px;
+      border-radius: 8px;
+}
+
+.filtro-content {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: calc(100vw - 40px);
+  max-width: 400px;
+  background-color: #fff;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 10px;
+  border-radius: 4px;
+  z-index: 999;
+}
+
+.filtro-section {
+  margin-bottom: 30px;
+}
+
+.filtro-content label {
+  display: block;
+  margin-bottom: 8px;
+}
+
+.filtro-content h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+
 body{
   font-family: 'Muli', sans-serif;
   background:#ddd;
+   overflow-x: hidden;
 }
 .shell{
   padding:30px 0;
@@ -107,6 +183,8 @@ body{
     -webkit-box-orient: vertical;
   margin-bottom:15px;
 }
+
+
 .card-footer{
   padding: 25px 0 5px;
   border-top: 1px solid #ddd;
