@@ -1,86 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-        <meta name="description" content="" />
-        <meta name="author" content="" />
-        <title>RODECUSTOMS</title>
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <meta name="description" content="" />
+    <meta name="author" content="" />
+    <title>RODECUSTOMS</title>
     <?php
     include "./assets/Fragments/Librerias.php"
     ?>
-        <script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
-        <link href="./assets/StyleSheets/Catalogo.css" rel="stylesheet" />
-    
-    </head>
-    <body>
-        <?php
-        include "./assets/Fragments/Header_BK.php"
-        ?>    
+    <script src="https://cdn.datatables.net/1.13.5/css/jquery.dataTables.min.css"></script>
+    <link href="./assets/StyleSheets/Catalogo.css" rel="stylesheet" />
 
-        <!-- Section-->
-        <section class="py-5">
-            <table id="cards">
-            <div class="container px-4 px-lg-5 mt-5">
-                <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
-                               
-                <!--IMPORTANTE/ ESTRCUTURA EN LA QUE SE PODRIA PONER LA INFORMACION DE EL CATALOGO-->
-                <div class="col mb-5 " >                   
-                   <div class="card h-100">
-                            <!-- Product image-->
-                            <img class="card-img-top" src=""  alt="..." />
-                            <!-- Product details-->
-                            <div class="card-body p-4">
-                                <div class="text-center">
-                                    <!-- Product name-->
-                                    <h5 class="fw-bolder"></h5>
-                                    <!-- Product price-->
-                                    
-                                </div>
-                            </div>
-                            <!-- Product actions-->
-                            <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
-                                <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="#">View options</a></div>
-                            </div>
-                        </div>
-                    </div>
-                    <!--FIN DE ESTRUCTURA-->
+</head>
 
-
-
-                    <!--Inicio de Prueba para comprobar que los datos estan mostrandose en la web-->
-                    <div class="card-body p-0">
-                    <div class="row mt-2">
-                        <div class="col-md-1"></div>
-                        <div class="col-md-10">
-                            <table id="tblcard"
-                                class="table table-striped table-bordered table-hover">
-                                <thead>
-                                    <th>ID</th>
-                                    <th>Email</th>
-                                    <th>Nombre</th>
-                                    <th>Imagen</th>
-                                    <th>Telefono</th>
-                                </thead>
-                                <tbody>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-md-1"></div>
-                    </div>
-                </div>  
-                </div>
+<body>
+    <?php
+    include "./assets/Fragments/Header_BK.php"
+    ?>
+    <div class="filtro-container">
+        <button id="btnFiltros"><i class="fa-solid fa-filter"></i>Filtros</button>
+        <div class="filtro-content" id="filtroContent">
+            <!-- Sección de Filtros de Precios -->
+            <div class="filtro-section">
+                <h3>Precios</h3>
+                <label>
+                    <input type="radio" name="precio"> Menos de $50
+                </label>
+                <label>
+                    <input type="radio" name="precio"> $50 - $100
+                </label>
+                <label>
+                    <input type="radio" name="precio"> Más de $100
+                </label>
             </div>
-        </table>
-            
-        </section>
-        <!-- Footer-->
-        <?php
-        include "./assets/Fragments/Footer_BK.php"
-        ?>
-        <!--Scripts propios de JS para la pagina-->
-        <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
-        <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
-        <script src="./assets/JavaScript/Articulo.js"></script>
-    </body>
+
+            <!-- Sección de Filtros de Tipo -->
+            <div class="filtro-section">
+                <h3>Tipo</h3>
+                <label>
+                    <input type="radio" name="tipo" value="2" id="Camisetas_filtro"> Camisetas
+                </label>
+                <label>
+                    <input type="radio" name="tipo" value="1" id="Sudaderas_filtro"> Sudaderas
+                </label>
+                <label>
+                    <input type="radio" name="tipo" value="3"  id="Otros-filtro"> Otros
+                </label>
+            </div>
+            <button class="btnReset"  type="submit" id="BtnFiltrar">Aplicar</button>
+
+            <script>
+                function AplicarFiltros() {
+                    // Desmarcar las opciones
+                    document.querySelectorAll('input[type="radio"]').forEach(input => input.checked = false);
+                }
+            </script>
+        </div>
+    </div>
+    
+    
+    <section class="py-5 row">
+        <div class="row" id="contenedorCards"></div>
+        <!--Inicio de Prueba para comprobar que los datos estan mostrandose en la web-->
+    </section>
+    <!-- Footer-->
+    <?php
+    include "./assets/Fragments/Footer_BK.php"
+    ?>
+    <!--Scripts propios de JS para la pagina-->
+    <script src="https://cdn.datatables.net/1.13.7/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.13.7/js/dataTables.bootstrap4.min.js"></script>
+    <script src="./assets/JavaScript/Articulo.js"></script>
+</body>
+
 </html>
