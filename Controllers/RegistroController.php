@@ -12,7 +12,7 @@ switch ($_GET["op"]) {
         $Rol = isset($_POST["idRol"]) ? trim($_POST["idRol"]) : 2;
 
         //$clave=randomPassword();
-        $clavehash = hash('SHA256', trim($password));
+        $clavehash = password_hash($password, PASSWORD_BCRYPT); ;
         $usuario = new Usuario();
         $usuario->setEmail($email);
         $encontrado = $usuario->verificarExistenciaDb();
@@ -26,32 +26,12 @@ switch ($_GET["op"]) {
             $usuario->guardarEnDb();
 
             if ($usuario->verificarExistenciaDb()) {
-                //if(enviarCorreo($email,$clave,$nombre)){
                 echo 1; //usuario registrado y envio de correo exitos
-                //}else{
-                //  echo 4; //usuario registrado y envio de correo fallido
-                //}
             } else {
                 echo 3; //Fallo al realizar el registro
             }
         } else {
             echo 2; //el usuario ya existe
-        }
-        break;
-
-
-    case 'existeUsuario':
-        //FIXME  COMPLETAR ESTA FUNCION   
-
-        $usuario = isset($_POST["user"]) ? $_POST["user"] : "";
-        $user_login = new Usuario();
-        //$user_login->setUsuario($usuario);
-        $encontrado = $user_login->verificarExistenciaDb();
-
-        if ($encontrado != null) {
-            echo 1;
-        } else {
-            echo 0;
         }
         break;
 }

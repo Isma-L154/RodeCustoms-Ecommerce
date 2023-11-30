@@ -152,7 +152,7 @@ switch ($_GET["op"]) {
         $password = isset($_POST["ClaveUsu"]) ? trim($_POST["ClaveUsu"]) : "";
         $Rol = isset($_POST["idRol"]) ? trim($_POST["idRol"]) : 1;
 
-        $clavehash = hash('SHA256', trim($password));
+        $clavehash = password_hash($password, PASSWORD_BCRYPT); ;
         $usuario = new Usuario();
         $usuario->setEmail($email);
         $encontrado = $usuario->verificarExistenciaDb();

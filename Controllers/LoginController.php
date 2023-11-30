@@ -1,37 +1,54 @@
-<!--POR TERMINAR-->
 <?php
 
-include 'Conexion.php';
+require_once '../Models/Usuario.php';
 
-$email_login = $_POST['email'];
-$password_login = $_POST['clave'];
+switch ($_GET["op"]) {
 
-/*Validar en BD si el correo y la contraseña estan registrados y correctos*/
-$validar_login = mysqli_query($Conexion, "SELECT * FROM Usuario WHERE email='$email_login'
-AND clave='$password_login'");
+    case 'Login':
+        session_start();
+        $Email_Login =  isset($_POST["email_login"]) ? $_POST["email_login"] : "";
+        $Clave = isset($_POST["password_login"]) ? $_POST["password_login"] : "";
 
-if(mysqli_num_rows($validar_login) > 0) {
+        $Usuario = new Usuario();
+        $Usuario->setEmail($Email_Login);
+        $Usuario->setClave($Clave);
 
-    header("location: ../index.php");
+        $UsuarioData = $Usuario->verificarCredencialesDb();
 
+        if ($UsuarioData !== false && $UsuarioData !== null) {
+
+            $_SESSION['user_id'] = $UsuarioData['idUsuario'];
+            $_SESSION['user_nombre'] = $UsuarioData['nombre'];
+            $_SESSION['user_apellidos'] = $UsuarioData['apellidos'];
+            $_SESSION['user_email'] = $UsuarioData['email'];
+            $_SESSION['user_Password'] = $UsuarioData['clave'];
+            $_SESSION['user_Rol'] = $UsuarioData['idRol'];
+
+            if ($UsuarioData['idRol'] == 2) {
+                echo 1; //Redireccion al Perfil
+            } elseif ($UsuarioData['idRol'] == 1) {
+                echo 3; //Redireccion al DashBoard de Admin
+            } else {
+                echo
+                '<script>
+                toastr.error("Error: Credenciales invalidos");
+                </script>';
+            }
+        } else {
+            echo 2;
+        }
+        break;
+
+
+    case 'CerrarSesion':
+        // LoginController.php
+
+if ($_POST['action'] == 'CerrarSesion') {
+    session_unset();
+    session_destroy();
+    echo 'Sesión cerrada correctamente';
     exit;
-
-}else{
-
-    echo '
-
-        <script>
-
-            alert("Usuario no existe, por favor verificar el correo o la contraseña");
-            window.location = "./login.php";   
-
-        </script>
-
-    ';
-
-    exit;
-
 }
 
-
-?>
+        break;
+}

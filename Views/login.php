@@ -4,12 +4,14 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RODECUSTOMS</title>
-    <link  rel="stylesheet" href="./assets/StyleSheets/Login&Sign.css">
-    <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
-
+    
     <?php
     include "./assets/Fragments/Librerias.php";
     ?>
+    <link  rel="stylesheet" href="./assets/StyleSheets/Login&Sign.css">
+    <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
+
+    
 
 </head>
 <body>
@@ -30,22 +32,22 @@
           <div class="card-body p-5 text-center">
 
             <h3 class="mb-5" style="color: white;">Iniciar Sesion</h3>
-            <!--Nuevo metodo(IGUALMENTE EN PRUEBA)-->
-          <form  action="/LoginContoller.php" 
-          
-          method="POST" id="Form_Login" name="Form_Login">
+
+            <form method="POST" id="Form_Login" name="Form_Login">
+            
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
-              <input type="email" id="email_login" class="form-control form-control-lg" placeholder="Email" name="email_login" required/>
-              <label class="form-label" for="email_login" ></label>
+            <label class="form-label" for="email_login" ></label>  
+            <input type="email" id="email_login" class="form-control form-control-lg" placeholder="Email" name="email_login" required/>
             </div>
 
             <div class="form-outline mb-4" style="border-color: #2A2A2A;">
-              <input type="password" id="password_login" class="form-control form-control-lg" placeholder="Contraseña" name="password_login" required/>
-              <label class="form-label" for="password_login"></label>
+            <label class="form-label" for="password_login"></label>
+            <input type="password" id="password_login" class="form-control form-control-lg" placeholder="Contraseña" name="password_login" required/>
             </div>        
 
-            <input class="btn btn-primary btn-lg btn-block" type="submit" id="btnLogin" value="Iniciar Sesion">
+            <input class="btn btn-primary btn-lg btn-block" type="submit" id="btnLogin" name="btnLogin"  value="Iniciar Sesion">
 
+            <!--Seccion par redireccionar al registro-->
             <hr class="my-4" style="color: white;">
 
             <a href="./registro.php" style="color: white;">¿No tienes cuenta?</a>
@@ -68,7 +70,7 @@
 include "./assets/Fragments/Footer_BK.php";
 ?>
 
-<script src="./Pluggins/bootbox/bootbox.min.js"></script>
+        <script src="./Pluggins/bootbox/bootbox.min.js"></script>
         <script src="./Pluggins/toastr/toastr.js"></script>
         <script src="./assets/JavaScript/Login.js"></script>
 

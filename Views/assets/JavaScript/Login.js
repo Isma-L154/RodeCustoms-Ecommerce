@@ -1,16 +1,10 @@
-//FIXME Arreglar esta funcion porque el login no esta funcionando
+
+
 $('#Form_Login').on('submit', function (event) {
-    
-    //Previene lo que  hace el formulario por defecto (o sea redireccionarlo a otra pagina)
     event.preventDefault();
-  
-    //Deshabilitar el boton de registrar despues de haberse presionado 1 vez
     $('#btnLogin').prop('disabled', true);
-    
-    //Obtener cada usuario y convertirlo en un objeto, (Formdata, es una clase predefinida de JS)
     var formData = new FormData($('#Form_Login')[0]);
     $.ajax({
-      //url del controlador en este caso
       url: '../Controllers/LoginController.php?op=Login',
       type: 'POST',
       data: formData,
@@ -18,37 +12,42 @@ $('#Form_Login').on('submit', function (event) {
       processData: false,
       
       success: function (datos) {
-        switch (datos) {
-          case '1':
-            toastr.success(
-              'Sesion Iniciada'
-            );
-            $('#Form_Login')[0].reset();
-            tabla.api().ajax.reload();
-            break;
+          switch (datos) {
+            case '1':
+              toastr.success(
+                'Sesion Iniciada'
+              );
+              window.location.href = '../Views/Perfil.php'; 
+              $('#Form_Login')[0].reset();
+              break;
+    
+            case '2':
+              toastr.error(
+              'Credenciales incorrectas '
+                  );
+              break;
   
-          case '2':
-            toastr.error(
-            'No se logro '
+              case '3':
+              toastr.success(
+                'Sesion Iniciada'
+              );
+              window.location.href = '../Views/Admin_Dashboard.php'; 
+              $('#Form_Login')[0].reset();
+              break;
+            case '0':
+              toastr.error(
+                'Error, no se encontro'  
                 );
-            break;
-  
-          case '3':
-            toastr.error('No se logro');
-            break;
-          /*
-          case '4':
-            toastr.success('Usuario registrado exitosamente.');
-            $('#usuario_add')[0].reset();
-            tabla.api().ajax.reload();
-            toastr.error('Error al enviar el correo.');
-            break;*/
-  
-          default:
-            toastr.error('No estan entrando los datos');
-            break;
+              break;
+    
+            default:
+              //Me va tirar el error que esta dando el sistema
+              toastr.error(datos);
+              break;
+          }
+          $('#btnLogin').removeAttr('disabled');
+
         }
-        $('#btnRegistar').removeAttr('disabled');
-      },
-    });
-  });
+      }) 
+});   
+
