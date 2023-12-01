@@ -1,5 +1,4 @@
-<?php session_start();
-?>
+<?php session_start();?>
 <header>
   <div class="container_logo">
     <a href="./index.php">
@@ -35,9 +34,24 @@
                 <a class="nav-link active" aria-current="page" href="./Carrito.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-cart-shopping" style="margin-right: 15px;"></i> Carrito</a>
               </li>
 
-              <li class="nav-item">
-                <a class="nav-link" href="./Perfil.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-address-card" style="margin-right: 15px;"></i> Perfil</a>
-              </li>
+              <?php
+              if (isset($_SESSION['user_Rol'])) {
+                // El usuario ha iniciado sesión, muestra el enlace al perfil
+                echo '<li class="nav-item">
+                        <a class="nav-link" href="./Perfil.php" style="color: #2A2A2A; font-size: x-large;">
+                            <i class="fa-solid fa-address-card" style="margin-right: 15px;"></i> Perfil
+                        </a>
+                      </li>';
+            } else {
+
+              echo '<li class="nav-item">
+            <a class="nav-link" href="javascript:void(0);" onclick="redirectToProfile()" style="color: #2A2A2A; font-size: x-large;">
+                <i class="fa-solid fa-address-card" style="margin-right: 15px;"></i> Perfil
+            </a>
+          </li>';
+
+              } 
+              ?>
 
               <?php
               if (!isset($_SESSION['user_Rol'])) {
@@ -60,31 +74,10 @@
 
               if (isset($_SESSION['user_Rol'])) {
                 echo '<li class="nav-item">
-                    <button id="btnCerrarSesion" class="nav-link" style="color: #2A2A2A; font-size: x-large;">
-                        <i class="fa-solid fa-right-from-bracket" style="margin-right: 15px;"></i>Cerrar Sesión
-                    </button>
-                </li>';
-                
-                //FIXME Arreglar esto, ya que el JS no esta cerrando sesion correctamente, quitar esta funcion si es necesario
-                echo '<script>
-                    $(document).ready(function() {
-                        $("#btnCerrarSesion").on("click", function() {
-                            $.ajax({
-                                url: "../Controllers/LoginController.php",
-                                type: "POST",
-                                data: { op: "CerrarSesion", action: "CerrarSesion" },
-                                success: function(response) {
-                                    console.log(response);
-                                    // Redireccionar después de cerrar la sesión
-                                    window.location.href = "../Views/index.php";
-                                },
-                                error: function(jqXHR, textStatus, errorThrown) {
-                                    console.error("Error en la solicitud AJAX:", textStatus, errorThrown);
-                                }
-                            });
-                        });
-                    });
-                </script>';
+                <button id="btnCerrarSesion" class="nav-link" style="color: #2A2A2A; font-size: x-large;" data-action="cerrarSesion">
+                <i class="fa-solid fa-right-from-bracket" style="margin-right: 15px;"></i>Cerrar Sesión
+            </button>
+                </li>';        
               }
             
             
@@ -100,5 +93,34 @@
       </div>
     </div>
   </nav>
+  <script>
+    // Función para redirigir al usuario al perfil
+    function redirectToProfile() {
+      window.location.href = "../Views/Login.php";
+    }
+    
+    document.getElementById('btnCerrarSesion').addEventListener('click', function() {
+        var action = this.getAttribute('data-action');
+        
+        // Realizar la acción correspondiente mediante Ajax
+        if (action === 'cerrarSesion') {
+            cerrarSesion();
+        }
+    });
 
+    function cerrarSesion() {
+        // Realizar una solicitud Ajax para cerrar la sesión
+        $.ajax({
+            url: '../Controllers/LoginController.php?op=CerrarSesion', // Ajusta la ruta según tu estructura de archivos
+            type: 'GET',
+            success: function(data) {
+                // Redirigir a la página de inicio de sesión después de cerrar la sesión
+                window.location.href = '../Views/index.php';
+            },
+            error: function(e) {
+                console.log(e.responseText);
+            }
+        });
+    }
+</script>
 </header>

@@ -41,14 +41,8 @@ switch ($_GET["op"]) {
 
 
     case 'CerrarSesion':
-        // LoginController.php
-
-if ($_POST['action'] == 'CerrarSesion') {
+    session_start();
     session_unset();
     session_destroy();
-    echo 'Sesión cerrada correctamente';
-    exit;
-}
-
         break;
 }

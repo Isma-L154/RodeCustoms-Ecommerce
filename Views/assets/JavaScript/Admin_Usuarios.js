@@ -1,22 +1,37 @@
-function listarTodosUsuarios(){
-    tabla = $('#admin_usuarios').dataTable({    
-      aProcessing: true, //actiavmos el procesamiento de datatables
-      aServerSide: true, //paginacion y filtrado del lado del serevr
-      dom: 'Bfrtip', //definimos los elementos del control de tabla
+function listarTodosUsuarios() {
+  tabla = $('#admin_usuarios').dataTable({
+      processing: true,
+      serverSide: true,
+      dom: 'Bfrtip',
       ajax: {
-          //URL del controlador
           url: '../Controllers/AdminController.php?op=MostrarUsuarios',
           type: 'get',
           dataType: 'json',
-          
           error: function (e) {
-            console.log(e.responseText);
+              console.log(e.responseText);
           },
-          bDestroy: true,
-          iDisplayLength: 5,
-        },
-    });  
+      },
+      bDestroy: true,
+      displayLength: 5,
+      columnDefs: [
+          {
+              targets: 5,
+              render: function (data, type, row, meta) {
+                  switch (data) {
+                      case 1:
+                          return 'Administrador';
+                      case 2:
+                          return 'Usuario';
+                      default:
+                          return 'Sin Rol';
+                  }
+              }
+          }
+      ],
+  });
 }
+  
+
 //FUNCIONES PRINCIPALES
 $(function(){
     listarTodosUsuarios();
@@ -52,6 +67,7 @@ function openForm() {
             toastr.success(
               'Usuario agregado con exito'
             );
+            tabla.api().ajax.reload();
             $('#add_usuario')[0].reset();
             break;
   
