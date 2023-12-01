@@ -169,11 +169,10 @@ class Articulo extends Conexion{
         try {
             self::getConexion();
             $resultado = self::$cnx->prepare($query);
-            $resultado->bindParam(":id",$idArticulo,PDO::PARAM_STR); //Param_str, este represante una variable en la BD (Varchar. y demas)
+            $resultado->bindParam(":id",$idArticulo,PDO::PARAM_INT); //Param_str, este represante una variable en la BD (Varchar. y demas)
             $resultado->execute();
             self::desconectar();
-            return $resultado->fetch();
-
+            return $resultado->fetch(PDO::FETCH_ASSOC);
 
         } catch (PDOException $Exception) {
             self::desconectar();
@@ -182,6 +181,7 @@ class Articulo extends Conexion{
         }
 
     }
+    
     public function llenarCampos($id){
         $query = "SELECT * FROM Articulo where idArticulo=:id";
         try {
