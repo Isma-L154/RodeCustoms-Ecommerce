@@ -21,8 +21,13 @@
     include "./assets/Fragments/Header_BK.php"
     ?>
     <main>
-    <div id="ArtEspec"></div>
-    </main>
+    <div id="ArtEspec">
+    </div>
+                
+                <div class="bottom-wrap">
+                            <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarrito">Añadir al Carrito</button>
+                </div>   
+</main>
 
     <?php
     include "./assets/Fragments/Footer_BK.php"

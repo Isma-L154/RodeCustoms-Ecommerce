@@ -23,6 +23,7 @@ switch ($_GET["op"]) {
             $usuario->setEmail($email);
             $usuario->setClave($clavehash);
             $usuario->setRol($Rol);
+            
             $usuario->guardarEnDb();
 
             if ($usuario->verificarExistenciaDb()) {

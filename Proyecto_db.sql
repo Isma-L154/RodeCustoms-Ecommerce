@@ -58,11 +58,11 @@ CREATE TABLE Usuario (
 --  DDL for Table CARRITO
 --------------------------------------------------------
 CREATE TABLE Carrito (
-    idLinea INT PRIMARY KEY,
+    idLinea INT PRIMARY KEY AUTO_INCREMENT,
     idArticulo INT,
     Cantidad INT not null,
     Talla Varchar(2) null,
-    Total_Linea Decimal (10,2),
+    Total_Linea Decimal (10),
     FOREIGN KEY (idArticulo) REFERENCES Articulo(idArticulo)
 );
 --------------------------------------------------------
@@ -72,7 +72,7 @@ CREATE TABLE Factura_Encabezado (
     idFactura INT PRIMARY KEY AUTO_INCREMENT,
     idUsuario INT,
     Fecha DATE,
-    Total DECIMAL(10, 2),
+    Total DECIMAL(10),
     FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 --------------------------------------------------------
@@ -81,9 +81,8 @@ CREATE TABLE Factura_Encabezado (
 CREATE TABLE Factura_Detalle (
     idFactura INT,
     Num_Linea INT Primary Key AUTO_INCREMENT,
-    Talla_Articulo Varchar(2) null,
-    Cantidad_Articulo Int not null,
-    Total_Linea DECIMAL(10, 2),
+    Linea_Carrito int,
+    FOREIGN KEY (Linea_Carrito) REFERENCES  Carrito(idLinea),
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
 
@@ -105,9 +104,9 @@ todo lo hace el administrador (No cuenta con vendedores u otra clase de empleado
 INSERT INTO Proyecto_db.Rol(idRol, nombreRol)VALUES
 (1,"Administrador"),(2,"Cliente");
 
-
 select * from Articulo;
 select * from Usuario;
+select * from Carrito;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

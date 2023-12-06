@@ -1,4 +1,5 @@
 
+//BUG No actualiza la info en tiempo real, tambien pasa con el otro DataTable
 function listarTodosArticulos() {
   tabla = $('#admin_articulos').dataTable({
       processing: true,

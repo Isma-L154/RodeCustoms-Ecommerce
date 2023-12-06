@@ -119,9 +119,14 @@ a {
     font-size: 15px;
     color: #b3b4b6
 }
+.bottom-wrap {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .btn {
-    display: inline-block;
+    display: inline;
     font-weight: 600;
     color: #343a40;
     text-align: center;
@@ -135,13 +140,14 @@ a {
     padding: 0.50rem 0.85rem;
     font-size: 1rem;
     line-height: 1.5;
-    border-radius: 0.2rem
+    border-radius: 0.2rem;
 }
 
 .btn-primary {
     color: #fff;
     background-color: #3167eb;
-    border-color: #3167eb
+    border-color: #3167eb;
+    margin-bottom: 2rem;
 }
 
 .fa {
@@ -154,7 +160,7 @@ a {
     -webkit-appearance: none;
     -moz-appearance: none;
     border: 1px solid #ccc;
-    padding: 8px;
+    padding: 5px;
     font-size: 14px;
     cursor: pointer;
     outline: none;
@@ -173,3 +179,19 @@ a {
 .rating select:checked {
     background-color: #f5f5f5;
 }
+
+/* Estilo básico para el campo de entrada */
+.rating input {
+    width: 50px; /* Ajusta el ancho según tus preferencias */
+    padding: 5px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+/* Estilo para indicar cuando el campo de entrada está enfocado */
+.rating input:focus {
+    border-color: #3167eb; /* Puedes cambiar el color según tu preferencia */
+    box-shadow: 0 0 5px rgba(49, 103, 235, 0.7); /* Efecto de sombra cuando está enfocado */
+}
+

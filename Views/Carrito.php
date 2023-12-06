@@ -28,47 +28,31 @@
                     <div class="d-flex justify-content-between align-items-center mb-5">
                       <h1 class="fw-bold mb-0 text-black">Carrito de Compras</h1>
 
-
-                      <h6 class="mb-0 text-muted">Items</h6>
                     </div>
                     <!--Lineas divisoras hechas con Bootstrap-->
-                    <hr class="my-4">
-
-                    <!--INCIO DE ESTRUCTURA PARA EL INGRESO DE PRODUCTOS AL CARRITO-->
-
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                      <div class="col-md-2 col-lg-2 col-xl-2">
-                        <!--Ingresar la imagen del producto que se ingresa aqui-->
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-3">
-                        <h6 class="text-muted"><!--Aqui va la clase de producto que es--></h6>
-                        <h6 class="text-black mb-0"><!--Aqui va el nombre del producto que se ingreso--></h6>
-                      </div>
-                      <div class="col-md-3 col-lg-3 col-xl-2 d-flex">
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepDown()">
-                          <i class="fas fa-minus"></i>
-                        </button>
-
-                        <input id="form1" min="0" name="quantity" value="1" type="number" class="form-control form-control-sm" />
-
-                        <button class="btn btn-link px-2" onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
-                          <i class="fas fa-plus"></i>
-                        </button>
-                      </div>
-                      <div class="col-md-3 col-lg-2 col-xl-2 offset-lg-1">
-                        <h6 class="mb-0"><!--Aqui va el Precio del producto--></h6>
-                      </div>
-
-                      <!--se debe ingresar una funcion que elimine el producto, por unidad, no que elimine todos-->
-                      <div class="col-md-1 col-lg-1 col-xl-1 text-end">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
-                      </div>
+                        <div class="col-md-2 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Imagen</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2">
+                            <h6 class=" mb-0">Nombre</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2">
+                            <h6 class=" mb-0">Talla</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2">
+                            <h6 class=" mb-0">Precio P/U</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2">
+                            <h6 class=" mb-0">Cantidad</h6>
+                        </div>
+                        <div class="col-md-3 col-lg-2 col-xl-2">
+                            <h6 class=" mb-0">Total</h6>
+                        </div>
+                        
                     </div>
-                    <!--FIN DE ESTRUCTURA PARA EL INGRESO DE PRODUCTOS AL CARRITO-->
-
-
                     <hr class="my-4">
-
+                      <div id="ContenedorCarrito"></div>
                     <div class="pt-5">
                       <h6 class="mb-0"><a href="./Catalogo.php" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Atras</a></h6>
                     </div>
@@ -82,20 +66,9 @@
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen de Compra</h3>
                     <hr class="my-4">
 
-                    <div class="d-flex justify-content-between mb-4">
-                      <h5 class="text-uppercase">Items</h5>
-                      <!--Aqui se tiene que Ingresar la vraible que nos de el total de productos que esten dentro del carrito-->
-                    </div>
+                    <div id="Resumen"></div>
 
-                    <hr class="my-4">
-
-                    <div class="d-flex justify-content-between mb-5">
-                      <h5 class="text-uppercase">Total</h5>
-                      <!--Aqui se tiene que Ingresar la variable que nos de el total a pagar -->
-
-                    </div>
-
-                    <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark">Pagar</button>
+                    <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" style="width: 100%;">Pagar</button>
                   </div>
                 </div>
                 <!--FIN DE LA ESTRUCTURA PARA EL RESUMEN DE PAGOD DEL CARRITO-->
@@ -113,6 +86,9 @@
   <?php
   include "./assets/Fragments/Footer_BK.php"
   ?>
+    <script src="./assets/JavaScript/Producto_Espec.js"></script>
+    <script src="./assets/JavaScript/Carrito.js"></script>
+
 
 </body>
 
