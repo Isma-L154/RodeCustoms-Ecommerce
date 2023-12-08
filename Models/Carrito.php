@@ -8,6 +8,7 @@ final class Carrito extends Conexion{
     private $Talla = null;
     private $Total_Linea = null;
     private $idArticulo = null;
+    private $idArtPersonalizado = null;
 
 public function __construct() {}
 
@@ -57,6 +58,15 @@ public function getidLinea()
         $this->idArticulo = $idArticulo;
     }
 
+    public function getidArtPersonalizado()
+    {
+        return $this->idArtPersonalizado;
+    }
+    public function setidArtPersonalizado($idArtPersonalizado)
+    {
+        $this->idArtPersonalizado = $idArtPersonalizado;
+    }
+
 
     public static function getConexion()
     {
@@ -70,17 +80,19 @@ public function getidLinea()
 
 
     public function guardarEnCarritoDB(){
-        $query = "INSERT INTO Carrito (idArticulo, Cantidad, Talla, Total_Linea) 
-        VALUES (:idArticulo,:Cantidad,:Talla,:Total_Linea)";
+        $query = "INSERT INTO Carrito (idArticulo, idArtPersonalizado,Cantidad, Talla, Total_Linea) 
+        VALUES (:idArticulo,:idArtPersonalizado,:Cantidad,:Talla,:Total_Linea)";
      try {
          self::getConexion();
          $idArticulo=$this->getidArticulo();
+         $idArtPersonalizado= $this->getidArtPersonalizado();
          $Cantidad=$this->getCantidad();
          $Talla=$this->getTalla();
          $Total_Linea=$this->getTotal_Linea();
          
          $resultado = self::$cnx->prepare($query);
         $resultado->bindParam(":idArticulo",$idArticulo,PDO::PARAM_INT);
+        $resultado->bindParam(":idArtPersonalizado",$idArtPersonalizado,PDO::PARAM_INT);
         $resultado->bindParam(":Cantidad",$Cantidad,PDO::PARAM_INT);
         $resultado->bindParam(":Talla",$Talla,PDO::PARAM_STR);
         $resultado->bindParam(":Total_Linea",$Total_Linea,PDO::PARAM_INT);
@@ -105,6 +117,7 @@ public function getidLinea()
                 $cart = new Carrito();
                 $cart->setidLinea($encontrado['idLinea']);
                 $cart->setidArticulo($encontrado['idArticulo']);
+                $cart->setidArtPersonalizado($encontrado['idArtPersonalizado']);
                 $cart->setCantidad($encontrado['Cantidad']);
                 $cart->setTalla($encontrado['Talla']);
                 $cart->setTotal_Linea($encontrado['Total_Linea']);
@@ -120,6 +133,29 @@ public function getidLinea()
         }
     }
 
+    public function EliminarLinea()
+    {
+        $query = "DELETE FROM Carrito WHERE idLinea=:id";
+        try {
+            self::getConexion();
+            $id = $this->getidLinea();
+
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id", $id, PDO::PARAM_INT);
+
+            self::$cnx->beginTransaction(); // Desactiva el autocommit
+            $resultado->execute();
+            self::$cnx->commit(); // Realiza el commit y vuelve al modo autocommit
+            self::desconectar();
+
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
 
 
 

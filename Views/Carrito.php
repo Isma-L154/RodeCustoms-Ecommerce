@@ -62,7 +62,7 @@
                 <!--INCIO DE LA ESTRUCTURA PARA EL RESUMEN DE PAGOD DEL CARRITO-->
 
                 <div class="col-lg-4 bg-grey">
-                  <div class="p-5">
+                  <div class="p-5" style="padding: 4rem!important; margin-top: 4rem;">
                     <h3 class="fw-bold mb-5 mt-2 pt-1">Resumen de Compra</h3>
                     <hr class="my-4">
 

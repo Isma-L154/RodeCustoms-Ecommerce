@@ -48,7 +48,7 @@
                     <!--Carta de Personalizacion de productos-->
                     <div class="col-12 col-md-4 mb-4">
                         <div class="card h-100">
-                            <a class="h2 text-decoration-none text-dark fs-3 text-center">Personalizacion de Productos</a>
+                            <a class="h2 text-decoration-none text-dark fs-3 text-center" >Personalizacion de Productos</a>
                             <a>
                                 <img  class="card-img-top" src="./assets/img/PZ1.png" style="height: 300px; width: 400px; padding-top: 10px;">
                             </a>
@@ -58,7 +58,7 @@
                                     con los logos que tu elijas, ademas podemos agregarle tu toque personal a tus propios aritculos!
 
                                 </p>
-                                <button type="button" class="btn btn-primary">Personalizar mi producto</button>
+                                <a href="./Cata_Personalizable.php"><button type="button" class="btn btn-primary">Personalizar</button></a>
 
                             </div>
 

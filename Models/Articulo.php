@@ -12,6 +12,7 @@ class Articulo extends Conexion{
     private $ruta_imagen = null;
     private $precio = null;
     private $categoria = null;
+    private $idTipoProducto = null;
 
     //CONSTRUCTOR
     public function __construct() {}
@@ -69,7 +70,14 @@ class Articulo extends Conexion{
 	public function setCategoria($categoria){
 		$this->categoria = $categoria;
 	}
-
+    
+    public function getidTipoProducto() {
+		return $this->idTipoProducto;
+	}
+	
+	public function setidTipoProducto($idTipoProducto){
+		$this->idTipoProducto = $idTipoProducto;
+	}
 
     //METODOS DE ARTICULO
     
@@ -103,6 +111,7 @@ class Articulo extends Conexion{
              return $error;
            }
     }
+    
     //Listar articulos 
     public function listarTodosDb(){
         $query = "SELECT * FROM Articulo";
@@ -121,6 +130,7 @@ class Articulo extends Conexion{
                 $artic->setRuta_imagen($encontrado['ruta_imagen']);
                 $artic->setPrecio($encontrado['precio']);
                 $artic->setCategoria($encontrado['idCategoria']);
+                $artic-> setidTipoProducto($encontrado['idTipoProducto']);
                 //Almacenamos todos los datos de la tabla dentro del Array
                 $arr[] = $artic;
             }
@@ -134,8 +144,8 @@ class Articulo extends Conexion{
     }
 
     public function guardarEnDb(){
-        $query = "INSERT INTO Articulo (nombre, descripcion, ruta_imagen, precio, idCategoria) 
-        VALUES (:nombre,:descripcion,:imagen,:precio,:categoria)";
+        $query = "INSERT INTO Articulo (nombre, descripcion, ruta_imagen, precio, idCategoria, idTipoProducto) 
+        VALUES (:nombre,:descripcion,:imagen,:precio,:categoria, :idTipoProducto)";
      try {
          self::getConexion();
          $nombre=($this->getNombre());
@@ -143,6 +153,7 @@ class Articulo extends Conexion{
          $imagen=$this->getRuta_imagen();
          $precio=$this->getPrecio();
          $idCategoria=$this->getCategoria();
+         $idTipoProducto= $this->getidTipoProducto();
     
     
          //PDO establece una conexion de php y la BD
@@ -152,7 +163,9 @@ class Articulo extends Conexion{
         $resultado->bindParam(":imagen",$imagen,PDO::PARAM_STR);
         $resultado->bindParam(":precio",$precio,PDO::PARAM_STR);
         $resultado->bindParam(":categoria",$idCategoria,PDO::PARAM_INT);
-            $resultado->execute();
+        $resultado->bindParam(":idTipoProducto",$idTipoProducto,PDO::PARAM_INT);
+            
+        $resultado->execute();
             self::desconectar();
            } catch (PDOException $Exception) {
                self::desconectar();

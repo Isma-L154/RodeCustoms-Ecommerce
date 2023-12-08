@@ -50,6 +50,7 @@ switch ($_GET["op"]) {
         $imagen = isset($_POST["ruta_imagen"]) ? trim($_POST["ruta_imagen"]) : "";
         $precio = isset($_POST["precio"]) ? trim($_POST["precio"]) : "";
         $Categoria = isset($_POST["idCategoria"]) ? trim($_POST["idCategoria"]) : 3;
+        $Tipo = 1;
 
         $articulo = new Articulo();
         //FIXME Importante que se esta haciendo la verificacion con el nombre, NO es correcto hacerlo pero ya el ID es autoincremental
@@ -62,6 +63,7 @@ switch ($_GET["op"]) {
             $articulo->setRuta_imagen($imagen);
             $articulo->setPrecio($precio);
             $articulo->setCategoria($Categoria);
+            $articulo->setidTipoProducto($Tipo);
             $articulo->guardarEnDb();
 
             if ($articulo->verificarExistenciaDb()) {
