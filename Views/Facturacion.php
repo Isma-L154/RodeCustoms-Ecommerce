@@ -21,10 +21,8 @@
     include "./assets/Fragments/Header_BK.php"
     ?>
     <main>
-    <div id="Personalizar">
-    </div>
-                
-                
+   
+
 </main>
 
     <?php
@@ -32,7 +30,7 @@
     ?>
     <!--Scripts propios de JS para la pagina-->
     <script src="./Pluggins/toastr/toastr.js"></script>
-    <script src="./assets/JavaScript/Personalizar.js"></script>
+    
 </body>
 
 </html>

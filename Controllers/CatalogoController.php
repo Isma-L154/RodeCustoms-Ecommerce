@@ -124,8 +124,9 @@ switch ($_GET["op"]) {
                                     </div>
                                 </figcaption>
                                 <div class="bottom-wrap">
-                            <div class="price-wrap">
-                                    <a href="./Catalogo.php" class="btn float-left mr-auto" > Cancelar </a>
+                                <div class="price-wrap row">
+                                <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarrito" >Añadir al Carrito</button>
+                                    <a href="./Cata_Personalizable.php" class="btn float-left mr-auto" > Cancelar </a>
                                 </div>
                             </div>   
                             </div>

@@ -125,24 +125,30 @@ switch ($_GET["op"]) {
            </div>
        </div>
                     </figcaption>
-                    <div class="bottom-wrap">
-                    <label for="archivo1" style="background-color: goldenrod; padding: 8px 16px; border-radius: 4px; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;">
+                        <div class="bottom-wrap">
+                        <label for="archivo1" style="background-color: goldenrod; padding: 8px 16px; border-radius: 4px; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;">
                                                 Subir Logo PNG <input type="file" id="archivo1" name="archivo1" style="display: none;" accept=".png"/>
                                             </label>
                     </div>
-                    <div class="bottom-wrap">
-                        <div class="price-wrap">
+                    <div class="bottom-wrap">                        
+                        <div class="price-wrap row">
+                        <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarritoPers" disabled>Añadir al Carrito</button>
                             <a href="./Cata_Personalizable.php" class="btn float-left mr-auto" > Cancelar </a>
                         </div>
                     </div>   
                     </div>
                     </figure>
                     </div>';
-                    echo '<script>
-    document.getElementById("archivo1").addEventListener("change", function() {
-        toastr.success("Archivo seleccionado exitosamente");
-    });
-</script>';
+                echo '<script>
+                document.getElementById("archivo1").addEventListener("change", function() {
+                    if(this.files.length > 0) {
+                        toastr.success("Archivo seleccionado exitosamente");
+                        document.getElementById("btnAnadirCarritoPers").disabled = false;
+                    } else {
+                        document.getElementById("btnAnadirCarritoPers").disabled = true;
+                    }
+                });
+                </script>';
             } else {
                 echo
                 '<script>
@@ -151,6 +157,4 @@ switch ($_GET["op"]) {
             }
         }
         break;
-
-        
 }

@@ -23,7 +23,7 @@ $(function () {
 });
 
 $(document).ready(function () {
-    $("#btnAnadirCarrito").click(function (event) {
+    $(document).on('click', '#btnAnadirCarrito', function (event) {
         $("#btnAnadirCarrito").prop("disabled", true);
 
         //Variables especificas que hay que añadir para poder añadir en la funcion de carrito

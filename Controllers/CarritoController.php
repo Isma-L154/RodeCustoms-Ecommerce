@@ -110,11 +110,11 @@ switch ($_GET["op"]) {
                         </div>
                         
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                        <button class="btn btn-md eliminar-linea" data-id="' . $reg->getIdLinea() . '"><i class="fas fa-times"></i></button>
                         </div>
-                    </div>
+                       
+                        </div>';
                     
-                    <hr class="my-4">';
                 } 
                 elseif ($art_pers['idTipoProducto'] === 2) {
         
@@ -139,11 +139,14 @@ switch ($_GET["op"]) {
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
-                        <a href="#!" class="text-muted"><i class="fas fa-times"></i></a>
+                        <button class="btn  btn-md eliminar-linea" data-id="' . $reg->getidLinea(). '"><i class="fas fa-times"></i></button>
                         </div>
-                    </div>
-                    <hr class="my-4">';
+                        
+                        
+                        </div>';
+                    
                 }
+                
             }
             break;
         
@@ -155,10 +158,8 @@ switch ($_GET["op"]) {
             $Cant_Items = 0;
 
             foreach($Carr_Art as $reg){
-                $Cant_Items = 0;
-                $Cant_Items += $reg -> getidLinea();
-           
-            $Cant_Total += $reg ->getTotal_Linea();
+                $Cant_Items += $reg->getCantidad();
+                $Cant_Total += $reg ->getTotal_Linea();
             
             }   
             if ($Cant_Items == null) {
@@ -168,22 +169,30 @@ switch ($_GET["op"]) {
             <h5 class="text-uppercase">Items</h5>
             <span style="font-size: 24px;">'.$Cant_Items.'</span>
             </div>
+            
 
           <hr class="my-4">
 
           <div class="d-flex justify-content-between mb-5">
             <h5 class="text-uppercase">Total</h5>
-            <span style="font-size: 24px;">'.$Cant_Total.'₡</span>          </div>';
+            <span style="font-size: 24px;">'.$Cant_Total.'₡</span>          
+            </div>';
+            //Para despues verificar que existe ma de un producto en el carrito antes de pagar
+            $_SESSION['Cant_Product'] = $Cant_Items;
+            
             break;
         
 
 
-            case 'ElimiarLinea':
-                $ul = new Usuario();
-                $ul->setIdUsuario(trim($_POST['idUsuario']));
-                $rspta = $ul->EliminarUsuario();
-                echo $rspta;
-                
+            case 'EliminarLinea':
+                $ul = new Carrito();
+                $ul->setidLinea(trim($_POST['idLinea']));
+                $rspta = $ul->EliminarLinea();
+                if($rspta) {
+                    echo 1; // Éxito para eliminar 
+                } else {
+                    echo 0; // Error para eliminar toda la linea
+                }
                 break;
             
         }

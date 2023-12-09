@@ -25,7 +25,7 @@ $(function () {
 
 
 $(document).ready(function () {
-    $("#btnAnadirCarritoPers").click(function (event) {
+    $(document).on('click', '#btnAnadirCarritoPers', function (event) {
         $("#btnAnadirCarritoPers").prop("disabled", true);
 
         //Variables especificas que hay que añadir para poder añadir en la funcion de carrito
@@ -60,7 +60,8 @@ $(document).ready(function () {
                                 if (result) {
                                     window.location.href = '../Views/Carrito.php';
                                 } else {
-                                    window.location.href = '../Views/Catalogo.php';
+                                    //BUG Devuelve al catalogo normal en vez de dirigirlo al personalziado
+                                    window.location.href = '../Views/Cata_Personalizable.php';
                                 }
                             }
                         }); 

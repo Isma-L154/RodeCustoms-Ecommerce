@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,30 +32,30 @@
                     </div>
                     <!--Lineas divisoras hechas con Bootstrap-->
                     <div class="row mb-4 d-flex justify-content-between align-items-center">
-                        <div class="col-md-2 col-lg-2 col-xl-2">
+                      <div class="col-md-2 col-lg-2 col-xl-2">
                         <h6 class=" mb-0">Imagen</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2">
-                            <h6 class=" mb-0">Nombre</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2">
-                            <h6 class=" mb-0">Talla</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2">
-                            <h6 class=" mb-0">Precio P/U</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2">
-                            <h6 class=" mb-0">Cantidad</h6>
-                        </div>
-                        <div class="col-md-3 col-lg-2 col-xl-2">
-                            <h6 class=" mb-0">Total</h6>
-                        </div>
-                        
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Nombre</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Talla</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Precio P/U</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Cantidad</h6>
+                      </div>
+                      <div class="col-md-3 col-lg-2 col-xl-2">
+                        <h6 class=" mb-0">Total</h6>
+                      </div>
+
                     </div>
                     <hr class="my-4">
-                      <div id="ContenedorCarrito"></div>
+                    <div id="ContenedorCarrito"></div>
                     <div class="pt-5">
-                      <h6 class="mb-0"><a href="./Catalogo.php" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Atras</a></h6>
+                      <h6 class="mb-0"><a href="./index.php" class="text-body"><i class="fas fa-long-arrow-alt-left me-2"></i>Atras</a></h6>
                     </div>
                   </div>
                 </div>
@@ -67,8 +68,14 @@
                     <hr class="my-4">
 
                     <div id="Resumen"></div>
-
-                    <button type="button" class="btn btn-dark btn-block btn-lg" data-mdb-ripple-color="dark" style="width: 100%;">Pagar</button>
+                    <?php
+                      if (isset($_SESSION['user_Rol'])) {
+                          $tieneProductos = isset($_SESSION['Cant_Product']) && $_SESSION['Cant_Product'] > 0;
+                          echo '<a href="./Facturacion.php"><button type="button" id="btnPagar" data-sesion="true" data-productos="' . ($tieneProductos ? 'true' : 'false') . '" class="btn btn-dark btn-block btn-lg" style="width: 100%;">Pagar</button></a>';
+                      } else {
+                          echo '<button type="button" id="btnPagar" data-sesion="false" class="btn btn-dark btn-block btn-lg" style="width: 100%;">Pagar</button>';
+                      }
+                        ?>
                   </div>
                 </div>
                 <!--FIN DE LA ESTRUCTURA PARA EL RESUMEN DE PAGOD DEL CARRITO-->
@@ -86,8 +93,8 @@
   <?php
   include "./assets/Fragments/Footer_BK.php"
   ?>
-    <script src="./assets/JavaScript/Producto_Espec.js"></script>
-    <script src="./assets/JavaScript/Carrito.js"></script>
+  <script src="./assets/JavaScript/Producto_Espec.js"></script>
+  <script src="./assets/JavaScript/Carrito.js"></script>
 
 
 </body>

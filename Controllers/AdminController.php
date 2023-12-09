@@ -43,7 +43,7 @@ switch ($_GET["op"]) {
         break;
 
     case "Agregar_Articulos":
-
+        //FIXME No inserta la imagen de forma correcta
         //Lo parametros que se van a recibir por POST del form
         $nombre = isset($_POST["nombreArt"]) ? trim($_POST["nombreArt"]) : "";
         $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"]) : "";
@@ -53,7 +53,6 @@ switch ($_GET["op"]) {
         $Tipo = 1;
 
         $articulo = new Articulo();
-        //FIXME Importante que se esta haciendo la verificacion con el nombre, NO es correcto hacerlo pero ya el ID es autoincremental
         $articulo->setNombre($nombre);
         $encontrado = $articulo->verificarExistenciaDb();
 

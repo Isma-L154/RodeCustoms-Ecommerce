@@ -23,10 +23,7 @@
     <main>
     <div id="ArtEspec">
     </div>
-                
-                <div class="bottom-wrap">
-                            <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarrito">Añadir al Carrito</button>
-                </div>   
+
 </main>
 
     <?php

@@ -172,7 +172,7 @@ function Eliminar(id) {
           switch (data) {
             case '1':
               toastr.success('Eliminado correctamente');
-              tabla.api().ajax.reload();
+              tabla.api().post.reload();
               break;
 
             case '0':
