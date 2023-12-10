@@ -1,8 +1,9 @@
 <?php
+
 require_once '../Models/Articulo.php';
 require_once  '../Models/Usuario.php';
-
-
+require_once '../Models/Reports.php';
+require_once '../Models/Articulo_Pers.php';
 
 switch ($_GET["op"]) {
         //CRUD ARTICULOS
@@ -138,9 +139,9 @@ switch ($_GET["op"]) {
             );
         }
         $Resultado = array(
-            "sEcho" => 1, ##informacion para datatables
-            "iTotalRecords" => count($datos), ## total de registros al datatable
-            "iTotalDisplayRecords" => count($datos), ## enviamos el total de registros a visualizar
+            "sEcho" => 1, 
+            "iTotalRecords" => count($datos), 
+            "iTotalDisplayRecords" => count($datos), 
             "aaData" => $datos
         );
         echo json_encode($Resultado);
@@ -218,4 +219,110 @@ switch ($_GET["op"]) {
         echo $rspta;
 
         break;
+
+        //REPORTES
+
+        case 'MostrarReports':
+        $Report = new Reports();
+        $Art_pers = new Articulo_Pers();
+        $Reports = $Report ->listarTodosReportes();
+        $datos = array();
+
+        foreach ($Reports as $reg) {
+            
+            $Personalizados = $Art_pers->MostrarArticulo_Especifico($reg->getidArtPersonalizado());
+            if ($Personalizados != null) {
+                $Prenda = $Personalizados['ruta_imagen'];
+            }
+
+            if ($reg->getRutaImagen() != '' && $reg->getRutaImagen() != null) {
+                $Ruta = '../Views/' . $reg->getRutaImagen();
+            } else {
+                $Ruta = '../Views/assets/Img/' . 'Logo2.png';
+            }
+            
+
+            $datos[] = array(
+                "0" => $reg->getID(),
+                "1" => '<img src="' . $Prenda . '" width="70px" heigth="70px"/>',
+                "2" => '<div class="color-box" data-color="' . $reg->getColor() . '" style="background-color: ' . $reg->getColor() . '; width: 100%px; height: 40px; border: 1px solid #000;"></div>',
+                "3" => $reg-> getTalla(),
+                "4" => $reg->getCantidad(),
+                "5" => '<img src="' . $Ruta . '" width="70px" heigth="70px"/>',
+                "6" => '<button class="btn btn-success" onclick="Realizado(\'' . $reg->getID() . '\')">Realizado <i class="fa-solid fa-check"></i></button>'
+            );
+        }
+        $Resultado = array(
+            "sEcho" => 1, 
+            "iTotalRecords" => count($datos), 
+            "iTotalDisplayRecords" => count($datos), 
+            "aaData" => $datos
+        );
+        echo json_encode($Resultado);
+            break;
+
+
+        case 'InsertarReport':
+            if (isset($_POST['id'])) {
+                
+                $idProductoEspecifico = $_POST['id'];
+                $TallaSelec = isset($_POST['talla']) ? $_POST['talla'] : 'S';
+                $CantidadSelec = isset($_POST['cantidad']) ? $_POST['cantidad'] : 1;
+                $ColorSelec = isset($_POST['color']) ? $_POST['color'] : 'Blanco';
+
+                $nombre_archivo = $_FILES['archivo1']['name'];
+                $tipo_archivo = $_FILES['archivo1']['type'];
+                $tamano_archivo = $_FILES['archivo1']['size'];
+                $nombreArchivoParaBD = 'assets/Manejo_Archivos_Ropa/' . $nombre_archivo;
+
+                if (!((strpos($tipo_archivo, "png")) && ($tamano_archivo < 1000000))) {
+                    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Se permiten archivos .png<br><li>se permiten archivos de 300 Kb máximo.</td></tr></table>";
+             }else{
+                 $rutafinal = 'C:\xampp\htdocs\Proyecto_AmbienteWeb\Views\assets\Manejo_Archivos_Ropa\/'.$nombre_archivo;
+                    if (move_uploaded_file($_FILES['archivo1']['tmp_name'], $rutafinal)){
+                    }else{
+                           echo "<script>
+                           toastr.error('Tu archivo no se pudo reconocer');
+                           </script>";
+                    }
+             }
+
+                $Reports = new Reports();
+                $articulo_pers = new Articulo_Pers();           
+                $articulo_espec = $articulo_pers ->MostrarArticulo_Especifico($idProductoEspecifico);
+                
+                if ($articulo_espec !== null && $articulo_espec !== false) {
+                    $Reports -> setidArtPersonalizado($idProductoEspecifico);
+                    $Reports -> setColor($ColorSelec);
+                    $Reports -> setTalla($TallaSelec);
+                    $Reports -> setCantidad($CantidadSelec);
+                    $Reports -> setRutaImagen($nombreArchivoParaBD);
+                    
+                    $Reports -> guardarReporteDB();
+                    
+                    echo 1; //Se ingreso
+                }else {
+                    echo 2; //No se ingreso
+                }
+            }else{
+                echo 2;
+
+            }             
+            
+            break;
+
+
+            case 'ReporteCompleto':
+                $ul = new Reports();
+                $ul->setID(trim($_POST['ID']));
+                $rspta = $ul->EliminarReporte();
+                
+                if ($rspta) {
+                    $archivo = '../Views/' . $ul -> getRutaImagen();
+                    unlink($archivo);
+                }
+
+                echo $rspta;
+                break;
+
 }

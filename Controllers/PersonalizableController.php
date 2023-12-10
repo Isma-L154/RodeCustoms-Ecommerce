@@ -126,9 +126,11 @@ switch ($_GET["op"]) {
        </div>
                     </figcaption>
                         <div class="bottom-wrap">
+                       
                         <label for="archivo1" style="background-color: goldenrod; padding: 8px 16px; border-radius: 4px; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;">
                                                 Subir Logo PNG <input type="file" id="archivo1" name="archivo1" style="display: none;" accept=".png"/>
                                             </label>
+                        
                     </div>
                     <div class="bottom-wrap">                        
                         <div class="price-wrap row">

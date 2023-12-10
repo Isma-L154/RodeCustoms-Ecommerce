@@ -10,7 +10,8 @@
     <?php
     include "./assets/Fragments/Librerias.php"
     ?>
-        <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
+    
+    <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
     <link href="./assets/StyleSheets/Producto_Espec.css" rel="stylesheet" />
 
 

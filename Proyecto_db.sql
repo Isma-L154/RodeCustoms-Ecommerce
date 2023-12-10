@@ -92,9 +92,16 @@ CREATE TABLE Carrito (
 --------------------------------------------------------
 --  DDL for Table Reportes
 --------------------------------------------------------
-Create table Reports(
-idReport INT PRIMARY KEY AUTO_INCREMENT
+CREATE TABLE Reportes (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    idArtPersonalizado INT null,
+    Color VARCHAR(50),
+    Talla VARCHAR(2),
+    Cantidad INT,
+    RutaImagen VARCHAR(500), -- Ruta al archivo de imagen en el servidor
+	FOREIGN KEY (idArtPersonalizado) REFERENCES Articulo_Personalize(id)
 );
+
 --------------------------------------------------------
 --  DDL for Table FACTURA_ENCABEZADO
 --------------------------------------------------------
@@ -116,7 +123,6 @@ CREATE TABLE Factura_Detalle (
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
 
-drop table Carrito;
 INSERT INTO Proyecto_db.Tipo_Producto(idProducto , NombreTipo) VALUES
 (1, "Articulos Regulares"),(2, "Articulos Personalizables");
 
@@ -150,7 +156,7 @@ select * from Articulo_Personalize;
 select * from Articulo;
 select * from Usuario;
 select * from Carrito;
-
+select * from Reportes;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
