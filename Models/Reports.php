@@ -119,7 +119,7 @@ final class Reports extends Conexion{
                 $Reports = new Reports();
                 $Reports->setID($encontrado['ID']);
                 $Reports->setidArtPersonalizado($encontrado['idArtPersonalizado']);
-                $Reports->setTalla($encontrado['Color']);
+                $Reports->setColor($encontrado['Color']);
                 $Reports->setTalla($encontrado['Talla']);
                 $Reports->setCantidad($encontrado['Cantidad']);
                 $Reports->setRutaImagen($encontrado['RutaImagen']);

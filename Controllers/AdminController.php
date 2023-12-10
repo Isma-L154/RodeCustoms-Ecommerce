@@ -132,16 +132,16 @@ switch ($_GET["op"]) {
                 "1" => $reg->getNombre(),
                 "2" => $reg->getApellidos(),
                 "3" => $reg->getEmail(),
-                "4" => $reg ->getClave(),
+                "4" => $reg->getClave(),
                 "5" => $reg->getRol(),
                 "6" => '<button class="btn btn-warning" id="modificarUsuario">Modificar</button> ' .
                     '<button class="btn btn-danger" onclick="Eliminar(\'' . $reg->getIdUsuario() . '\')">Eliminar</button>'
             );
         }
         $Resultado = array(
-            "sEcho" => 1, 
-            "iTotalRecords" => count($datos), 
-            "iTotalDisplayRecords" => count($datos), 
+            "sEcho" => 1,
+            "iTotalRecords" => count($datos),
+            "iTotalDisplayRecords" => count($datos),
             "aaData" => $datos
         );
         echo json_encode($Resultado);
@@ -154,7 +154,7 @@ switch ($_GET["op"]) {
         $password = isset($_POST["ClaveUsu"]) ? trim($_POST["ClaveUsu"]) : "";
         $Rol = isset($_POST["idRol"]) ? trim($_POST["idRol"]) : 1;
 
-        $clavehash = password_hash($password, PASSWORD_BCRYPT); ;
+        $clavehash = password_hash($password, PASSWORD_BCRYPT);;
         $usuario = new Usuario();
         $usuario->setEmail($email);
         $encontrado = $usuario->verificarExistenciaDb();
@@ -222,14 +222,14 @@ switch ($_GET["op"]) {
 
         //REPORTES
 
-        case 'MostrarReports':
+    case 'MostrarReports':
         $Report = new Reports();
         $Art_pers = new Articulo_Pers();
-        $Reports = $Report ->listarTodosReportes();
+        $Reports = $Report->listarTodosReportes();
         $datos = array();
 
         foreach ($Reports as $reg) {
-            
+
             $Personalizados = $Art_pers->MostrarArticulo_Especifico($reg->getidArtPersonalizado());
             if ($Personalizados != null) {
                 $Prenda = $Personalizados['ruta_imagen'];
@@ -240,89 +240,89 @@ switch ($_GET["op"]) {
             } else {
                 $Ruta = '../Views/assets/Img/' . 'Logo2.png';
             }
-            
+
 
             $datos[] = array(
                 "0" => $reg->getID(),
                 "1" => '<img src="' . $Prenda . '" width="70px" heigth="70px"/>',
-                "2" => '<div class="color-box" data-color="' . $reg->getColor() . '" style="background-color: ' . $reg->getColor() . '; width: 100%px; height: 40px; border: 1px solid #000;"></div>',
-                "3" => $reg-> getTalla(),
+                "2" => '<div class="color-box" data-color="' . $reg->getColor() . '" style="background-color: ' . $reg->getColor() . '; width: 100%; height: 40px; border: 1px solid #000;"></div>',
+                "3" => $reg->getTalla(),
                 "4" => $reg->getCantidad(),
                 "5" => '<img src="' . $Ruta . '" width="70px" heigth="70px"/>',
                 "6" => '<button class="btn btn-success" onclick="Realizado(\'' . $reg->getID() . '\')">Realizado <i class="fa-solid fa-check"></i></button>'
             );
         }
         $Resultado = array(
-            "sEcho" => 1, 
-            "iTotalRecords" => count($datos), 
-            "iTotalDisplayRecords" => count($datos), 
+            "sEcho" => 1,
+            "iTotalRecords" => count($datos),
+            "iTotalDisplayRecords" => count($datos),
             "aaData" => $datos
         );
         echo json_encode($Resultado);
-            break;
+        break;
 
 
-        case 'InsertarReport':
-            if (isset($_POST['id'])) {
-                
-                $idProductoEspecifico = $_POST['id'];
-                $TallaSelec = isset($_POST['talla']) ? $_POST['talla'] : 'S';
-                $CantidadSelec = isset($_POST['cantidad']) ? $_POST['cantidad'] : 1;
-                $ColorSelec = isset($_POST['color']) ? $_POST['color'] : 'Blanco';
+    case 'InsertarReport':
+        if (isset($_POST['id'])) {
 
-                $nombre_archivo = $_FILES['archivo1']['name'];
-                $tipo_archivo = $_FILES['archivo1']['type'];
-                $tamano_archivo = $_FILES['archivo1']['size'];
-                $nombreArchivoParaBD = 'assets/Manejo_Archivos_Ropa/' . $nombre_archivo;
+            $idProductoEspecifico = $_POST['id'];
+            $TallaSelec = isset($_POST['talla']) ? $_POST['talla'] : 'S';
+            $CantidadSelec = isset($_POST['cantidad']) ? $_POST['cantidad'] : 1;
+            $ColorSelec = isset($_POST['color']) ? $_POST['color'] : '#000000';
 
-                if (!((strpos($tipo_archivo, "png")) && ($tamano_archivo < 1000000))) {
-                    echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Se permiten archivos .png<br><li>se permiten archivos de 300 Kb máximo.</td></tr></table>";
-             }else{
-                 $rutafinal = 'C:\xampp\htdocs\Proyecto_AmbienteWeb\Views\assets\Manejo_Archivos_Ropa\/'.$nombre_archivo;
-                    if (move_uploaded_file($_FILES['archivo1']['tmp_name'], $rutafinal)){
-                    }else{
-                           echo "<script>
+            $nombre_archivo = $_FILES['archivo1']['name'];
+            $tipo_archivo = $_FILES['archivo1']['type'];
+            $tamano_archivo = $_FILES['archivo1']['size'];
+            $nombreArchivoParaBD = 'assets/Manejo_Archivos/Ropa/' . $nombre_archivo;
+
+            if (!((strpos($tipo_archivo, "png")) && ($tamano_archivo < 1000000))) {
+                echo "La extensión o el tamaño de los archivos no es correcta. <br><br><table><tr><td><li>Se permiten archivos .png<br><li>se permiten archivos de 300 Kb máximo.</td></tr></table>";
+            } else {
+                $rutafinal = 'C:\xampp\htdocs\Proyecto_AmbienteWeb\Views\assets\Manejo_Archivos\Ropa\/' . $nombre_archivo;
+                if (move_uploaded_file($_FILES['archivo1']['tmp_name'], $rutafinal)) {
+                } else {
+                    echo "<script>
                            toastr.error('Tu archivo no se pudo reconocer');
                            </script>";
-                    }
-             }
-
-                $Reports = new Reports();
-                $articulo_pers = new Articulo_Pers();           
-                $articulo_espec = $articulo_pers ->MostrarArticulo_Especifico($idProductoEspecifico);
-                
-                if ($articulo_espec !== null && $articulo_espec !== false) {
-                    $Reports -> setidArtPersonalizado($idProductoEspecifico);
-                    $Reports -> setColor($ColorSelec);
-                    $Reports -> setTalla($TallaSelec);
-                    $Reports -> setCantidad($CantidadSelec);
-                    $Reports -> setRutaImagen($nombreArchivoParaBD);
-                    
-                    $Reports -> guardarReporteDB();
-                    
-                    echo 1; //Se ingreso
-                }else {
-                    echo 2; //No se ingreso
                 }
-            }else{
-                echo 2;
+            }
 
-            }             
-            
-            break;
+            $Reports = new Reports();
+            $articulo_pers = new Articulo_Pers();
+            $articulo_espec = $articulo_pers->MostrarArticulo_Especifico($idProductoEspecifico);
+
+            if ($articulo_espec !== null && $articulo_espec !== false) {
+                $Reports->setidArtPersonalizado($idProductoEspecifico);
+                $Reports->setColor($ColorSelec);
+                $Reports->setTalla($TallaSelec);
+                $Reports->setCantidad($CantidadSelec);
+                $Reports->setRutaImagen($nombreArchivoParaBD);
+
+                $Reports->guardarReporteDB();
+
+                echo 1; //Se ingreso
+            } else {
+                echo 2; //No se ingreso
+            }
+        } else {
+            echo 2;
+        }
+
+        break;
 
 
-            case 'ReporteCompleto':
-                $ul = new Reports();
-                $ul->setID(trim($_POST['ID']));
-                $rspta = $ul->EliminarReporte();
-                
-                if ($rspta) {
-                    $archivo = '../Views/' . $ul -> getRutaImagen();
-                    unlink($archivo);
-                }
+    case 'ReporteCompleto':
+        $ul = new Reports();
+        $ul->setID(trim($_POST['ID']));
+        $Ruta_local = $ul->MostrarReporte_Especifico($ul->getID());
+        $archivo = '../Views/' . $Ruta_local['RutaImagen'];
 
-                echo $rspta;
-                break;
-
+        if (file_exists($archivo)) {
+            unlink($archivo);
+        } else {
+            echo "El archivo no existe";
+        }
+        $rspta = $ul->EliminarReporte();
+        echo $rspta;
+        break;
 }

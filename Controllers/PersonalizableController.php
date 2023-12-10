@@ -128,10 +128,12 @@ switch ($_GET["op"]) {
                         <div class="bottom-wrap">
                        
                         <label for="archivo1" style="background-color: goldenrod; padding: 8px 16px; border-radius: 4px; color: #fff; cursor: pointer; transition: background-color 0.3s, color 0.3s;">
-                                                Subir Logo PNG <input type="file" id="archivo1" name="archivo1" style="display: none;" accept=".png"/>
-                                            </label>
-                        
+                                                Subir Logo<input type="file" id="archivo1" name="archivo1" style="display: none;" accept=".png"/>
+                                                
+                        </label>
                     </div>
+                    <p style = "font-size: 11px; text-align:center" >*Unicamente archivos PNG y menos de 1Mb*</p>
+
                     <div class="bottom-wrap">                        
                         <div class="price-wrap row">
                         <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarritoPers" disabled>Añadir al Carrito</button>
@@ -141,16 +143,37 @@ switch ($_GET["op"]) {
                     </div>
                     </figure>
                     </div>';
-                echo '<script>
-                document.getElementById("archivo1").addEventListener("change", function() {
-                    if(this.files.length > 0) {
-                        toastr.success("Archivo seleccionado exitosamente");
-                        document.getElementById("btnAnadirCarritoPers").disabled = false;
-                    } else {
-                        document.getElementById("btnAnadirCarritoPers").disabled = true;
-                    }
-                });
+                   
+                    echo '<script>
+                    document.getElementById("archivo1").addEventListener("change", function() {
+                        var archivo = this.files[0];
+                    
+                        if (archivo) {
+                            var tipoArchivo = archivo.type;
+                            var tamanoArchivo = archivo.size;
+                    
+                            
+                            if (tipoArchivo === "image/png" && tamanoArchivo <= 1048576) {
+                                toastr.success("Archivo seleccionado exitosamente");
+                                document.getElementById("btnAnadirCarritoPers").disabled = false;
+                            } else {
+                                
+                                if (tipoArchivo !== "image/png") {
+                                    toastr.error("Por favor, selecciona un archivo PNG.");
+                                } else if (tamanoArchivo > 1048576) {
+                                    toastr.error("El archivo es demasiado grande. El tamaño debe ser menor a 1 MB.");
+                                }
+                    
+                                
+                                this.value = "";
+                                document.getElementById("btnAnadirCarritoPers").disabled = true;
+                            }
+                        } else {
+                            document.getElementById("btnAnadirCarritoPers").disabled = true;
+                        }
+                    });
                 </script>';
+                
             } else {
                 echo
                 '<script>

@@ -17,6 +17,7 @@
         include "./assets/Fragments/Header_BK.php"
         ?>    
 <main>
+    <!--Apartado de lista unicamente par productos-->
 <div class="col-md-12">
             <div class="card card-dark">
                 <div class="card-header">
@@ -32,6 +33,31 @@
                                     <th>Producto</th>
                                     <th>Color</th>
                                     <th>Talla</th>
+                                    <th>Cantidad</th>
+                                    <th>Logo</th>
+                                    <th>Opciones</th>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+<!--Apartado de Lista para Stickers-->
+        <div class="col-md-12">
+            <div class="card card-dark">
+                <div class="card-header">
+                    <h3 class="card-title" style="text-align: center;">Stickers por Realizar</h3>
+                </div>
+                <div class="card-body p-0">
+                    <div class="row mt-2">
+                        <div class="col-md-1"></div>
+                        <div class="col-md-10">
+                            <table id="Stickers" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <th>ID</th>
+                                    <th>Producto</th>
                                     <th>Cantidad</th>
                                     <th>Logo</th>
                                     <th>Opciones</th>

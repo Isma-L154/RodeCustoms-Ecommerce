@@ -93,7 +93,7 @@ function listarReportes() {
   //Esta funcion es par darle click al color y saber que color especifico selecciono el cliente
   $(document).ready(function() {
     $(document).on('click', '.color-box', function() {
-        var color = $(this).data('#colorPicker');
+        var color = $(this).data('color');
         bootbox.alert({
             title: "Tipo de color",
             message: "Color seleccionado: " + color,
