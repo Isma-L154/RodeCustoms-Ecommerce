@@ -64,7 +64,7 @@ function listarReportes() {
   });
 
   function Realizado(ID) {
-    var result = confirm('¿Esta seguro de activar el usuario?');
+    var result = confirm('¿Terminaste?');
       if (result) {  
         $.post(
           '../Controllers/AdminController.php?op=ReporteCompleto',

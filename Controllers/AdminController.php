@@ -314,6 +314,9 @@ switch ($_GET["op"]) {
     case 'ReporteCompleto':
         $ul = new Reports();
         $ul->setID(trim($_POST['ID']));
+        
+        //Esta comentado para que se eligen logos iguales no se borre y se siga viendo en la pagina, sin embargo elimina de forma correcta los archivos
+        /*
         $Ruta_local = $ul->MostrarReporte_Especifico($ul->getID());
         $archivo = '../Views/' . $Ruta_local['RutaImagen'];
 
@@ -323,6 +326,7 @@ switch ($_GET["op"]) {
             echo "El archivo no existe";
         }
         $rspta = $ul->EliminarReporte();
+        */
         echo $rspta;
         break;
 }

@@ -56,6 +56,18 @@ CREATE TABLE Articulo_Personalize (
     FOREIGN KEY (idCategoria) REFERENCES Categoria(idCategoria)
 );
 --------------------------------------------------------
+--  DDL for Table Stickers
+--------------------------------------------------------
+CREATE TABLE Stickers(
+idSticker INT PRIMARY KEY AUTO_INCREMENT,
+RutaLogo VARCHAR(255),
+Tamanio VARCHAR(50),
+Precio DECIMAL(10) NOT NULL,
+Cantidad INT,
+idTipoProducto INT,
+FOREIGN KEY (idTipoProducto) REFERENCES Tipo_Producto(idProducto)
+);
+--------------------------------------------------------
 --  DDL for Table Rol
 --------------------------------------------------------
 CREATE TABLE Rol (
@@ -83,9 +95,11 @@ CREATE TABLE Carrito (
     idLinea INT PRIMARY KEY AUTO_INCREMENT,
     idArticulo INT null,
     idArtPersonalizado INT null,
+    idSticker INT null,
     Cantidad INT not null,
     Talla Varchar(2) null,
     Total_Linea Decimal (10),
+	FOREIGN KEY (idSticker) REFERENCES Stickers(idSticker),
 	FOREIGN KEY (idArtPersonalizado) REFERENCES Articulo_Personalize(id),
     FOREIGN KEY (idArticulo) REFERENCES Articulo(idArticulo)
 );
@@ -101,7 +115,6 @@ CREATE TABLE Reportes (
     RutaImagen VARCHAR(500), -- Ruta al archivo de imagen en el servidor
 	FOREIGN KEY (idArtPersonalizado) REFERENCES Articulo_Personalize(id)
 );
-
 --------------------------------------------------------
 --  DDL for Table FACTURA_ENCABEZADO
 --------------------------------------------------------
@@ -122,9 +135,11 @@ CREATE TABLE Factura_Detalle (
     FOREIGN KEY (Linea_Carrito) REFERENCES  Carrito(idLinea),
 	FOREIGN KEY (idFactura) REFERENCES Factura_Encabezado(idFactura)
 );
-
 INSERT INTO Proyecto_db.Tipo_Producto(idProducto , NombreTipo) VALUES
 (1, "Articulos Regulares"),(2, "Articulos Personalizables");
+
+INSERT INTO Proyecto_db.Tipo_Producto(idProducto , NombreTipo) VALUES
+(3, "Stickers");
 
 INSERT INTO Proyecto_db.Categoria(nombreCategoria, idCategoria) VALUES 
 ("Sudaderas",1), ("Camisetas",2) ,("Productos_Varios",3);
@@ -157,6 +172,9 @@ select * from Articulo;
 select * from Usuario;
 select * from Carrito;
 select * from Reportes;
+select * from Stickers;
+
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

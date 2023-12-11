@@ -76,8 +76,7 @@
                                     Podemos realizar stickers con el logo que tu desees!A tan solo un click de poder tener pequeños
                                     diseños para tu empresa, compañia, tienda y demas...!
                                 </p>
-                                <button type="button" class="btn btn-primary">Personalizar mi sticker</button>
-                            </div>
+                                <a href="./Stickers.php"><button type="button" class="btn btn-primary">Stickers</button></a>                            </div>
                         </div>
                     </div>
                 </div>

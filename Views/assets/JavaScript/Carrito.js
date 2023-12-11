@@ -1,11 +1,10 @@
 function listarTodosCarrito() {
-    // Realizar la petición AJAX para obtener los datos
       $.ajax({
           url: '../Controllers/CarritoController.php?op=ListarCarrito',
           type: 'POST',
           dataType: 'html',
           success: function(data) {
-              // Insertar el HTML generado en el contenedor deseado
+              // Insertar el HTML generado en el contenedor 
               $('#ContenedorCarrito').html(data);
           },
           error: function(e) {
@@ -16,13 +15,12 @@ function listarTodosCarrito() {
   }
 
   function listarResumen() {
-    // Realizar la petición AJAX para obtener los datos
       $.ajax({
           url: '../Controllers/CarritoController.php?op=ListarResumen',
           type: 'POST',
           dataType: 'html',
           success: function(data) {
-              // Insertar el HTML generado en el contenedor deseado
+              // Insertar el HTML generado en el contenedor 
               $('#Resumen').html(data);
           },
           error: function(e) {
@@ -32,7 +30,7 @@ function listarTodosCarrito() {
   
   }
 
- 
+ //Agarro el ID y elimino la Fila que tiene ese ID
   $(document).ready(function () {
     $(document).on('click', '.eliminar-linea', function () {
         var id = $(this).data('id');

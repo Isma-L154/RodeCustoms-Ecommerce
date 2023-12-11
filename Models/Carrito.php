@@ -9,6 +9,8 @@ final class Carrito extends Conexion{
     private $Total_Linea = null;
     private $idArticulo = null;
     private $idArtPersonalizado = null;
+    private $idSticker = null;
+
 
 public function __construct() {}
 
@@ -67,6 +69,15 @@ public function getidLinea()
         $this->idArtPersonalizado = $idArtPersonalizado;
     }
 
+    public function getidSticker()
+    {
+        return $this->idSticker;
+    }
+    public function setidSticker($idSticker)
+    {
+        $this->idSticker = $idSticker;
+    }
+
 
     public static function getConexion()
     {
@@ -80,12 +91,13 @@ public function getidLinea()
 
 
     public function guardarEnCarritoDB(){
-        $query = "INSERT INTO Carrito (idArticulo, idArtPersonalizado,Cantidad, Talla, Total_Linea) 
-        VALUES (:idArticulo,:idArtPersonalizado,:Cantidad,:Talla,:Total_Linea)";
+        $query = "INSERT INTO Carrito (idArticulo, idArtPersonalizado,idSticker,Cantidad, Talla, Total_Linea) 
+        VALUES (:idArticulo,:idArtPersonalizado,:idSticker,:Cantidad,:Talla,:Total_Linea)";
      try {
          self::getConexion();
          $idArticulo=$this->getidArticulo();
          $idArtPersonalizado= $this->getidArtPersonalizado();
+         $idSticker= $this-> getidSticker();
          $Cantidad=$this->getCantidad();
          $Talla=$this->getTalla();
          $Total_Linea=$this->getTotal_Linea();
@@ -93,6 +105,7 @@ public function getidLinea()
          $resultado = self::$cnx->prepare($query);
         $resultado->bindParam(":idArticulo",$idArticulo,PDO::PARAM_INT);
         $resultado->bindParam(":idArtPersonalizado",$idArtPersonalizado,PDO::PARAM_INT);
+        $resultado->bindParam(":idSticker",$idSticker,PDO::PARAM_INT);
         $resultado->bindParam(":Cantidad",$Cantidad,PDO::PARAM_INT);
         $resultado->bindParam(":Talla",$Talla,PDO::PARAM_STR);
         $resultado->bindParam(":Total_Linea",$Total_Linea,PDO::PARAM_INT);
@@ -118,6 +131,7 @@ public function getidLinea()
                 $cart->setidLinea($encontrado['idLinea']);
                 $cart->setidArticulo($encontrado['idArticulo']);
                 $cart->setidArtPersonalizado($encontrado['idArtPersonalizado']);
+                $cart->setidSticker($encontrado['idSticker']);
                 $cart->setCantidad($encontrado['Cantidad']);
                 $cart->setTalla($encontrado['Talla']);
                 $cart->setTotal_Linea($encontrado['Total_Linea']);
