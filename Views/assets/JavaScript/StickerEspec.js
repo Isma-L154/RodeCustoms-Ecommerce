@@ -31,7 +31,6 @@ $(document).ready(function () {
         var Cantidad = $("#Cantidad_Sticker").text();
         var Precio = $('#Precio_Sticker').text().split(' ')[0]; 
 
-        
         $.ajax({
             url: '../Controllers/CarritoController.php?op=AgregarCarritoSticker',
             type: 'POST',
@@ -81,4 +80,55 @@ $(document).ready(function () {
     });
 });
 
+function StickerRealizado(idSticker) {
+      if (result) {  
+        $.ajax(
+          '../Controllers/AdminController.php?op=StickerCompleto',
+          { idSticker: idSticker },
+          function (data) {
+            switch (data) {
+              case '1':
+                toastr.success('Sigue Asi!');
+                reportSticker.api().ajax.reload();
+                break;
+  
+              case '0':
+                toastr.error(
+                  'Error'
+                );
+                break;
+  
+              default:
+                console.log(data);
+                break;
+            }
+          }
+        );
+      }
+     
+  }
 
+  $(document).ready(function() {
+    $(document).on('click', '#Regresar', function (event) { 
+        if (idSticker) {
+            $.post({
+                url:  '../Controllers/StickerController.php?op=StickerIncorrecta',
+                type: 'GET',
+                data: { idSticker: idSticker },
+                success: function(response) {
+                    console.log(response);
+                    if (response == "1") {
+                        window.location.href = './Stickers.php';
+                    } else {
+                        alert("Error al eliminar el sticker.");
+                    }
+                },
+                error: function(xhr, status, error) {
+                    alert("Ocurrió un error: " + error);
+                }
+            });
+        } else {
+            alert("No se encontró el ID del sticker.");
+        }
+    });
+});

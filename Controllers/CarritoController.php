@@ -141,7 +141,6 @@ switch ($_GET["op"]) {
                         <div class="col-md-3 col-lg-2 col-xl-2">
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
-                        
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
                         <button class="btn btn-md eliminar-linea" data-id="' . $reg->getIdLinea() . '"><i class="fas fa-times"></i></button>
                         </div>
@@ -171,6 +170,7 @@ switch ($_GET["op"]) {
                         <div class="col-md-3 col-lg-2 col-xl-2">
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
+                        //TODO ver si se puede hacer que cuando el aprete el boton pueda borrarlo tambien del apartado de Reportes
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
                         <button class="btn  btn-md eliminar-linea" data-id="' . $reg->getidLinea(). '"><i class="fas fa-times"></i></button>
                         </div>
@@ -201,6 +201,7 @@ switch ($_GET["op"]) {
                         <div class="col-md-3 col-lg-2 col-xl-2">
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
+                        //TODO ver si se puede hacer que cuando el aprete el boton pueda borrarlo tambien del apartado de Reportes
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
                         <button class="btn  btn-md eliminar-linea" data-id="' . $reg->getidLinea(). '"><i class="fas fa-times"></i></button>
                         </div>

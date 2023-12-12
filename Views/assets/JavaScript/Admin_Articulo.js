@@ -1,7 +1,7 @@
 
-//BUG No actualiza la info en tiempo real, tambien pasa con el otro DataTable
+
 function listarTodosArticulos() {
-  tabla = $('#admin_articulos').dataTable({
+  articulos = $('#admin_articulos').dataTable({
       processing: true,
       serverSide: true,
       dom: 'Bfrtip',
@@ -9,9 +9,6 @@ function listarTodosArticulos() {
           url: '../Controllers/AdminController.php?op=MostrarArticulos',
           type: 'get',
           dataType: 'json',
-          error: function (e) {
-              console.log(e.responseText);
-          },
       },
       destroy: true,
       displayLength: 5,
@@ -67,12 +64,14 @@ $('#add_articulo').on('submit', function (event) {
       processData: false,
       
       success: function (datos) {
+      console.log(datos);
         switch (datos) {
           case '1':
             toastr.success(
               'Articulo Agregado Correctamente'
             );
             $('#add_articulo')[0].reset();
+            articulos.api().ajax.reload();
             break;
   
           case '2':
@@ -115,12 +114,16 @@ $('#admin_articulos').on('click', 'button[id="modificarArticulo"]', function () 
       }
   }
 
+
+
   var data = $('#admin_articulos').DataTable().row($(this).parents('tr')).data();
+  
   limpiarForms();
   $('#EId').val(data[0]);
   $('#Enombre').val(data[1]);
   $('#Edescripcion').val(data[2]);
-  $('#Eruta_imagen').val(data[3]);
+  var urlImagen = $(data[3]).attr('src'); //Esta vara es para que me imprima solo la ruta de la imagen como tal en la parte de Modal para modificar
+  $('#Eruta_imagen').val(urlImagen); 
   $('#Eprecio').val(data[4]);
   $('#Ecategoria').val(data[5]);
   return false;
@@ -148,7 +151,7 @@ $('#admin_articulos').on('click', 'button[id="modificarArticulo"]', function () 
                         break;
                     case '1':
                         toastr.success('Datos actualizados correctamente');
-                        tabla.api().ajax.reload();
+                        articulos.api().ajax.reload();
                         break;
                     case '2':
                         toastr.error('Error: El ID es incorrecto');
@@ -163,7 +166,7 @@ $('#admin_articulos').on('click', 'button[id="modificarArticulo"]', function () 
 });
 
 function Eliminar(id) {
-  var result = confirm('¿Esta seguro de activar el usuario?');
+  var result = confirm('¿Esta seguro de eliminar el producto?');
     if (result) {
       $.post(
         '../Controllers/AdminController.php?op=Eliminar_Articulos',
@@ -172,7 +175,7 @@ function Eliminar(id) {
           switch (data) {
             case '1':
               toastr.success('Eliminado correctamente');
-              tabla.api().post.reload();
+              articulos.api().ajax.reload();
               break;
 
             case '0':
@@ -182,7 +185,7 @@ function Eliminar(id) {
               break;
 
             default:
-              toastr.error("Error: No se encontro el ID");
+              toastr.error("Error: Alguien tiene este producto en su carrito");
               break;
           }
         }

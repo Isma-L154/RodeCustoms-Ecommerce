@@ -68,6 +68,7 @@
                     <hr class="my-4">
 
                     <div id="Resumen"></div>
+                    <!--TODO Buscar la forma en la que cuando le de al boton de pagar pueda borrar los productos que estan en el carrito, recordar que la BD esta en modo seguro-->
                     <?php
                       if (isset($_SESSION['user_Rol'])) {
                           $tieneProductos = isset($_SESSION['Cant_Product']) && $_SESSION['Cant_Product'] > 0;

@@ -108,4 +108,17 @@ switch ($_GET["op"]) {
 
            
             break;
+
+            case 'StickerIncorrecta':
+                
+            if (isset($_GET['idSticker'])) {
+            $idSticker = $_GET['idSticker'];
+            $Sticker = new Stickers();
+            $rspta = $Sticker->CancelarSticker($idSticker);
+            echo($rspta);
+                
+            }else{
+                    echo "Error";
+                }
+            break;
 }

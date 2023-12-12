@@ -1,34 +1,38 @@
 
 var urlParams = new URLSearchParams(window.location.search);
 var idSticker = urlParams.get('idSticker');
-//Esta es la funcion que verifica el archivo
-document.getElementById("archivoSticker").addEventListener("change", function() {
-    var archivo = this.files[0];
 
-    if (archivo) {
+//Esta es la funcion que verifica el archivo y verifica que el usuario haya selecionado una cantidad par que no quede en 0
+function verificarCondiciones() {
+    var archivoSeleccionado = document.getElementById("archivoSticker").files.length > 0;
+    var cantidadSeleccionada = document.getElementById("cantidad").value !== "";
+
+    var tipoArchivoValido = true;
+    var tamanoArchivoValido = true;
+
+    if (archivoSeleccionado) {
+        var archivo = document.getElementById("archivoSticker").files[0];
         var tipoArchivo = archivo.type;
         var tamanoArchivo = archivo.size;
 
-        
-        if (tipoArchivo === "image/png" && tamanoArchivo <= 1048576) {
-            toastr.success("Archivo seleccionado exitosamente");
-            document.getElementById("btnAnadirSticker").disabled = false;
-        } else {
-            
-            if (tipoArchivo !== "image/png") {
-                toastr.error("Por favor, selecciona un archivo PNG.");
-            } else if (tamanoArchivo > 1048576) {
-                toastr.error("El archivo es demasiado grande. El tamaño debe ser menor a 1 MB.");
-            }
+        tipoArchivoValido = tipoArchivo === "image/png";
+        tamanoArchivoValido = tamanoArchivo <= 1048576;
 
-            
-            this.value = "";
-            document.getElementById("btnAnadirSticker").disabled = true;
-        }
-    } else {
-        document.getElementById("btnAnadirSticker").disabled = true;
+        if (!tipoArchivoValido) {
+            toastr.error("Por favor, selecciona un archivo PNG.");
+        } else if (!tamanoArchivoValido) {
+            toastr.error("El archivo es demasiado grande. El tamaño debe ser menor a 1 MB.");
+        } 
     }
+
+    document.getElementById("btnAnadirSticker").disabled = !(archivoSeleccionado && cantidadSeleccionada && tipoArchivoValido && tamanoArchivoValido);
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.getElementById("archivoSticker").addEventListener("change", verificarCondiciones);
+    document.getElementById("cantidad").addEventListener("change", verificarCondiciones);
 });
+
 
 //Para ir cambiando el campo del precio segun la cantidad que elija el usuario
 

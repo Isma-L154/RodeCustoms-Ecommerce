@@ -27,7 +27,14 @@ switch ($_GET["op"]) {
             $usuario->guardarEnDb();
 
             if ($usuario->verificarExistenciaDb()) {
-                echo 1; //usuario registrado y envio de correo exitos
+                session_start();
+                $_SESSION['user_id'] = $usuario->getIdUsuario(); 
+                $_SESSION['user_nombre'] = $nombre;
+                $_SESSION['user_apellidos'] = $apellidos;
+                $_SESSION['user_email'] = $email;
+                $_SESSION['user_Rol'] = $Rol;
+
+                echo 1;
             } else {
                 echo 3; //Fallo al realizar el registro
             }

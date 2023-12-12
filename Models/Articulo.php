@@ -96,7 +96,30 @@ class Articulo extends Conexion{
             self::getConexion();
             $resultado = self::$cnx->prepare($query);		
             $id= $this->getId();	
-            $resultado->bindParam(":id",$id,PDO::PARAM_STR);
+            $resultado->bindParam(":id",$id,PDO::PARAM_INT);
+            $resultado->execute();
+            self::desconectar();
+            
+            $encontrado = false;
+            foreach ($resultado->fetchAll() as $reg) {
+                $encontrado = true;
+            }
+            return $encontrado;
+           } catch (PDOException $Exception) {
+               self::desconectar();
+               $error = "Error ".$Exception->getCode().": ".$Exception->getMessage();
+             return $error;
+           }
+    }
+    //Esta funcion no esta bien porque no deberia verificar por nombre, el id es autoincremental por ende nunca se va repetir el id
+    public function verificarNombre(){
+        $query = "SELECT * FROM Articulo where nombre=:nombre";
+        
+     try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);		
+            $nombre= $this->getNombre();	
+            $resultado->bindParam(":nombre",$nombre,PDO::PARAM_STR);
             $resultado->execute();
             self::desconectar();
             

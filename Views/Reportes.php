@@ -1,3 +1,12 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['user_id']) || $_SESSION['user_Rol'] != 1) {
+    header('Location: Error-404.php'); 
+    exit(); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -57,9 +66,10 @@
                             <table id="Stickers" class="table table-striped table-bordered table-hover">
                                 <thead>
                                     <th>ID</th>
-                                    <th>Producto</th>
-                                    <th>Cantidad</th>
                                     <th>Logo</th>
+                                    <th>Tamaño</th>
+                                    <th>Precio Total</th>
+                                    <th>Cantidad</th>
                                     <th>Opciones</th>
                                 </thead>
                             </table>
@@ -68,7 +78,6 @@
                 </div>
             </div>
         </div>
-
 </main>
 
 <?php
@@ -80,6 +89,7 @@
         <script src="./Pluggins/bootbox/bootbox.min.js"></script>  
         <script src="./Pluggins/toastr/toastr.js"></script>
         <script src="./assets/JavaScript/Reports.js"></script>
+        
 
 </body>
 </html>

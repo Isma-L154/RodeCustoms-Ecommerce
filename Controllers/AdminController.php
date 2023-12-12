@@ -4,13 +4,14 @@ require_once '../Models/Articulo.php';
 require_once  '../Models/Usuario.php';
 require_once '../Models/Reports.php';
 require_once '../Models/Articulo_Pers.php';
+require_once '../Models/Stickers.php';
+
 
 switch ($_GET["op"]) {
         //CRUD ARTICULOS
 
 
     case "MostrarArticulos":
-        //BUG Arreglar el Bug que hay en el campo 3, que es la imagen, ya que al modificar se queda el texto del src
         $articulo = new Articulo();
         $articulos = $articulo->listarTodosDb();
         $datos = array();
@@ -35,17 +36,16 @@ switch ($_GET["op"]) {
             );
         }
         $Resultado = array(
-            "sEcho" => 1, ##informacion para datatables
-            "iTotalRecords" => count($datos), ## total de registros al datatable
-            "iTotalDisplayRecords" => count($datos), ## enviamos el total de registros a visualizar
+            "sEcho" => 1, 
+            "iTotalRecords" => count($datos), 
+            "iTotalDisplayRecords" => count($datos), 
             "aaData" => $datos
         );
         echo json_encode($Resultado);
         break;
 
     case "Agregar_Articulos":
-        //FIXME No inserta la imagen de forma correcta
-        //Lo parametros que se van a recibir por POST del form
+        
         $nombre = isset($_POST["nombreArt"]) ? trim($_POST["nombreArt"]) : "";
         $descripcion = isset($_POST["descripcion"]) ? trim($_POST["descripcion"]) : "";
         $imagen = isset($_POST["ruta_imagen"]) ? trim($_POST["ruta_imagen"]) : "";
@@ -65,19 +65,20 @@ switch ($_GET["op"]) {
             $articulo->setCategoria($Categoria);
             $articulo->setidTipoProducto($Tipo);
             $articulo->guardarEnDb();
-
-            if ($articulo->verificarExistenciaDb()) {
-                echo 1; //usuario registrado y envio de correo exitos
+                
+            if ($articulo->verificarNombre()) {
+                echo 1; 
             } else {
-                echo 3; //Fallo al realizar el registro en la DB
+                
+                echo 3; 
             }
         } else {
-            echo 2; // Articulo ya existe, sin embargo no es correcto por que se verifica por nombre
+            echo 2; 
         }
         break;
 
     case 'Editar_Articulos':
-        //Trim se utiliza para eliminar espacios en blanco adicionales en los campos
+        
         $idArticulo = isset($_POST["EId"]) ? trim($_POST["EId"]) : "";
         $nombre = isset($_POST["Enombre"]) ? trim($_POST["Enombre"]) : "";
         $descripcion = isset($_POST["Edescripcion"]) ? trim($_POST["Edescripcion"]) : "";
@@ -325,8 +326,50 @@ switch ($_GET["op"]) {
         } else {
             echo "El archivo no existe";
         }
-        $rspta = $ul->EliminarReporte();
         */
+        $rspta = $ul->EliminarReporte();
+        
         echo $rspta;
         break;
+
+        case 'MostrarStickerReport':
+            $Sticker = new Stickers();
+            $Stickers = $Sticker->listarTodosStickers();
+            $datos = array();
+    
+            foreach ($Stickers as $reg) {
+    
+                $Stickers = $Sticker->MostrarSticker_Especifico($reg->getidSticker());
+    
+                if ($reg->getRutaLogo() != '' && $reg->getRutaLogo() != null) {
+                    $Ruta = '../Views/' . $reg->getRutaLogo();
+                } else {
+                    $Ruta = '../Views/assets/Img/' . 'Logo2.png';
+                }
+    
+    
+                $datos[] = array(
+                    "0" => $reg->getidSticker(),
+                    "1" => '<img src="' . $Ruta . '" width="70px" heigth="70px"/>',
+                    "2" => $reg->getTamanio(),
+                    "3" => $reg->getPrecio(),
+                    "4" => $reg->getCantidad(),
+                    "5" => '<button class="btn btn-success" onclick="StickerRealizado(\'' . $reg->getidSticker() . '\')">Realizado <i class="fa-solid fa-check"></i></button>'
+                );
+            }
+            $Resultado = array(
+                "sEcho" => 1,
+                "iTotalRecords" => count($datos),
+                "iTotalDisplayRecords" => count($datos),
+                "aaData" => $datos
+            );
+            echo json_encode($Resultado);
+            break;
+
+            case 'StickerCompleto':
+                $ul = new Stickers();
+                $ul->setidSticker(trim($_POST['idSticker']));
+                $rspta = $ul->EliminarSticker();
+                echo $rspta;
+                break;
 }

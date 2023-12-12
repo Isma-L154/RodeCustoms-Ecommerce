@@ -64,7 +64,7 @@ function listarReportes() {
   });
 
   function Realizado(ID) {
-    var result = confirm('¿Terminaste?');
+    bootbox.confirm('¿Terminaste?', function (result) {
       if (result) {  
         $.post(
           '../Controllers/AdminController.php?op=ReporteCompleto',
@@ -73,6 +73,7 @@ function listarReportes() {
             switch (data) {
               case '1':
                 toastr.success('Sigue Asi!');
+                reportes.api().ajax.reload();
                 break;
   
               case '0':
@@ -88,6 +89,8 @@ function listarReportes() {
           }
         );
       }
+    });
+      
     }
 
   //Esta funcion es par darle click al color y saber que color especifico selecciono el cliente
@@ -105,7 +108,55 @@ function listarReportes() {
     });
 });
 
+function listarStickers() {
+  reportSticker = $('#Stickers').dataTable({
+    aProcessing: true, 
+    aServerSide: true, 
+    dom: 'Bfrtip', 
+    ajax: {
+      url: '../Controllers/AdminController.php?op=MostrarStickerReport',
+      type: 'get',
+      dataType: 'json',
+      error: function (e) {
+        console.log(e.responseText);
+      },
+      bDestroy: true,
+      iDisplayLength: 5,
+    },
+  });
+}
+$(function(){
+  listarStickers();
+});
 
+function StickerRealizado(idSticker) {
+  bootbox.confirm('¿Terminaste?', function (result) {
+    if (result) {  
+      $.post(
+        '../Controllers/AdminController.php?op=StickerCompleto',
+        { idSticker: idSticker },
+        function (data) {
+          switch (data) {
+            case '1':
+              toastr.success('Sigue Asi!');
+              reportSticker.api().ajax.reload();
+              break;
+
+            case '0':
+              toastr.error(
+                'Error'
+              );
+              break;
+
+            default:
+              console.log(data);
+              break;
+          }
+        }
+      );
+    }
+  });  
+}
 
 
 

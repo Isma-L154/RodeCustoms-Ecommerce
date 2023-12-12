@@ -41,7 +41,7 @@ function listarTodosCarrito() {
 });
 
 function EliminarLinea(id, fila) {
-    bootbox.confirm('¿Desea modificar los datos?', function (result) {
+    bootbox.confirm('¿Desea Eliminarlo?', function (result) {
         if (result) {
             $.post(
                 '../Controllers/CarritoController.php?op=EliminarLinea',

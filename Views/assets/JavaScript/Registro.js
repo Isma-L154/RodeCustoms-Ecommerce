@@ -27,6 +27,7 @@ $('#usuario_add').on('submit', function (event) {
             'Usuario registrado'
           );
           $('#usuario_add')[0].reset();
+          window.location.href = '../Views/Perfil.php'; 
           break;
 
         case '2':
@@ -47,6 +48,7 @@ $('#usuario_add').on('submit', function (event) {
     },
   });
 });
+
 
   
 

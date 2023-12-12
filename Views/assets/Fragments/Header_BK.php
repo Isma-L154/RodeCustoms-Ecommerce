@@ -1,4 +1,6 @@
-<?php session_start();?>
+<?php if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}?>
 <header>
   <div class="container_logo">
     <a href="./index.php">
@@ -60,10 +62,13 @@
               </li>';
               }
               ?>
-
-              <li class="nav-item">
+            <?php
+              if (!isset($_SESSION['user_Rol'])) {
+                echo '<li class="nav-item">
                 <a class="nav-link" href="./registro.php" style="color: #2A2A2A; font-size: x-large;"><i class="fa-solid fa-right-to-bracket" style="margin-right: 15px;"></i>Registro</a>
-              </li>
+              </li>';
+              }
+              ?>
 
               <?php
               if (isset($_SESSION['user_Rol']) && $_SESSION['user_Rol'] == 1) {

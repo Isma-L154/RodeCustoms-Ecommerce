@@ -1,3 +1,12 @@
+<?php
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if (!isset($_SESSION['user_id']) || $_SESSION['user_Rol'] != 1) {
+    header('Location: Error-404.php');     
+    exit(); 
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -100,7 +109,7 @@
                 <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
 
                 <label for="ruta_imagen"></label>
-                <input type="text" class="form-control" id="ruta_imagen" name="ruta_Imagen" placeholder="Ruta de la Imagen" required>
+                <input type="text" class="form-control" id="ruta_imagen" name="ruta_imagen" placeholder="Ruta de la Imagen" required>
 
 
                 <label for="precio"></label>

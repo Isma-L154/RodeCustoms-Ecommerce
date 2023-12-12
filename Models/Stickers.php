@@ -108,6 +108,35 @@ final class Stickers extends Conexion{
            }
     }
 
+    public function listarTodosStickers(){
+        $query = "SELECT * FROM Stickers";
+        $arr = array();
+        try {
+            self::getConexion();
+            $resultado = self::$cnx->prepare($query);
+            $resultado->execute();
+            self::desconectar();
+            
+            foreach ($resultado->fetchAll() as $encontrado) {
+                $Stick = new Stickers();
+                $Stick->setidSticker($encontrado['idSticker']);
+                $Stick->setRutaLogo($encontrado['RutaLogo']);
+                $Stick->setTamanio($encontrado['Tamanio']);
+                $Stick->setPrecio($encontrado['Precio']);
+                $Stick->setCantidad($encontrado['Cantidad']);
+                $Stick->setidTipoProducto($encontrado['idTipoProducto']);
+
+                $arr[] = $Stick;
+            }
+            return $arr;
+
+        } catch (PDOException $Exception) {
+            self::desconectar();
+            $error = "Error ".$Exception->getCode( ).": ".$Exception->getMessage( );;
+            return json_encode($error);
+        }
+    }
+
     public static function MostrarSticker_Especifico($idSticker){
         $query = "SELECT * FROM Stickers where idSticker=:id";
         $idSticker = $idSticker;
@@ -126,5 +155,48 @@ final class Stickers extends Conexion{
         }
 
     }
+    public function EliminarSticker(){
+        $query = "DELETE FROM Stickers WHERE idSticker = :id";
+        try {
+            self::getConexion();
+            $ID= $this->getidSticker();
+            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id", $ID, PDO::PARAM_INT);
+    
+            self::$cnx->beginTransaction(); 
+            $resultado->execute();
+            self::$cnx->commit(); 
+            self::desconectar();
+    
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
 
+    public function CancelarSticker($idSticker){
+        $query = "DELETE FROM Stickers WHERE idSticker = :id";
+        $ID = $idSticker;
+
+        try {
+            self::getConexion();            
+            $resultado = self::$cnx->prepare($query);
+            $resultado->bindParam(":id", $ID, PDO::PARAM_INT);
+            self::$cnx->beginTransaction(); 
+            $resultado->execute();
+            self::$cnx->commit(); 
+            self::desconectar();
+    
+            return $resultado->rowCount();
+        } catch (PDOException $Exception) {
+            self::$cnx->rollBack();
+            self::desconectar();
+            $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+            return $error;
+        }
+    }
 }

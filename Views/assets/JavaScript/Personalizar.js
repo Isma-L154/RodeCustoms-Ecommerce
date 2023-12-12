@@ -60,7 +60,6 @@ $(document).ready(function () {
                                 if (result) {
                                     window.location.href = '../Views/Carrito.php';
                                 } else {
-                                    //BUG Devuelve al catalogo normal en vez de dirigirlo al personalziado
                                     window.location.href = '../Views/Cata_Personalizable.php';
                                 }
                             }

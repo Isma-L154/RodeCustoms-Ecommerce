@@ -10,8 +10,9 @@
     <?php
     include "./assets/Fragments/Librerias.php"
     ?>
-        <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
-    <link href="./assets/StyleSheets/Producto_Espec.css" rel="stylesheet" />
+    
+    <link rel="stylesheet" href="./Pluggins/toastr/toastr.css">
+    <link href="./assets/StyleSheets/Factura.css" rel="stylesheet" />
 
 
 </head>
@@ -20,17 +21,23 @@
     <?php
     include "./assets/Fragments/Header_BK.php"
     ?>
-    <main>
-   
+    
+<div id="loadingDiv">
+    <div class="loader"></div>
+    <p>Cargando...</p>
+</div>
 
-</main>
+<div id="thankYouMessage" style="display:none;">
+    <h1>¡Muchas gracias por su compra!</h1>
+</div>
+
 
     <?php
     include "./assets/Fragments/Footer_BK.php"
     ?>
     <!--Scripts propios de JS para la pagina-->
     <script src="./Pluggins/toastr/toastr.js"></script>
-    
+    <script src="./assets/JavaScript/Factura.js"></script>
 </body>
 
 </html>
