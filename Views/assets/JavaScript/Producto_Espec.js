@@ -68,7 +68,7 @@ $(document).ready(function () {
                         toastr.error('No se pudo añadir el Producto')
                         break;
                     default:
-                        toastr.error(response)
+                        toastr.error("Error");
                         break;
                 }
             },
@@ -78,8 +78,6 @@ $(document).ready(function () {
 
 
 });
-
-
 
 
 

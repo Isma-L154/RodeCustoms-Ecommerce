@@ -120,7 +120,7 @@ switch ($_GET["op"]) {
                    </select>
                    <br>
                    Cantidad:
-                   <input type="number" name="cantidad" id="cantidad" min="1" value="1">
+                   <input type="number" name="cantidad" id="cantidad" min="1" max="10" value="1">
                </div>
            </div>
        </div>
@@ -143,7 +143,7 @@ switch ($_GET["op"]) {
                     </div>
                     </figure>
                     </div>';
-                   
+                   //Esta es para hace runa verificacion de que el archivo que esta subiendo sea PNG y que sea menos de 1 MB para que lo pueda ingresar
                     echo '<script>
                     document.getElementById("archivo1").addEventListener("change", function() {
                         var archivo = this.files[0];
@@ -173,7 +173,24 @@ switch ($_GET["op"]) {
                         }
                     });
                 </script>';
-                
+                 //Esta funcion es principalmente para que el usuario no me ingrese numeros o algun caracter o numero que no sean enteros en el campo de cantidad
+                 echo '<script>
+                 $(document).ready(function() {
+                 $("#cantidad").on("input", function() {
+                     var valor = $(this).val();
+                     var min = parseInt($(this).attr("min"));
+                     var max = parseInt($(this).attr("max"));
+ 
+                     if (valor < min) {
+                         $(this).val(min);
+                     } else if (valor > max) {
+                         $(this).val(max);
+                     } else if (!Number.isInteger(parseFloat(valor))) {
+                         $(this).val(Math.round(valor));
+                     }
+                 });
+             });
+            </script>';
             } else {
                 echo
                 '<script>

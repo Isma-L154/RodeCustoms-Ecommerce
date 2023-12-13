@@ -3,6 +3,8 @@
 
 body{
     overflow-x: hidden;
+        height: 100%;
+        font-family: "Inconsolata", sans-serif
 }
 
 header{
@@ -10,6 +12,7 @@ header{
     display: flex;
     background-color: #2A2A2A;
     width: 100%;
+    
  }
  .container_logo{
      width: 120px;
@@ -20,14 +23,15 @@ header{
 
  
 /*Seccion de Nav*/
- #navbar{
-    /*Agarrar el 100% de lo que le quede a la pagina a lo ancho*/
-    display: flex; /* Utiliza flexbox para distribuir elementos horizontalmente */
-    justify-content: space-between; /* Coloca elementos en los extremos */
-    align-items: center; /* Centra verticalmente los elementos */
-    padding: 2%; /* Espaciado interior del nav */
+#navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2%;
     width: 100%;
+
 }
+
 .SearchBar {
     flex-grow: 0; /* Permite que la barra de búsqueda crezca y ocupe el espacio disponible */
     text-align: center; /* Centra el contenido horizontalmente */
@@ -154,3 +158,52 @@ display: flex;
     font-size: 14px;
     margin: 0;
 }
+
+.contenido-bienvenida {
+    padding: 0;
+    margin: 0;
+}
+.contenido-bienvenida img {
+    max-width: 700px;
+    margin: 0 auto; 
+    display: block; 
+}
+.bienvenida {
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 100vh; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.titulo-bienvenida {
+    font-family: 'Arial', sans-serif; 
+    font-size: 48px; 
+    color: #333; 
+    margin-bottom: 70px;
+}
+
+.flecha-bienvenida {
+    font-size: 60px;
+    color: #fff;
+    text-decoration: none;
+    animation: bounce 2s infinite;
+    margin-top: -3rem; 
+    margin-left: 22rem;
+    display: block;
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-30px);
+    }
+    60% {
+        transform: translateY(-15px);
+    }
+}
+

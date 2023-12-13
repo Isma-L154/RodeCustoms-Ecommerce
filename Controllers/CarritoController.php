@@ -170,7 +170,6 @@ switch ($_GET["op"]) {
                         <div class="col-md-3 col-lg-2 col-xl-2">
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
-                        //TODO ver si se puede hacer que cuando el aprete el boton pueda borrarlo tambien del apartado de Reportes
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
                         <button class="btn  btn-md eliminar-linea" data-id="' . $reg->getidLinea(). '"><i class="fas fa-times"></i></button>
                         </div>
@@ -201,7 +200,6 @@ switch ($_GET["op"]) {
                         <div class="col-md-3 col-lg-2 col-xl-2">
                             <h6 class="text-muted">' . $reg->getTotal_Linea() . '₡</h6>
                         </div>
-                        //TODO ver si se puede hacer que cuando el aprete el boton pueda borrarlo tambien del apartado de Reportes
                         <div class="col-md-3 col-lg-3 col-xl-2 ">
                         <button class="btn  btn-md eliminar-linea" data-id="' . $reg->getidLinea(). '"><i class="fas fa-times"></i></button>
                         </div>
@@ -216,35 +214,40 @@ switch ($_GET["op"]) {
         
         
             case 'ListarResumen':
-            $Cart = new Carrito();
-            $Carr_Art = $Cart->listarTodosCarrito();
-            $Cant_Total = 0;
-            $Cant_Items = 0;
-
-            foreach($Carr_Art as $reg){
-                $Cant_Items += $reg->getCantidad();
-                $Cant_Total += $reg ->getTotal_Linea();
-            
-            }   
-            if ($Cant_Items == null) {
+                $Cart = new Carrito();
+                $Carr_Art = $Cart->listarTodosCarrito();
+                $Cant_Total = 0;
                 $Cant_Items = 0;
-            }
-            echo '<div class="d-flex justify-content-between mb-4">
-            <h5 class="text-uppercase">Items</h5>
-            <span style="font-size: 24px;">'.$Cant_Items.'</span>
-            </div>
             
-
-          <hr class="my-4">
-
-          <div class="d-flex justify-content-between mb-5">
-            <h5 class="text-uppercase">Total</h5>
-            <span style="font-size: 24px;">'.$Cant_Total.'₡</span>          
-            </div>';
-            //Para despues verificar que existe ma de un producto en el carrito antes de pagar
-            $_SESSION['Cant_Product'] = $Cant_Items;
+                foreach($Carr_Art as $reg){
+                    $Cant_Items += $reg->getCantidad();
+                    $Cant_Total += $reg->getTotal_Linea();
+                }   
             
-            break;
+                if ($Cant_Total == 0) {
+                    // Si el total es 0 y existe la variable de sesión, la elimina
+                    if (isset($_SESSION['Cant_Product'])) {
+                        unset($_SESSION['Cant_Product']);
+                    }
+                } else {
+                    // Si el total es mayor que 0, crea o actualiza la variable de sesión
+                    $_SESSION['Cant_Product'] = $Cant_Items;
+                }
+            
+                echo '<div class="d-flex justify-content-between mb-4">
+                    <h5 class="text-uppercase">Items</h5>
+                    <span style="font-size: 24px;">'.$Cant_Items.'</span>
+                </div>
+            
+                <hr class="my-4">
+            
+                <div class="d-flex justify-content-between mb-5">
+                    <h5 class="text-uppercase">Total</h5>
+                    <span style="font-size: 24px;">'.$Cant_Total.'₡</span>          
+                </div>';
+                
+                break;
+            
         
 
 
@@ -259,6 +262,18 @@ switch ($_GET["op"]) {
                 }
                 break;
             
+            case 'EliminarCarrito':
+                $Carrito = new Carrito();
+                $rspa = $Carrito -> EliminarCarrito();
+                if($rspta) {
+                    echo 1; // Éxito para eliminar 
+                } else {
+                    echo 0; // Error para eliminar toda la info
+                }
+                if(isset($_SESSION['Cant_Product'])) {
+                    unset($_SESSION['Cant_Product']);
+                }
+                break;
         }
 
 

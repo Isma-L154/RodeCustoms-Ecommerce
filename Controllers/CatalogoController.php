@@ -117,8 +117,9 @@ switch ($_GET["op"]) {
                                                 <option value="XL">XL</option>
                                             </select>
                                             Cantidad:
-                                                <input type="number" name="cantidad" id="cantidad" min="1" value="1">
-                                            </div>
+                                                <input type="number" name="cantidad" id="cantidad" min="1" max="10" value="1" step="1">
+                                            
+                                                </div>
 
                                         </div>
                                     </div>
@@ -126,12 +127,30 @@ switch ($_GET["op"]) {
                                 <div class="bottom-wrap">
                                 <div class="price-wrap row">
                                 <button type="button" class="btn btn-primary float-right"  id="btnAnadirCarrito" >Añadir al Carrito</button>
-                                    <a href="./Cata_Personalizable.php" class="btn float-left mr-auto" > Cancelar </a>
+                                    <a href="./Catalogo.php" class="btn float-left mr-auto" > Cancelar </a>
                                 </div>
                             </div>   
                             </div>
                         </figure>
                     </div>';
+                //Esta funcion es principalmente para que el usuario no me ingrese numeros o algun caracter o numero que no sean enteros en el campo de cantidad
+                echo '<script>
+                $(document).ready(function() {
+                $("#cantidad").on("input", function() {
+                    var valor = $(this).val();
+                    var min = parseInt($(this).attr("min"));
+                    var max = parseInt($(this).attr("max"));
+
+                    if (valor < min) {
+                        $(this).val(min);
+                    } else if (valor > max) {
+                        $(this).val(max);
+                    } else if (!Number.isInteger(parseFloat(valor))) {
+                        $(this).val(Math.round(valor));
+                    }
+                });
+            });
+    </script>';
             } else {
                 echo
                 '<script>

@@ -24,7 +24,7 @@ function listarTodosCarrito() {
               $('#Resumen').html(data);
           },
           error: function(e) {
-              console.log(e.responseText);
+              toastr.error("Error");
           }
       });
   
@@ -79,6 +79,23 @@ $(document).ready(function () {
         } else if (!tieneProductos) {
             toastr.error('Debe agregar al menos un producto al carrito antes de pagar.');
             event.preventDefault();
+        } else {
+            // Si la sesión está iniciada y hay productos
+            $.ajax({
+                url: '../Controllers/CarritoController.php?op=EliminarCarrito',
+                type: 'POST',
+                success: function(response) {
+                    if (response == "1") {
+                        
+                        window.location.href = 'pagina_confirmacion.php';
+                    } else {
+                        toastr.error('Error al Pagar');
+                    }
+                },
+                error: function(xhr, status, error) {
+                    toastr.error('Error en la solicitud AJAX: ' + error);
+                }
+            });
         }
     });
 });

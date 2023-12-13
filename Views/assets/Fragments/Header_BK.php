@@ -6,6 +6,7 @@
     <a href="./index.php">
       <img src="./assets/Img/Logo2.png" alt="LogoRode" class="Mi_logo" style="height: 85px; width: 96px;"></a>
   </div>
+    
 
   <nav id="navbar">
 

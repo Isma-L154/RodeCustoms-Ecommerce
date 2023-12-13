@@ -119,7 +119,6 @@ public function getidLinea()
     }
     public function listarTodosCarrito(){
         $query = "SELECT * FROM Carrito";
-        //Almacenar los articulos
         $arr = array();
         try {
             self::getConexion();
@@ -135,7 +134,6 @@ public function getidLinea()
                 $cart->setCantidad($encontrado['Cantidad']);
                 $cart->setTalla($encontrado['Talla']);
                 $cart->setTotal_Linea($encontrado['Total_Linea']);
-                //Almacenamos todos los datos de la tabla dentro del Array
                 $arr[] = $cart;
             }
             return $arr;
@@ -157,9 +155,9 @@ public function getidLinea()
             $resultado = self::$cnx->prepare($query);
             $resultado->bindParam(":id", $id, PDO::PARAM_INT);
 
-            self::$cnx->beginTransaction(); // Desactiva el autocommit
+            self::$cnx->beginTransaction();
             $resultado->execute();
-            self::$cnx->commit(); // Realiza el commit y vuelve al modo autocommit
+            self::$cnx->commit(); 
             self::desconectar();
 
             return $resultado->rowCount();
@@ -170,6 +168,27 @@ public function getidLinea()
             return $error;
         }
     }
+
+    public function EliminarCarrito(){
+    $query = "DELETE FROM Carrito"; 
+    try {
+        self::getConexion();
+
+        $resultado = self::$cnx->prepare($query);
+
+        self::$cnx->beginTransaction(); 
+        $resultado->execute();
+        self::$cnx->commit(); 
+        self::desconectar();
+
+        return $resultado->rowCount(); //Devuelvo en numero de lineas que se eliminaron en ese momento
+    } catch (PDOException $Exception) {
+        self::$cnx->rollBack(); // Revierte la transacción en caso de error
+        self::desconectar();
+        $error = "Error " . $Exception->getCode() . ": " . $Exception->getMessage();
+        return $error;
+    }
+}
 
 
 
