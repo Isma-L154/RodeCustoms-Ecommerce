@@ -1,8 +1,8 @@
 # 🛍️ RodeCustoms – E-Commerce Customization Shop 
 
-This is a fully functional e-commerce website built as a **side project** for _RodeCustoms_, a customization shop focused on creating personalized items such as apparel, accessories, and more. The project was developed to simulate a real online store, including product management, shopping cart, user authentication, and order processing features.
+This is a fully functional e-commerce website built for _RodeCustoms_, a customization shop focused on creating personalized items such as apparel, accessories, and more. The project was developed to simulate a real online store, including product management, shopping cart, user authentication, and order processing features.
 
-> ⚠️ **Note**: This is **not the current official store** used by RodeCustoms. The live store was later developed through other means. However, this project reflects the core functionality of a working e-commerce platform and showcases what I built independently to help support the shop at an early stage.
+> ⚠️ **Note**: This is **not the CURRENT official store** used by RodeCustoms. This project reflects the core functionality of a working e-commerce platform and showcases what I built independently to help support the shop at an early stage.
 
 ---
 
