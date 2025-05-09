@@ -1,4 +1,4 @@
-# 🛍️ RodeCustoms – E-Commerce Customization Shop (Side Project)
+# 🛍️ RodeCustoms – E-Commerce Customization Shop 
 
 This is a fully functional e-commerce website built as a **side project** for _RodeCustoms_, a customization shop focused on creating personalized items such as apparel, accessories, and more. The project was developed to simulate a real online store, including product management, shopping cart, user authentication, and order processing features.
 
